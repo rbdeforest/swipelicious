@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DraggableViewBackground">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="444"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTr-X6-ncu">
+                    <rect key="frame" x="69.5" y="351" width="244" height="93"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ia-oP-qn4">
+                            <rect key="frame" x="0.0" y="0.0" width="112" height="93"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="112" id="JkD-kt-3lT"/>
+                                <constraint firstAttribute="height" constant="93" id="Pyr-1e-ud3"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="trash-icon"/>
+                            <connections>
+                                <action selector="swipeLeft" destination="iN0-l3-epB" eventType="touchUpInside" id="kIb-5q-5Ip"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5x-WZ-LNm">
+                            <rect key="frame" x="132" y="0.0" width="112" height="93"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="112" id="Bck-oI-ruH"/>
+                                <constraint firstAttribute="height" constant="93" id="w57-Y7-kz6"/>
+                            </constraints>
+                            <state key="normal" image="select-icon"/>
+                            <connections>
+                                <action selector="swipeRight" destination="iN0-l3-epB" eventType="touchUpInside" id="k7H-gv-uZx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="R5x-WZ-LNm" secondAttribute="trailing" id="GdM-7b-GT2"/>
+                        <constraint firstAttribute="bottom" secondItem="R5x-WZ-LNm" secondAttribute="bottom" id="Xlt-1X-E4J"/>
+                        <constraint firstAttribute="bottom" secondItem="5ia-oP-qn4" secondAttribute="bottom" id="f3X-eB-ocd"/>
+                        <constraint firstItem="5ia-oP-qn4" firstAttribute="top" secondItem="uTr-X6-ncu" secondAttribute="top" id="lEV-gC-qAq"/>
+                        <constraint firstItem="5ia-oP-qn4" firstAttribute="leading" secondItem="uTr-X6-ncu" secondAttribute="leading" id="nVv-al-emc"/>
+                        <constraint firstItem="R5x-WZ-LNm" firstAttribute="leading" secondItem="5ia-oP-qn4" secondAttribute="trailing" constant="20" id="xtw-Nu-TIe"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uTr-X6-ncu" secondAttribute="trailing" id="2L4-Q7-ufl"/>
+                <constraint firstItem="uTr-X6-ncu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ajS-ip-mAC"/>
+                <constraint firstAttribute="bottom" secondItem="uTr-X6-ncu" secondAttribute="bottom" id="jG1-9m-VRM"/>
+                <constraint firstItem="uTr-X6-ncu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rki-ZZ-7U3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="2L4-Q7-ufl"/>
+                    <exclude reference="rki-ZZ-7U3"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="checkButton" destination="R5x-WZ-LNm" id="FIZ-ri-rZF"/>
+                <outlet property="xButton" destination="5ia-oP-qn4" id="cvR-vL-dxR"/>
+            </connections>
+            <point key="canvasLocation" x="83.5" y="261"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="select-icon" width="112" height="93"/>
+        <image name="trash-icon" width="112" height="93"/>
+    </resources>
+</document>
