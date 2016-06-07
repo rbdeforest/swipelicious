@@ -13,6 +13,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "MainViewController.h"
 #import "MasterViewController.h"
+
 UILocalNotification *notification;
 @interface AppDelegate ()
 
@@ -86,6 +87,13 @@ UILocalNotification *notification;
 //    
 //    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     // Override point for customization after application launch.
+    
+    
+    
+    // Mixpanel
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+    
+    
     return YES;
 }
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

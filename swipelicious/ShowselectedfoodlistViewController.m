@@ -36,9 +36,25 @@ NSArray *ingredients;//selected food's ingredients
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear: animated];
 
+    // Mixpanel
+    [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey: @"StartSelectedFoodListPage"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self.Selectedfoodlist reloadData];
+}
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear: animated];
+    
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+
+    NSDate* dateStart = (NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey: @"StartSelectedFoodListPage"];
+    NSTimeInterval diff = [[NSDate date] timeIntervalSinceDate:dateStart];
+    [mixpanel.people set:USER_TIME_STAYING_RECIPES_LIST_PAGE to: [NSString stringWithFormat: @"%f Seconds", diff]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,6 +119,14 @@ NSArray *ingredients;//selected food's ingredients
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS by:@1];
+    [mixpanel track: USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS];
+    
+    
     selectedfoodindex = indexPath.row;
     NSInteger index = (NSInteger)likefoodcount-indexPath.row-1;
 

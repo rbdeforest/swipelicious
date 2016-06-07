@@ -41,6 +41,14 @@ UIImage *selectedfoodimage;//selected food's image
 
 }
 - (IBAction)gotodetailrecipe:(id)sender {
+    
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_VIEW_FULL_RECIPE by:@1];
+    [mixpanel track: USER_CLICKED_VIEW_FULL_RECIPE];
+
+    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:detaillink]];
 }
 

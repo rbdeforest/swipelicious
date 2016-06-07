@@ -56,8 +56,14 @@ int likefoodcount;
                                             selector:@selector(checkRefresh)
                                                 name:UIApplicationDidBecomeActiveNotification
                                               object:nil];
-    
- }
+
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_OPENED_APP_COUNT by:@1];
+    [mixpanel.people set:USER_OPENED_APP_DATE to:[AUtils stringFromDate: [NSDate date]]];
+    [mixpanel track: USER_OPENED_APP_COUNT];
+}
 
 -(void)checkRefresh{
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -140,6 +146,12 @@ int likefoodcount;
 }
 - (IBAction)onClickfoldericon:(id)sender {
     
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_TOP_RIGHT_BUTTON by:@1];
+    [mixpanel track: USER_CLICKED_TOP_RIGHT_BUTTON];
+
     [self performSegueWithIdentifier:@"showlikefoodlist" sender:self];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

@@ -49,10 +49,8 @@
 		6A776CFF1B8AC93D0044C940 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A776CE91B8AC93D0044C940 /* UIWebView+AFNetworking.m */; };
 		6A776D001B8AC93D0044C940 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A776CEB1B8AC93D0044C940 /* ProgressHUD.bundle */; };
 		6A776D011B8AC93D0044C940 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A776CED1B8AC93D0044C940 /* ProgressHUD.m */; };
-		6A776D071B8B3CF70044C940 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D031B8B3CF70044C940 /* Bolts.framework */; };
 		6A776D081B8B3CF80044C940 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D041B8B3CF70044C940 /* Parse.framework */; };
 		6A776D091B8B3CF80044C940 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D051B8B3CF70044C940 /* ParseFacebookUtils.framework */; };
-		6A776D0A1B8B3CF80044C940 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D061B8B3CF70044C940 /* ParseUI.framework */; };
 		6A776D0C1B8B3ED00044C940 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D0B1B8B3ED00044C940 /* Foundation.framework */; };
 		6A776D0E1B8B3EDD0044C940 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D0D1B8B3EDD0044C940 /* MobileCoreServices.framework */; };
 		6A776D101B8B3EF00044C940 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D0F1B8B3EF00044C940 /* libz.dylib */; };
@@ -82,6 +80,8 @@
 		6ADC895F1B91FA3D004DE05B /* button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC895E1B91FA3D004DE05B /* button.jpeg */; };
 		6AFDA2121B87AB0700F1EA3A /* cell_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFDA2111B87AB0700F1EA3A /* cell_background.png */; };
 		6AFDA2141B87AB3400F1EA3A /* selected_food_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFDA2131B87AB3400F1EA3A /* selected_food_background.png */; };
+		8BB10D301D066A0F00B7B147 /* AUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB10D2F1D066A0F00B7B147 /* AUtils.m */; };
+		F317EE8C975AB528B91E6D23 /* libPods-swipelicious.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D23AE12ADD180373F47C6E /* libPods-swipelicious.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01ABEE272484B7E7A0F70EE4 /* Pods-swipelicious.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swipelicious.release.xcconfig"; path = "Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious.release.xcconfig"; sourceTree = "<group>"; };
 		143A806F1CD7DA3A00DA41A2 /* RecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeView.xib; sourceTree = "<group>"; };
 		143A80711CD8D9E900DA41A2 /* DraggableViewBackground.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraggableViewBackground.xib; sourceTree = "<group>"; };
 		145A4A611CDBE0AC00622305 /* HeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderButton.h; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		44DBB6FE1B6F6EF600780CE4 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2.png; path = Resource/images/2.png; sourceTree = "<group>"; };
 		44DBB6FF1B6F6EF600780CE4 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3.png; path = Resource/images/3.png; sourceTree = "<group>"; };
 		44DBB7011B6F6EF600780CE4 /* fbbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fbbutton.png; path = Resource/images/fbbutton.png; sourceTree = "<group>"; };
+		45D23AE12ADD180373F47C6E /* libPods-swipelicious.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-swipelicious.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A52F57C1B65450500AECC90 /* swipelicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swipelicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A52F5801B65450500AECC90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A52F5811B65450500AECC90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -207,6 +209,10 @@
 		6ADC895E1B91FA3D004DE05B /* button.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = button.jpeg; path = Resource/images/button.jpeg; sourceTree = "<group>"; };
 		6AFDA2111B87AB0700F1EA3A /* cell_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell_background.png; path = Resource/images/cell_background.png; sourceTree = "<group>"; };
 		6AFDA2131B87AB3400F1EA3A /* selected_food_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected_food_background.png; path = Resource/images/selected_food_background.png; sourceTree = "<group>"; };
+		7554043ABD25BA5D56085563 /* Pods-swipelicious.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swipelicious.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious.debug.xcconfig"; sourceTree = "<group>"; };
+		8BB10D2D1D06672900B7B147 /* swipelicious-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "swipelicious-Prefix.pch"; sourceTree = "<group>"; };
+		8BB10D2E1D066A0F00B7B147 /* AUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUtils.h; sourceTree = "<group>"; };
+		8BB10D2F1D066A0F00B7B147 /* AUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,12 +233,11 @@
 				6A776D201B8B4BAA0044C940 /* FacebookSDK.framework in Frameworks */,
 				6A776D0E1B8B3EDD0044C940 /* MobileCoreServices.framework in Frameworks */,
 				6A776D0C1B8B3ED00044C940 /* Foundation.framework in Frameworks */,
-				6A776D0A1B8B3CF80044C940 /* ParseUI.framework in Frameworks */,
-				6A776D071B8B3CF70044C940 /* Bolts.framework in Frameworks */,
 				6AC913511B720F7400E96CD1 /* FBSDKLoginKit.framework in Frameworks */,
 				6A776D081B8B3CF80044C940 /* Parse.framework in Frameworks */,
 				6A776D091B8B3CF80044C940 /* ParseFacebookUtils.framework in Frameworks */,
 				6AC913501B720F7400E96CD1 /* FBSDKCoreKit.framework in Frameworks */,
+				F317EE8C975AB528B91E6D23 /* libPods-swipelicious.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +257,8 @@
 				6A52F57E1B65450500AECC90 /* swipelicious */,
 				6A52F59B1B65450500AECC90 /* swipeliciousTests */,
 				6A52F57D1B65450500AECC90 /* Products */,
+				FDEDB5A414CD1603D2916E41 /* Pods */,
+				75D95A444456AAF13D19E19A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,6 +280,8 @@
 				6A776CEA1B8AC93D0044C940 /* ProgressHUD */,
 				6A52F5831B65450500AECC90 /* AppDelegate.h */,
 				6A52F5841B65450500AECC90 /* AppDelegate.m */,
+				8BB10D2E1D066A0F00B7B147 /* AUtils.h */,
+				8BB10D2F1D066A0F00B7B147 /* AUtils.m */,
 				6A776D4D1B8D05C60044C940 /* Class */,
 				6A52F58C1B65450500AECC90 /* Main.storyboard */,
 				6A52F58F1B65450500AECC90 /* Images.xcassets */,
@@ -287,6 +296,7 @@
 			children = (
 				6A52F5801B65450500AECC90 /* Info.plist */,
 				6A52F5811B65450500AECC90 /* main.m */,
+				8BB10D2D1D06672900B7B147 /* swipelicious-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -501,6 +511,23 @@
 			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
+		75D95A444456AAF13D19E19A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45D23AE12ADD180373F47C6E /* libPods-swipelicious.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDEDB5A414CD1603D2916E41 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7554043ABD25BA5D56085563 /* Pods-swipelicious.debug.xcconfig */,
+				01ABEE272484B7E7A0F70EE4 /* Pods-swipelicious.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,9 +535,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A52F5A21B65450500AECC90 /* Build configuration list for PBXNativeTarget "swipelicious" */;
 			buildPhases = (
+				3D5731FB98CC62688273E7CF /* 📦 Check Pods Manifest.lock */,
 				6A52F5781B65450500AECC90 /* Sources */,
 				6A52F5791B65450500AECC90 /* Frameworks */,
 				6A52F57A1B65450500AECC90 /* Resources */,
+				AB5A7E1D779F5D18EB6C9093 /* 📦 Embed Pods Frameworks */,
+				79DB733BD2AFEC92618937DC /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -616,6 +646,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D5731FB98CC62688273E7CF /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		79DB733BD2AFEC92618937DC /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB5A7E1D779F5D18EB6C9093 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6A52F5781B65450500AECC90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -625,6 +703,7 @@
 				6A776CF41B8AC93D0044C940 /* AFURLConnectionOperation.m in Sources */,
 				6A776CFE1B8AC93D0044C940 /* UIRefreshControl+AFNetworking.m in Sources */,
 				6A776CFB1B8AC93D0044C940 /* UIButton+AFNetworking.m in Sources */,
+				8BB10D301D066A0F00B7B147 /* AUtils.m in Sources */,
 				6A776CFD1B8AC93D0044C940 /* UIProgressView+AFNetworking.m in Sources */,
 				6A776CEF1B8AC93D0044C940 /* AFHTTPRequestOperation.m in Sources */,
 				6A776CEE1B8AC93D0044C940 /* AFAppDotNetAPIClient.m in Sources */,
@@ -776,6 +855,7 @@
 		};
 		6A52F5A31B65450500AECC90 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7554043ABD25BA5D56085563 /* Pods-swipelicious.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
@@ -787,6 +867,8 @@
 					"$(PROJECT_DIR)/swipelicious/Frameworks/FacebookSDK",
 					"$(PROJECT_DIR)/swipelicious/Frameworks/parse",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "swipelicious/swipelicious-Prefix.pch";
 				INFOPLIST_FILE = swipelicious/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -797,6 +879,7 @@
 		};
 		6A52F5A41B65450500AECC90 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01ABEE272484B7E7A0F70EE4 /* Pods-swipelicious.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
@@ -808,6 +891,8 @@
 					"$(PROJECT_DIR)/swipelicious/Frameworks/FacebookSDK",
 					"$(PROJECT_DIR)/swipelicious/Frameworks/parse",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "swipelicious/swipelicious-Prefix.pch";
 				INFOPLIST_FILE = swipelicious/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

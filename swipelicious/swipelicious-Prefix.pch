@@ -1,0 +1,31 @@
+//
+//  swipelicious-Prefix.pch
+//  swipelicious
+//
+//  Created by Mobile Developer on 6/7/16.
+//  Copyright © 2016 dennis. All rights reserved.
+//
+
+#ifndef swipelicious_Prefix_pch
+#define swipelicious_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* swipelicious_Prefix_pch */
+
+#import "AUtils.h"
+#import "Mixpanel.h"
+
+#define MIXPANEL_TOKEN @"bb1bea704eb0d61b3a5cac067bc31651"
+
+#define USER_OPENED_APP_COUNT @"Opened App Count"
+#define USER_OPENED_APP_DATE @"Opened App Date"
+#define USER_LIKED_RECIPES @"Liked Recipes"
+#define USER_NOTLIKED_RECIPES @"Not Liked Recipes"
+#define USER_WENT_ALL_FIVE_RECIPES @"Went Through All 5 Recipes"
+#define USER_TIME_GO_ALL_FIVE_RECIPES @"Time To Go Through All 5 Recipes"
+#define USER_CLICKED_TOP_RIGHT_BUTTON @"Clicked Top Right Button to view all recipes"
+#define USER_TIME_STAYING_RECIPES_LIST_PAGE @"Time Staying Recipes List Page"
+#define USER_CLICKED_VIEW_FULL_RECIPE @"Clicked View Full Recipe"
+#define USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS @"Clicked Recipe To View Ingredients"

@@ -281,6 +281,13 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
 // This should be customized with your own action
 -(void)cardSwipedLeft:(UIView *)card;
 {
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_LIKED_RECIPES by:@1];
+    [mixpanel track: USER_LIKED_RECIPES];
+
+    
     //do whatever you want with the card that was swiped
     //    DraggableView *c = (DraggableView *)card;
     
@@ -297,11 +304,29 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
         
     }
+
+    // Mixpanel
+    if (remainfoodimagecount == 5) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey: @"TimeStartSwipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+   
     if(remainfoodimagecount){
     self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
     remainfoodimagecount--;
     }
-    if(remainfoodimagecount ==0){
+    if(remainfoodimagecount == 0){
+
+        // Mixpanel
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+        [mixpanel.people increment:USER_WENT_ALL_FIVE_RECIPES by:@1];
+        [mixpanel track: USER_WENT_ALL_FIVE_RECIPES];
+        
+        NSDate* dateStart = (NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey: @"TimeStartSwipe"];
+        NSTimeInterval diff = [[NSDate date] timeIntervalSinceDate:dateStart];
+        [mixpanel.people set:USER_TIME_GO_ALL_FIVE_RECIPES to: [NSString stringWithFormat: @"%f Seconds", diff]];
+
         self.notification.hidden = NO;
     }
 }
@@ -310,6 +335,12 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
 // This should be customized with your own action
 -(void)cardSwipedRight:(UIView *)card
 {
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_NOTLIKED_RECIPES by:@1];
+    [mixpanel track: USER_NOTLIKED_RECIPES];
+
     //do whatever you want with the card that was swiped
     //    DraggableView *c = (DraggableView *)card;
     
@@ -326,11 +357,30 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
         
     }
+    
+    // Mixpanel
+    if (remainfoodimagecount == 5) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey: @"TimeStartSwipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
     if(remainfoodimagecount){
     self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
     remainfoodimagecount--;
     }
-    if(remainfoodimagecount ==0){
+    if(remainfoodimagecount == 0){
+        
+        // Mixpanel
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+        [mixpanel.people increment:USER_WENT_ALL_FIVE_RECIPES by:@1];
+        [mixpanel track: USER_WENT_ALL_FIVE_RECIPES];
+
+        NSDate* dateStart = (NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey: @"TimeStartSwipe"];
+        NSTimeInterval diff = [[NSDate date] timeIntervalSinceDate:dateStart];
+        [mixpanel.people set:USER_TIME_GO_ALL_FIVE_RECIPES to: [NSString stringWithFormat: @"%f Seconds", diff]];
+
+        
         self.notification.hidden = NO;
         self.xButton.hidden = NO;
         self.checkButton.hidden = NO;
