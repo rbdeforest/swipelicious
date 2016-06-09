@@ -1,14 +1,23 @@
 PODS:
+  - Alamofire (3.4.0)
+  - HanekeSwift (0.10.1)
   - Mixpanel (2.9.9):
     - Mixpanel/Mixpanel (= 2.9.9)
   - Mixpanel/Mixpanel (2.9.9)
+  - VICMAImageView (1.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - HanekeSwift
   - Mixpanel
+  - VICMAImageView (~> 1.0)
 
 SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   Mixpanel: 818d1940c2d9402453b349545022a86968097f57
+  VICMAImageView: 9f1811d4482ebe37b7eb09f640018554a81a21b2
 
-PODFILE CHECKSUM: 8807a45bbb691658fdfd414ef1fbe67129037031
+PODFILE CHECKSUM: 6332c40921562502d87b6136da0fb4625069d36e
 
 COCOAPODS: 1.0.0

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Richard Kim. All rights reserved.
 //
 
+#import "swipelicious-Swift.h"
 #import "DraggableViewBackground.h"
 #import "MasterViewController.h"
 #import "MainViewController.h"
@@ -16,6 +17,7 @@
 #import <Parse/Parse.h>
 #import "MasterViewController.h"
 #import "AppDelegate.h"
+
 NSMutableArray *foodtitles5;
 NSMutableArray *imageUrls;
 
@@ -24,15 +26,14 @@ NSMutableArray *imageUrls;
     NSInteger remainfoodimagecount;
     NSMutableArray *loadedCards; //%%% the array of card loaded (change max_buffer_size to increase or decrease the number of cards this holds)
     NSMutableArray *likefoods;
-   
     
    
 }
 //this makes it so only two cards are loaded at a time to
 //avoid performance and memory costs
 static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any given time, must be greater than 1
-static const float CARD_HEIGHT = 260; //%%% height of the draggable card
-static const float CARD_WIDTH = 263; //%%% width of the draggable card
+//static const float CARD_HEIGHT = 260; //%%% height of the draggable card
+//static const float CARD_WIDTH = 263; //%%% width of the draggable card
 
 @synthesize foodimageurls5; //%%% all the labels I'm using as example data at the moment
 //@synthesize foodtitles;
@@ -40,6 +41,8 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
 @synthesize ingredients;
 @synthesize allCards;//%%% all the cards
 @synthesize page;
+@synthesize recipes;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -56,9 +59,9 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
         foodtitles5 = [[NSMutableArray alloc ] init];
         foodids5 = [[NSMutableArray alloc ] init];
         
-        NSString *requestURL = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=%@", apiKey];
-        requestURL = [NSString stringWithFormat:@"%@&page=%d", requestURL, page];
-        requestURL = [requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *requestURL = @"http://localhost/~augusto/Swipelicious/draws.json";//[NSString stringWithFormat:@"http://food2fork.com/api/search?key=%@", apiKey];
+        //requestURL = [NSString stringWithFormat:@"%@&page=%d", requestURL, page];
+        //requestURL = [requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [ProgressHUD show:@"Loading" Interaction:NO];
        
         NSURL *url = [NSURL URLWithString:requestURL];
@@ -74,25 +77,28 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
             
             // 3
      //       NSLog(@"%@", responseObject);
-            NSArray *recipes = [responseObject objectForKey:@"recipes"];
-            [foodimageurls5 addObject:recipes[1][@"image_url"]];
-            [foodimageurls5 addObject:recipes[2][@"image_url"]];
-            [foodimageurls5 addObject:recipes[3][@"image_url"]];
-            [foodimageurls5 addObject:recipes[4][@"image_url"]];
-            [foodimageurls5 addObject:recipes[5][@"image_url"]];
+            self.recipes = [responseObject objectForKey:@"recipes"];
             
+            [foodimageurls5 addObject:recipes[0][@"photo_url"]];
+            [foodimageurls5 addObject:recipes[1][@"photo_url"]];
+            [foodimageurls5 addObject:recipes[2][@"photo_url"]];
+            [foodimageurls5 addObject:recipes[3][@"photo_url"]];
+            [foodimageurls5 addObject:recipes[4][@"photo_url"]];
+            
+            [foodtitles5 addObject:recipes[0][@"title"]];
             [foodtitles5 addObject:recipes[1][@"title"]];
             [foodtitles5 addObject:recipes[2][@"title"]];
             [foodtitles5 addObject:recipes[3][@"title"]];
             [foodtitles5 addObject:recipes[4][@"title"]];
-            [foodtitles5 addObject:recipes[5][@"title"]];
+            
             [foodtitles5 addObject:@""];
             
-            [foodids5 addObject:recipes[1][@"recipe_id"]];
-            [foodids5 addObject:recipes[2][@"recipe_id"]];
-            [foodids5 addObject:recipes[3][@"recipe_id"]];
-            [foodids5 addObject:recipes[4][@"recipe_id"]];
-            [foodids5 addObject:recipes[5][@"recipe_id"]];
+            [foodids5 addObject:recipes[0][@"id"]];
+            [foodids5 addObject:recipes[1][@"id"]];
+            [foodids5 addObject:recipes[2][@"id"]];
+            [foodids5 addObject:recipes[3][@"id"]];
+            [foodids5 addObject:recipes[4][@"id"]];
+            
     
             [ProgressHUD dismiss];
             
@@ -132,9 +138,9 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
         foodtitles5 = [[NSMutableArray alloc ] init];
         foodids5 = [[NSMutableArray alloc ] init];
         
-        NSString *requestURL = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=%@", apiKey];
-        requestURL = [NSString stringWithFormat:@"%@&page=%d", requestURL, page];
-        requestURL = [requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *requestURL = [Draw getURL]; // @"http://localhost/~augusto/Swipelicious/draws.json";//[NSString stringWithFormat:@"http://food2fork.com/api/search?key=%@", apiKey];
+        //requestURL = [NSString stringWithFormat:@"%@&page=%d", requestURL, page];
+        //requestURL = [requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [ProgressHUD show:@"Loading" Interaction:NO];
         
         NSURL *url = [NSURL URLWithString:requestURL];
@@ -142,7 +148,7 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
         // 2
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
         operation.responseSerializer = [AFJSONResponseSerializer serializer];
-        operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -150,25 +156,13 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
              
              // 3
              //       NSLog(@"%@", responseObject);
-             NSArray *recipes = [responseObject objectForKey:@"recipes"];
-             [foodimageurls5 addObject:recipes[1][@"image_url"]];
-             [foodimageurls5 addObject:recipes[2][@"image_url"]];
-             [foodimageurls5 addObject:recipes[3][@"image_url"]];
-             [foodimageurls5 addObject:recipes[4][@"image_url"]];
-             [foodimageurls5 addObject:recipes[5][@"image_url"]];
+             //NSArray *recipes = responseObject;//[responseObject objectForKey:@"recipes"];
+             NSMutableArray *recipesD = [NSMutableArray new];
+             for (NSDictionary *d in responseObject) {
+                 [recipesD addObject:[[Draw alloc] initWithData:d]];
+             }
              
-             [foodtitles5 addObject:recipes[1][@"title"]];
-             [foodtitles5 addObject:recipes[2][@"title"]];
-             [foodtitles5 addObject:recipes[3][@"title"]];
-             [foodtitles5 addObject:recipes[4][@"title"]];
-             [foodtitles5 addObject:recipes[5][@"title"]];
-             [foodtitles5 addObject:@""];
-             
-             [foodids5 addObject:recipes[1][@"recipe_id"]];
-             [foodids5 addObject:recipes[2][@"recipe_id"]];
-             [foodids5 addObject:recipes[3][@"recipe_id"]];
-             [foodids5 addObject:recipes[4][@"recipe_id"]];
-             [foodids5 addObject:recipes[5][@"recipe_id"]];
+             self.recipes = recipesD;
              
              [ProgressHUD dismiss];
              
@@ -209,7 +203,6 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
     
 }
 
-#warning include own card customization here!
 //%%% creates a card and returns it.  This should be customized to fit your needs.
 // use "index" to indicate where the information should be pulled.  If this doesn't apply to you, feel free
 // to get rid of it (eg: if you are building cards from data from the internet)
@@ -220,15 +213,20 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
     DraggableView *draggableView = (DraggableView *)[[[NSBundle mainBundle] loadNibNamed:@"RecipeView" owner:self options:nil] firstObject];
     draggableView.foodimage.layer.cornerRadius = 4;
     
-    NSString *imageUrl = [foodimageurls5 objectAtIndex:index];
+    Draw *recipe = self.recipes[index];
+    NSString *imageUrl = [recipe.photo_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];// recipe.photo_url;
+    
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         //self.sampleimage = [UIImage imageWithData:data];
         draggableView.foodimage.image= [UIImage imageWithData:data];
     }];
-    self.foodtitle.text = [foodtitles5 objectAtIndex:0];
+    self.foodtitle.text = recipe.title;
     
-    NSString *title = [foodtitles5 objectAtIndex:index];
+    NSString *title = recipe.title;
     draggableView.title.text= title.uppercaseString;
+    draggableView.favoriteCount.text = [NSString stringWithFormat:@"%@", recipe.favorite_count] ;
+    draggableView.ingredientsCount.text = [NSString stringWithFormat:@"%@", recipe.ingredient_count];
+    draggableView.index = index;
     
     draggableView.delegate = self;
     
@@ -243,12 +241,12 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
 //%%% loads all the cards and puts the first x in the "loaded cards" array
 -(void)loadCards
 {
-    if([foodimageurls5 count] > 0) {
-        NSInteger numLoadedCardsCap =(([foodimageurls5 count] > MAX_BUFFER_SIZE)?MAX_BUFFER_SIZE:[foodimageurls5 count]);
+    if([recipes count] > 0) {
+        NSInteger numLoadedCardsCap =(([recipes count] > MAX_BUFFER_SIZE)?MAX_BUFFER_SIZE:[recipes count]);
         //%%% if the buffer size is greater than the data size, there will be an array error, so this makes sure that doesn't happen
         
         //%%% loops through the exampleCardsLabels array to create a card for each label.  This should be customized by removing "foodimageurls" with your own array of data
-        for (int i = 0; i<[foodimageurls5 count]; i++) {
+        for (int i = 0; i<[recipes count]; i++) {
             DraggableView* newCard = [self createDraggableViewWithDataAtIndex:i];
             [allCards addObject:newCard];
             
@@ -276,11 +274,14 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
     }
 }
 
-#warning include own action here!
 //%%% action called when the card goes to the left.
 // This should be customized with your own action
 -(void)cardSwipedLeft:(UIView *)card;
 {
+    DraggableView *c = (DraggableView *)card;
+    Draw *recipe = self.recipes[c.index];
+    [[[AppSession sharedInstance] user] addToFavorites:recipe like:NO];
+    
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
@@ -289,7 +290,6 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
 
     
     //do whatever you want with the card that was swiped
-    //    DraggableView *c = (DraggableView *)card;
     
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
     
@@ -312,7 +312,7 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
     }
    
     if(remainfoodimagecount){
-    self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
+    //self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
     remainfoodimagecount--;
     }
     if(remainfoodimagecount == 0){
@@ -335,6 +335,11 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
 // This should be customized with your own action
 -(void)cardSwipedRight:(UIView *)card
 {
+    DraggableView *c = (DraggableView *)card;
+    Draw *recipe = self.recipes[c.index];
+    User *user = [[AppSession sharedInstance] user];
+    [user addToFavorites:recipe like:YES];
+    
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
@@ -365,7 +370,7 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
     }
 
     if(remainfoodimagecount){
-    self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
+    //self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
     remainfoodimagecount--;
     }
     if(remainfoodimagecount == 0){
@@ -386,22 +391,6 @@ static const float CARD_WIDTH = 263; //%%% width of the draggable card
         self.checkButton.hidden = NO;
     }
     
-    NSString *foodid = foodids5[4-remainfoodimagecount];
-    NSString *foodtitle = foodtitles5[4-remainfoodimagecount];
-    //NSString *page = [NSString stringWithFormat:@"%d", self.page];
-    NSString *imageurl = foodimageurls5[4-remainfoodimagecount];
-    
-    PFObject *object = [PFObject objectWithClassName:@"FoodData"];
-    object[@"facebook_id"] = userfacebookid;
-    object[@"recipe_id"] = foodid;
-    object[@"title"] = foodtitle;
-    //object[@"page"] = page;
-    object[@"image_url"] = imageurl;
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self addFoodData :foodids5[4-remainfoodimagecount]:foodtitles5[4-remainfoodimagecount]:foodimageurls5[4-remainfoodimagecount]];
-        }
-    }];
 }
 //%%% when you hit the right button, this is called and substitutes the swipe
 -(IBAction)swipeRight

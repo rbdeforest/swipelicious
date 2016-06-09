@@ -10,7 +10,6 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "MainViewController.h"
 #import "MasterViewController.h"
 
@@ -24,9 +23,9 @@ UILocalNotification *notification;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"OljqdevZuNmaIveVYrLT84v6TqI1SjfThAsp35MS" clientKey:@"qEcTRyV4GU3lCOTFKBT9H22VnAF1dj3pOmrhNMi7"];
-    [PFFacebookUtils initializeFacebook];
     
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];
     NSString *tch = [startUser objectForKey:@"touchId"];
@@ -182,6 +181,7 @@ UILocalNotification *notification;
 
 - (BOOL)shouldUpdateRecipes
 {
+    return YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *lastRecipesDate = [defaults objectForKey:@"lastRecipesDate"];
     

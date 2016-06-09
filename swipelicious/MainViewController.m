@@ -6,16 +6,20 @@
 //  Copyright (c) 2015 dennis. All rights reserved.
 //
 
+#import "swipelicious-Swift.h"
+
 #import "MainViewController.h"
 #import <MessageUI/MessageUI.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "AFHTTPRequestOperation.h"
 #import <LocalAuthentication/LocalAuthentication.h>
+#import "swipelicious-Bridging-Header.h"
+
 NSString *userfacebookid;
 #define PF_USER_FACEBOOKID   @"facebookId"
 FBSDKLoginManager *login;
+
 @interface MainViewController ()
 
 @end
@@ -25,13 +29,23 @@ FBSDKLoginManager *login;
 - (void)viewDidLoad {
     [super viewDidLoad];
     userfacebookid = @"";
+
     self.scrollView.contentSize = CGSizeMake(960, 392);
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fbid = [defaults objectForKey:@"userfacebookid"];
     if(fbid){
-        userfacebookid=fbid;
-        [self performSegueWithIdentifier:@"logined" sender:nil];
+        if ([FBSDKAccessToken currentAccessToken]) {
+            //User;
+            User * user = [[User alloc] initWithFBToken:[[FBSDKAccessToken currentAccessToken] tokenString]];
+            [[AppSession sharedInstance] login:user completion:^(User * _Nullable user, NSError * _Nullable error) {
+                if (error == nil){
+                    userfacebookid=fbid;
+                    [self performSegueWithIdentifier:@"logined" sender:nil];
+                }
+                
+            }];
+        }
     }
 }
 
@@ -55,25 +69,21 @@ FBSDKLoginManager *login;
 - (IBAction)onClickfbbutton:(id)sender {
     
     login = [[FBSDKLoginManager alloc] init];
-    [login logInWithReadPermissions:@[@"public_profile", @"email", @"user_friends"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    [login logInWithReadPermissions:@[@"public_profile", @"email", @"user_friends"] fromViewController:self handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         if (error) {
         } else if (result.isCancelled) {
-
+            
         } else {
             if ([FBSDKAccessToken currentAccessToken]) {
-                NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-                [parameters setValue:@"id,name,email" forKey:@"fields"];
-                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters]
-                 startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-                     if (!error) {
-                         NSLog(@"fetched user:%@", result);
-                         userfacebookid = result[@"id"];
-                         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                         [defaults setObject:result[@"id"] forKey:@"userfacebookid"];
-                         [defaults synchronize];
-                         [self performSegueWithIdentifier:@"logined" sender:nil];
-                     }
-                 }];
+                //User;
+                User * user = [[User alloc] initWithFBToken:[[FBSDKAccessToken currentAccessToken] tokenString]];
+                [FBSDKAccessToken setCurrentAccessToken:[FBSDKAccessToken currentAccessToken]];
+                [[AppSession sharedInstance] login:user completion:^(User * _Nullable user, NSError * _Nullable error) {
+                    if (error == nil){
+                        [self performSegueWithIdentifier:@"logined" sender:nil];
+                    }
+                    
+                }];
             }
         }
     }];

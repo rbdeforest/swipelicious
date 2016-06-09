@@ -1,0 +1,6 @@
+framework module VICMAImageView {
+  umbrella header "VICMAImageView-umbrella.h"
+
+  export *
+  module * { export * }
+}

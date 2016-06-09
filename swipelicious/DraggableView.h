@@ -51,6 +51,9 @@
 @property (nonatomic,strong) IBOutlet UILabel* information; //%%% a placeholder for any card-specific information
 @property (nonatomic,strong) IBOutlet UIImageView* foodimage;
 @property (nonatomic,strong) IBOutlet UILabel* title;
+@property (nonatomic,strong) IBOutlet UILabel* favoriteCount;
+@property (nonatomic,strong) IBOutlet UILabel* ingredientsCount;
+@property (nonatomic) NSInteger index;
 
 -(void)leftClickAction;
 -(void)rightClickAction;

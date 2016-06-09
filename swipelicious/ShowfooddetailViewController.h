@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Draw;
+
 @interface ShowfooddetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *foodtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *foodimage;
 
-
 @property (weak, nonatomic) IBOutlet UITableView *ingredientslist;
-@property NSString *deleteobjectId;
+@property (strong, nonatomic) Draw *recipe;
 
-extern NSString *detaillink;
-extern NSString *foodtitle;
-extern UIImage *selectedfoodimage;
 @end

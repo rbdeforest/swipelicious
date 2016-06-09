@@ -5,7 +5,7 @@
 //  Created by iosdev on 8/23/15.
 //  Copyright (c) 2015 dennis. All rights reserved.
 //
-
+#import "swipelicious-Swift.h"
 #import "ShowfooddetailViewController.h"
 #import "MasterViewController.h"
 #import "MainViewController.h"
@@ -30,15 +30,19 @@ UIImage *selectedfoodimage;//selected food's image
 
 @implementation ShowfooddetailViewController
 
+@synthesize recipe;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.foodtitle.numberOfLines=0;
     self.foodtitle.lineBreakMode = NSLineBreakByWordWrapping;
-    self.foodtitle.text=foodtitle.uppercaseString;
-    self.foodimage.image= selectedfoodimage;
+    self.foodtitle.text= recipe.title.uppercaseString;
 
-
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:recipe.photo_url]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        self.foodimage.image = [UIImage imageWithData:data];
+    }];
+    
 }
 - (IBAction)gotodetailrecipe:(id)sender {
     
@@ -49,7 +53,7 @@ UIImage *selectedfoodimage;//selected food's image
     [mixpanel track: USER_CLICKED_VIEW_FULL_RECIPE];
 
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:detaillink]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:recipe.link]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +66,7 @@ UIImage *selectedfoodimage;//selected food's image
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //return likefoodcount;
-    return [ingredients count];
+    return [recipe.ingredients count];
 }
 
 
@@ -98,7 +102,7 @@ UIImage *selectedfoodimage;//selected food's image
 //    [cell addSubview:ingredient];
     
     UILabel * title = (UILabel *)[cell viewWithTag:1];
-    title.text=ingredients[indexPath.row];
+    title.text=recipe.ingredients[indexPath.row];
     
     //[cell.textLabel setLineBreakMode:NSLineBreakByWordWrapping];
     //cell.textLabel.numberOfLines = 0;
@@ -124,23 +128,24 @@ UIImage *selectedfoodimage;//selected food's image
     // 0 = Tapped yes
     if (buttonIndex == 1)
     {
-        NSInteger index = likefoodcount-selectedfoodindex-1;
-        [foodIdData removeObject: [foodIdData objectAtIndex:index]];
-        [foodTitleData removeObject: [foodTitleData objectAtIndex:index]];
-        [foodImageUrlData removeObject:[foodImageUrlData objectAtIndex:index]];
-        likefoodcount--;
-        PFQuery *query = [PFQuery queryWithClassName:@"FoodData"];
-        [query whereKey:@"facebook_id" equalTo :userfacebookid ];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            for (int i = 0; i < [objects count]; i ++) {
-                if([objects[i][@"recipe_id"] isEqualToString:selectedfoodid]){
-                    PFObject *deleteObject  =objects[i];
-                    [deleteObject deleteInBackground];
-                   
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-            }
-        }];
+        [[[AppSession sharedInstance] user] addToFavorites:recipe like:NO];
+//        NSInteger index = likefoodcount-selectedfoodindex-1;
+//        [foodIdData removeObject: [foodIdData objectAtIndex:index]];
+//        [foodTitleData removeObject: [foodTitleData objectAtIndex:index]];
+//        [foodImageUrlData removeObject:[foodImageUrlData objectAtIndex:index]];
+//        likefoodcount--;
+//        PFQuery *query = [PFQuery queryWithClassName:@"FoodData"];
+//        [query whereKey:@"facebook_id" equalTo :userfacebookid ];
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            for (int i = 0; i < [objects count]; i ++) {
+//                if([objects[i][@"recipe_id"] isEqualToString:selectedfoodid]){
+//                    PFObject *deleteObject  =objects[i];
+//                    [deleteObject deleteInBackground];
+//                   
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                }
+//            }
+//        }];
     }
     
 }

@@ -44,6 +44,7 @@
 @property (retain,nonatomic)NSMutableArray* foodids5;
 @property (retain,nonatomic)NSString* ingredients;
 @property (retain,nonatomic)NSMutableArray* allCards; //%%% the labels the cards
+@property (retain,nonatomic)NSMutableArray* recipes; //%%% the labels the cards
 @property (retain,nonatomic)UIImage *sampleimage;
 @property (nonatomic,strong)UILabel* foodtitle;
 

@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 dennis. All rights reserved.
 //
 
+#import "swipelicious-Swift.h"
+
 #import "ShowselectedfoodlistViewController.h"
 #import "ShowfooddetailViewController.h"
 #import "MasterViewController.h"
@@ -20,19 +22,21 @@
 NSString *selectedfoodid;
 int selectedfoodindex;
 NSArray *ingredients;//selected food's ingredients
+
 @interface ShowselectedfoodlistViewController ()
 
+@property (nonatomic, retain) NSArray *recipes;
 
 @end
 
 @implementation ShowselectedfoodlistViewController
 
+@synthesize recipes;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
     ingredients = [[NSArray alloc] init];
+    self.recipes = [[[AppSession sharedInstance] user] favorites];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -63,7 +67,7 @@ NSArray *ingredients;//selected food's ingredients
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return likefoodcount;
+    return [recipes count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,101 +78,45 @@ NSArray *ingredients;//selected food's ingredients
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FoodCell";
-    NSInteger index = (NSInteger)likefoodcount-indexPath.row-1;
+    
     FoodTableViewCell *cell = (FoodTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = (FoodTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] ;
     }
     
+    Draw *recipe = self.recipes[indexPath.row];
     cell.foodImage.image = nil;
+    NSString *title = recipe.title;
     
-    NSString *title = [foodTitleData objectAtIndex:index];
     cell.foodTitleLabel.text = title.uppercaseString;
-    NSString *imageUrl = [foodImageUrlData objectAtIndex:index];
+    NSString *imageUrl = recipe.photo_url;
+    cell.descriptionLabel.text = recipe.short_description;
+    cell.createdByLabel.text = [NSString stringWithFormat:@"Created by %@",recipe.owner];
     
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         //self.sampleimage = [UIImage imageWithData:data];
         cell.foodImage.image= [UIImage imageWithData:data];
     }];
     
-    //cell.rating = [foodRatingData objectAtIndex:index];
-    
-//    
-//    cell.backgroundColor = [UIColor clearColor];
-//    
-//    UIImageView *cell_background =[[UIImageView alloc]initWithFrame:CGRectMake(13,13,294,64)];
-//    cell_background.image =[UIImage imageNamed:@"cell_background.png"];
-//    [cell addSubview:cell_background];
-//
-//    UILabel *foodtitleLabel;
-//    // Set font and calculate used space
-//    UIFont *textFont = [UIFont fontWithName:@"Helvetica" size:18];
-//    // Position of the text
-//    foodtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(25,13,250,64)];
-//    // Set text attributes
-//    foodtitleLabel.textColor = [UIColor orangeColor];
-//    foodtitleLabel.backgroundColor = [UIColor clearColor];
-//    foodtitleLabel.font = textFont;
-//    foodtitleLabel.text = [foodTitleData objectAtIndex:index];
-//    foodtitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    foodtitleLabel.numberOfLines = 0;
-//    // Display text
-//    [cell addSubview:foodtitleLabel];
     
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
     [mixpanel.people increment:USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS by:@1];
     [mixpanel track: USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS];
     
+    [self performSegueWithIdentifier:@"showfooddetail" sender:nil];
     
-    selectedfoodindex = indexPath.row;
-    NSInteger index = (NSInteger)likefoodcount-indexPath.row-1;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
-    selectedfoodid=foodIdData[index];
-    
-    NSString*imgurl=foodImageUrlData[index];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imgurl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        selectedfoodimage= [UIImage imageWithData:data];
-    }];
-    
-    NSString *requestURL = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=%@", apiKey];
-    requestURL = [NSString stringWithFormat:@"%@&rId=%@", requestURL, selectedfoodid];
-    requestURL = [requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ProgressHUD show:@"Loading" Interaction:NO];
-    
-    NSURL *url = [NSURL URLWithString:requestURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    // 2
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // 3
-        NSLog(@"%@", responseObject);
-        NSDictionary *recipes = [responseObject objectForKey:@"recipe"];
-        ingredients=[recipes objectForKey:@"ingredients"];
-        detaillink=[recipes objectForKey:@"source_url"];
-        foodtitle=[recipes objectForKey:@"title"];
-        
-        [ProgressHUD dismiss];
-        [self performSegueWithIdentifier:@"showfooddetail" sender:nil];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
-    [operation start];
-    [operation waitUntilFinished];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    ShowfooddetailViewController *vc = [segue destinationViewController];
+    int row = (int)self.Selectedfoodlist.indexPathForSelectedRow.row;
+    vc.recipe = self.recipes[row];
 }
 
 - (IBAction)onClickbackbutton:(id)sender {
