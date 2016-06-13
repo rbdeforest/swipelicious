@@ -53,6 +53,7 @@
 @property (nonatomic,strong) IBOutlet UILabel* title;
 @property (nonatomic,strong) IBOutlet UILabel* favoriteCount;
 @property (nonatomic,strong) IBOutlet UILabel* ingredientsCount;
+@property (nonatomic,strong) IBOutlet UILabel* createdBy;
 @property (nonatomic) NSInteger index;
 
 -(void)leftClickAction;

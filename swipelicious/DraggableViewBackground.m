@@ -225,6 +225,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     NSString *title = recipe.title;
     draggableView.title.text= title.uppercaseString;
     draggableView.favoriteCount.text = [NSString stringWithFormat:@"%@", recipe.favorite_count] ;
+    draggableView.createdBy.text = [NSString stringWithFormat:@"Recipe by: %@", recipe.owner] ;
     draggableView.ingredientsCount.text = [NSString stringWithFormat:@"%@", recipe.ingredient_count];
     draggableView.index = index;
     

@@ -14,6 +14,7 @@
 @property (nonatomic, assign) IBOutlet UILabel *foodTitleLabel;
 @property (nonatomic, assign) IBOutlet UILabel *createdByLabel;
 @property (nonatomic, assign) IBOutlet UILabel *descriptionLabel;
+@property (nonatomic, assign) IBOutlet UILabel *reviewsCount;
 @property (nonatomic, assign) IBOutlet UIImageView *foodImage;
 @property (nonatomic, assign) IBOutlet HCSStarRatingView *rating;
 

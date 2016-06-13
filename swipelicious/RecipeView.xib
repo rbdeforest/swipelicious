@@ -83,7 +83,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-lC-Ulr">
-                            <rect key="frame" x="8" y="196" width="274" height="37"/>
+                            <rect key="frame" x="8" y="176" width="274" height="57"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZR-zP-esQ">
                                     <rect key="frame" x="8" y="8" width="258" height="21"/>
@@ -91,14 +91,28 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by: Swipelicious" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tue-I9-69Y">
+                                    <rect key="frame" x="8" y="35" width="110.5" height="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="10"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34197198275862067" colorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Tue-I9-69Y" secondAttribute="bottom" constant="8" id="DVq-MO-FId"/>
                                 <constraint firstAttribute="trailing" secondItem="lZR-zP-esQ" secondAttribute="trailing" constant="8" id="DqS-ee-x53"/>
+                                <constraint firstItem="Tue-I9-69Y" firstAttribute="top" secondItem="lZR-zP-esQ" secondAttribute="bottom" constant="6" id="HcK-80-89G"/>
                                 <constraint firstItem="lZR-zP-esQ" firstAttribute="top" secondItem="VMo-lC-Ulr" secondAttribute="top" constant="8" id="Ij8-kT-ItY"/>
-                                <constraint firstAttribute="bottom" secondItem="lZR-zP-esQ" secondAttribute="bottom" constant="8" id="hT5-wf-iLX"/>
+                                <constraint firstItem="Tue-I9-69Y" firstAttribute="leading" secondItem="VMo-lC-Ulr" secondAttribute="leading" constant="8" id="Yqn-mP-Ohj"/>
+                                <constraint firstAttribute="bottom" secondItem="lZR-zP-esQ" secondAttribute="bottom" constant="28" id="hT5-wf-iLX"/>
                                 <constraint firstItem="lZR-zP-esQ" firstAttribute="leading" secondItem="VMo-lC-Ulr" secondAttribute="leading" constant="8" id="uJf-1f-lVJ"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="hT5-wf-iLX"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -153,6 +167,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="createdBy" destination="Tue-I9-69Y" id="Ebk-6S-0dQ"/>
                 <outlet property="favoriteCount" destination="JiY-AL-IS6" id="YHc-bW-Ht6"/>
                 <outlet property="foodimage" destination="tle-w0-VRf" id="EiW-Nc-y0X"/>
                 <outlet property="ingredientsCount" destination="Qxn-lj-7fV" id="FHc-bf-OUc"/>
