@@ -31,10 +31,10 @@ FBSDKLoginManager *login;
     userfacebookid = @"";
 
     self.scrollView.contentSize = CGSizeMake(960, 392);
-
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fbid = [defaults objectForKey:@"userfacebookid"];
-    if(fbid){
+    if(fbid && ![fbid isEqual: @""]){
         if ([FBSDKAccessToken currentAccessToken]) {
             //User;
             User * user = [[User alloc] initWithFBToken:[[FBSDKAccessToken currentAccessToken] tokenString]];
@@ -46,7 +46,30 @@ FBSDKLoginManager *login;
                 
             }];
         }
+    }else{
+        NSString *email = [defaults objectForKey:@"UserEmail"];
+        NSString *password = [defaults objectForKey:@"UserPassword"];
+        
+        if (email != nil && ![email isEqual:@""] && password != nil && ![password isEqual:@""]) {
+            User * user = [[User alloc] initWithEmail:email password:password];
+            
+            [[AppSession sharedInstance] login:user completion:^(User * _Nullable user, NSError * _Nullable error) {
+                if (error == nil){
+                    userfacebookid=@"";
+                    [self performSegueWithIdentifier:@"logined" sender:nil];
+                }
+            }];
+        }
+        
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismissLogin:) name:@"kUserDidDismissLogin" object:nil];
+    
+    //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserLoginViewController.didRegister(_:)), name: Constants.Notifications.UserDidRegister, object: nil)
+}
+
+- (void)didDismissLogin:(NSNotification *)notification{
+    [self performSegueWithIdentifier:@"logined" sender:self];
 }
 
 -(void) scheduleNotificationForDate:(NSDate *)date AlertBody:(NSString *)alertBody ActionButtonTitle:(NSString *)actionButtonTitle NotificationID:(NSString *)notificationID{
@@ -129,6 +152,9 @@ FBSDKLoginManager *login;
 }
 
 - (IBAction)onClickContactUs:(id)sender {
+    
+    [self performSegueWithIdentifier:@"login" sender:self];
+    /*
     NSString *messagebody;
     messagebody = @"";
     if ([MFMailComposeViewController canSendMail])
@@ -145,6 +171,7 @@ FBSDKLoginManager *login;
     {
         NSLog(@"This device cannot send email");
     }
+     */
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error

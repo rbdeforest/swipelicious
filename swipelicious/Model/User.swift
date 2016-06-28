@@ -19,8 +19,11 @@ import Foundation
     var favorites: [Draw]?
     var profile: Profile?
     
-    init(data: NSDictionary ){
+    init?(data: NSDictionary ){
         id = data["id"] as? String
+        if id == nil {
+            return nil
+        }
         email = data["email"] as? String
         password = data["password"] as? String
         fbid = data["fbid"] as? String
@@ -52,11 +55,11 @@ import Foundation
         self.password = password
     }
     
-    init(email: String, password: String, firstName: String, lastName: String, birthday: String, country: String){
+    init(email: String, password: String, firstName: String, lastName: String){
         self.email = email
         self.password = password
         
-        self.profile = Profile.init(email: email, firstName: firstName, lastName: lastName, birthday: birthday, country: country)
+        self.profile = Profile.init(email: email, firstName: firstName, lastName: lastName)
     }
 
     init(FBToken: String){

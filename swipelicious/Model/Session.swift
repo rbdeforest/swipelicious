@@ -41,18 +41,23 @@ import Alamofire
 
                 if let JSON = response.result.value {
                     let userData = JSON as! NSDictionary
-                    let user = User.init(data: userData)
-                    user.FBToken = self.user?.FBToken
-                    user.email = self.user?.email
-                    user.password = self.user?.password
+                    if let user = User.init(data: userData){
+                        user.FBToken = self.user?.FBToken
+                        user.email = self.user?.email
+                        user.password = self.user?.password
+                        
+                        self.saveToPreferences(user)
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidLogin, object: user)
+                        
+                        self.user = user
+                        
+                        completion(user: user, error: nil)
+                    }else{
+                        completion(user: nil, error: NSError(domain: "", code: 10, userInfo: [:]))
+                    }
                     
-                    self.saveToPreferences(user)
                     
-                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidLogin, object: user)
-                    
-                    self.user = user
-                    
-                    completion(user: user, error: nil)
                 }
             }
         }
@@ -92,6 +97,7 @@ import Alamofire
     func removeUserFromPreferences(){
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey(Constants.Preferences.User.Password)
+        defaults.removeObjectForKey(Constants.Preferences.User.FBId)
         defaults.synchronize()
     }
     
@@ -99,7 +105,6 @@ import Alamofire
         if (self.user != nil)
         {
             self.removeUserFromPreferences()
-            //FBSDKLoginManager.init().logOut()
             self.user = nil
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidLogout, object: nil)
         }
@@ -123,9 +128,14 @@ import Alamofire
             }else{
                 if let JSON = response.result.value {
                     let userData = JSON as! NSDictionary
-                    let user = User.init(data: userData)
+                    if let user = User.init(data: userData){
+                        self.saveToPreferences(user)
+                        completion(user: user, error: nil)
+                    }else{
+                        completion(user: nil, error: nil)
+                    }
                     
-                    self.login(user, completion: completion)
+                    //self.login(user, completion: completion)
                 }else{
                     completion(user: nil, error: nil)
                 }

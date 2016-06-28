@@ -30,22 +30,12 @@ import Foundation
         email = data["email"] as? String
         first_name = data["first_name"] as? String
         last_name = data["last_name"] as? String
-        birthday = data["birthday"] as? String
-        
-        if let c = data["country_code"] as? String{
-            country_code = c
-        }
-        if let c = data["notifications"] as? String{
-            notifications = c
-        }
     }
     
-    init(email: String, firstName: String, lastName: String, birthday: String, country: String){
+    init(email: String, firstName: String, lastName: String){
         self.email = email
         self.first_name = firstName
         self.last_name = lastName
-        self.birthday = birthday
-        self.country_code = country
     }
     
     func setConfigOption(option: String, value: String){

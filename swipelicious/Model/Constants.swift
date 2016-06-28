@@ -12,7 +12,9 @@ struct Constants {
     
     struct Notifications {
         static let UserDidLogin = "kUserDidLogin"
+        static let UserDidRegister = "kUserDidRegister"
         static let UserDidLogout = "kUserDidLogout"
+        static let UserDidDismissLogin = "kUserDidDismissLogin"
         static let DidChangeConfigOption = "kDidChangeConfigOption"
         static let DidReceiveLocalNotification = "kDidReceiveLocalNotification"
     }

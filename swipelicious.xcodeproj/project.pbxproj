@@ -17,6 +17,8 @@
 		145A4A631CDBE0AC00622305 /* HeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A4A621CDBE0AC00622305 /* HeaderButton.m */; };
 		1462F41C1D09B3A100B4AE7B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462F41A1D09B3A100B4AE7B /* FBSDKCoreKit.framework */; };
 		1462F41D1D09B3A100B4AE7B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462F41B1D09B3A100B4AE7B /* FBSDKLoginKit.framework */; };
+		14B8E4271D22B21700D63903 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B8E4251D22B21700D63903 /* UserLoginViewController.swift */; };
+		14B8E4281D22B21700D63903 /* UserRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B8E4261D22B21700D63903 /* UserRegisterViewController.swift */; };
 		14CE25191CDB991B00644138 /* FoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CE25181CDB991B00644138 /* FoodTableViewCell.m */; };
 		14CE251C1CDB9E5E00644138 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CE251B1CDB9E5E00644138 /* HCSStarRatingView.m */; };
 		14F285FE1D09B7DA00CD98E4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F285FD1D09B7DA00CD98E4 /* libz.tbd */; };
@@ -112,6 +114,8 @@
 		145A4A621CDBE0AC00622305 /* HeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderButton.m; sourceTree = "<group>"; };
 		1462F41A1D09B3A100B4AE7B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		1462F41B1D09B3A100B4AE7B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		14B8E4251D22B21700D63903 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		14B8E4261D22B21700D63903 /* UserRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegisterViewController.swift; sourceTree = "<group>"; };
 		14CE25171CDB991B00644138 /* FoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewCell.h; sourceTree = "<group>"; };
 		14CE25181CDB991B00644138 /* FoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewCell.m; sourceTree = "<group>"; };
 		14CE251A1CDB9E5E00644138 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 		6A776D4D1B8D05C60044C940 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				14B8E4251D22B21700D63903 /* UserLoginViewController.swift */,
+				14B8E4261D22B21700D63903 /* UserRegisterViewController.swift */,
 				6A52F5A81B6546A300AECC90 /* MainViewController.h */,
 				6A52F5A91B6546A300AECC90 /* MainViewController.m */,
 				6AD7D51C1B7352A6009FB7D2 /* MasterViewController.h */,
@@ -725,12 +731,14 @@
 				6A776CF01B8AC93D0044C940 /* AFHTTPRequestOperationManager.m in Sources */,
 				14CE25191CDB991B00644138 /* FoodTableViewCell.m in Sources */,
 				6A776D2A1B8BFF340044C940 /* OverlayView.m in Sources */,
+				14B8E4281D22B21700D63903 /* UserRegisterViewController.swift in Sources */,
 				6A729A631B87932F00296E47 /* ShowselectedfoodlistViewController.m in Sources */,
 				6AD7D51E1B7352A6009FB7D2 /* MasterViewController.m in Sources */,
 				6A776CFC1B8AC93D0044C940 /* UIImageView+AFNetworking.m in Sources */,
 				145A4A631CDBE0AC00622305 /* HeaderButton.m in Sources */,
 				6A776CF11B8AC93D0044C940 /* AFHTTPSessionManager.m in Sources */,
 				6A776CF91B8AC93D0044C940 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				14B8E4271D22B21700D63903 /* UserLoginViewController.swift in Sources */,
 				6A776D011B8AC93D0044C940 /* ProgressHUD.m in Sources */,
 				140E7CF11D08C7A800CE8218 /* Draw.swift in Sources */,
 				6A776CF81B8AC93D0044C940 /* AFNetworkActivityIndicatorManager.m in Sources */,
