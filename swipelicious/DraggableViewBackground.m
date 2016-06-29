@@ -138,9 +138,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         foodtitles5 = [[NSMutableArray alloc ] init];
         foodids5 = [[NSMutableArray alloc ] init];
         
-        NSString *requestURL = [Draw getURL]; // @"http://localhost/~augusto/Swipelicious/draws.json";//[NSString stringWithFormat:@"http://food2fork.com/api/search?key=%@", apiKey];
-        //requestURL = [NSString stringWithFormat:@"%@&page=%d", requestURL, page];
-        //requestURL = [requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *requestURL = [Draw getURL];
         [ProgressHUD show:@"Loading" Interaction:NO];
         
         NSURL *url = [NSURL URLWithString:requestURL];
@@ -148,7 +146,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         // 2
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
         operation.responseSerializer = [AFJSONResponseSerializer serializer];
-        operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+        operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
