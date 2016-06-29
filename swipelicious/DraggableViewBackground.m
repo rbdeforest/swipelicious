@@ -230,8 +230,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     draggableView.delegate = self;
     
     [draggableView addConstraint:[NSLayoutConstraint constraintWithItem:draggableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.frame.size.width]];
-    
-    [draggableView addConstraint:[NSLayoutConstraint constraintWithItem:draggableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.frame.size.height]];
+//    
+//    [draggableView addConstraint:[NSLayoutConstraint constraintWithItem:draggableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.frame.size.height]];
     
     draggableView.translatesAutoresizingMaskIntoConstraints = NO;
     

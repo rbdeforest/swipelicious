@@ -8,8 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="DraggableView">
-            <rect key="frame" x="0.0" y="0.0" width="372" height="537"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DraggableView">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="389"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbF-7c-sqW">
@@ -157,6 +157,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="HbF-7c-sqW" secondAttribute="bottom" id="1En-aQ-dgm"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9xL-yU-DV3"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="F5K-bk-HCF"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KX2-dr-Fgb"/>
@@ -182,7 +183,7 @@
                 <outlet property="ingredientsCount" destination="Qxn-lj-7fV" id="FHc-bf-OUc"/>
                 <outlet property="title" destination="lZR-zP-esQ" id="qkz-aX-nMC"/>
             </connections>
-            <point key="canvasLocation" x="103" y="312.5"/>
+            <point key="canvasLocation" x="103" y="238.5"/>
         </view>
     </objects>
     <resources>
