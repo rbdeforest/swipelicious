@@ -83,8 +83,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
         {
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate updatedRecipes];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
+                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                [appDelegate updatedRecipes];
+            }
             
             // 3
      //       NSLog(@"%@", responseObject);
@@ -170,8 +172,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
          {
-             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-             [appDelegate updatedRecipes];
+             if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
+                 AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                 [appDelegate updatedRecipes];
+             }
              
              // 3
              //       NSLog(@"%@", responseObject);
