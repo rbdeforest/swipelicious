@@ -123,6 +123,9 @@ import Alamofire
         request.responseJSON {
             response in
             
+            let errorString = String(data: response.data!, encoding: NSUTF8StringEncoding)
+            print(errorString)
+            
             if let error = response.result.error {
                 completion(user: nil, error: error)
             }else{

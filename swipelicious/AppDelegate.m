@@ -181,7 +181,6 @@ UILocalNotification *notification;
 
 - (BOOL)shouldUpdateRecipes
 {
-    return YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *lastRecipesDate = [defaults objectForKey:@"lastRecipesDate"];
     
@@ -209,6 +208,7 @@ UILocalNotification *notification;
     unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:flags fromDate:date];
+    [components setHour:12];
     NSDate* dateOnly = [calendar dateFromComponents:components];
     
     [defaults setObject:dateOnly forKey:@"lastRecipesDate"];
