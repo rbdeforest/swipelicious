@@ -153,6 +153,9 @@ UILocalNotification *notification;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"gotnotification"];
 
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"foodlefttoswipe"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMessageMasterView" object:nil userInfo:nil];
         UIAlertView *notificationAlert = [[UIAlertView alloc] initWithTitle:@"Notification"    message:@"5 new recipes arrived"
                                                                delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

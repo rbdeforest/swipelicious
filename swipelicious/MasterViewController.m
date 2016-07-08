@@ -71,7 +71,6 @@ int likefoodcount;
     if ([appDelegate shouldUpdateRecipes]){
         [self refreshview];
     }
-    
 }
 
 -(void)refreshview{
