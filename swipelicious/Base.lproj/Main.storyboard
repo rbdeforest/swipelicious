@@ -743,7 +743,7 @@
                                     <constraint firstAttribute="height" constant="40" id="Dcs-oM-whX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="0bI-rP-DcL"/>

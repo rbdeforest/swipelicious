@@ -70,6 +70,8 @@ int likefoodcount;
     
     if ([appDelegate shouldUpdateRecipes]){
         [self refreshview];
+    } else if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] != nil) {
+        [self refreshview];
     }
 }
 

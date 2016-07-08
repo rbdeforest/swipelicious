@@ -153,9 +153,6 @@ UILocalNotification *notification;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"gotnotification"];
 
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"foodlefttoswipe"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMessageMasterView" object:nil userInfo:nil];
         UIAlertView *notificationAlert = [[UIAlertView alloc] initWithTitle:@"Notification"    message:@"5 new recipes arrived"
                                                                delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -184,7 +181,7 @@ UILocalNotification *notification;
 
 - (BOOL)shouldUpdateRecipes
 {
-    return YES;
+//    return YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *lastRecipesDate = [defaults objectForKey:@"lastRecipesDate"];
     
@@ -196,9 +193,13 @@ UILocalNotification *notification;
         //if today is grater than last date + 24 hours
         NSTimeInterval interval = [today timeIntervalSinceDate:lastRecipesDate];
         if (interval >= 0){
+            [defaults removeObjectForKey: @"foodlefttoswipe"];
+            [defaults synchronize];
             return true;
         }
     }else{
+        [defaults removeObjectForKey: @"foodlefttoswipe"];
+        [defaults synchronize];
         return true;
     }
     

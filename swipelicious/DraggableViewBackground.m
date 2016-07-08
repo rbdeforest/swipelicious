@@ -43,6 +43,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 @synthesize page;
 @synthesize recipes;
 
+#define MAX_FOOD_COUNT 5
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -52,7 +53,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         [self setupView];
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] == nil) {
-            remainfoodimagecount = 5;
+            remainfoodimagecount = MAX_FOOD_COUNT;
         } else {
             NSNumber* tmp = [[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"];
             remainfoodimagecount = tmp.integerValue;
@@ -109,8 +110,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             [foodids5 addObject:recipes[3][@"id"]];
             [foodids5 addObject:recipes[4][@"id"]];
 
-            for (int i = remainfoodimagecount; i < self.recipes.count; i++) {
-                [self.recipes removeLastObject];
+            for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
+                [self.recipes removeObjectAtIndex: 0];
             }
     
             [ProgressHUD dismiss];
@@ -143,7 +144,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         [self setupView];
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] == nil) {
-            remainfoodimagecount = 5;
+            remainfoodimagecount = MAX_FOOD_COUNT;
         } else {
             NSNumber* tmp = [[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"];
             remainfoodimagecount = tmp.integerValue;
@@ -182,8 +183,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
              
              self.recipes = recipesD;
              
-             for (int i = remainfoodimagecount; i < self.recipes.count; i++) {
-                 [self.recipes removeLastObject];
+             for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
+                 [self.recipes removeObjectAtIndex: 0];
              }
 
              [ProgressHUD dismiss];
