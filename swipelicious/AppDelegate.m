@@ -192,9 +192,13 @@ UILocalNotification *notification;
         //if today is grater than last date + 24 hours
         NSTimeInterval interval = [today timeIntervalSinceDate:lastRecipesDate];
         if (interval >= 0){
+            [defaults removeObjectForKey: @"foodlefttoswipe"];
+            [defaults synchronize];
             return true;
         }
     }else{
+        [defaults removeObjectForKey: @"foodlefttoswipe"];
+        [defaults synchronize];
         return true;
     }
     

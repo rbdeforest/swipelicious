@@ -43,6 +43,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 @synthesize page;
 @synthesize recipes;
 
+#define MAX_FOOD_COUNT 5
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -50,6 +51,16 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     if (self) {
         [super layoutSubviews];
         [self setupView];
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] == nil) {
+            remainfoodimagecount = MAX_FOOD_COUNT;
+        } else {
+            NSNumber* tmp = [[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"];
+            remainfoodimagecount = tmp.integerValue;
+        }
+        
+        
+        
          page = arc4random() % 2999 + 1;
         //int randomorderofpage = arc4random() % 29 + 1;
         loadedCards = [[NSMutableArray alloc] init];
@@ -72,8 +83,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
         {
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate updatedRecipes];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
+                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                [appDelegate updatedRecipes];
+            }
             
             // 3
      //       NSLog(@"%@", responseObject);
@@ -98,7 +111,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             [foodids5 addObject:recipes[2][@"id"]];
             [foodids5 addObject:recipes[3][@"id"]];
             [foodids5 addObject:recipes[4][@"id"]];
-            
+
+            for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
+                [self.recipes removeObjectAtIndex: 0];
+            }
     
             [ProgressHUD dismiss];
             
@@ -114,8 +130,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             [alertView show];
         }];
         [operation start];
-            remainfoodimagecount = 5;
-      
+        
         
         
        // [self loadCards];
@@ -129,6 +144,14 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     if (self) {
         [super layoutSubviews];
         [self setupView];
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] == nil) {
+            remainfoodimagecount = MAX_FOOD_COUNT;
+        } else {
+            NSNumber* tmp = [[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"];
+            remainfoodimagecount = tmp.integerValue;
+        }
+        
         page = arc4random() % 2999 + 1;
         //int randomorderofpage = arc4random() % 29 + 1;
         loadedCards = [[NSMutableArray alloc] init];
@@ -149,8 +172,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
          {
-             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-             [appDelegate updatedRecipes];
+             if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
+                 AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                 [appDelegate updatedRecipes];
+             }
              
              // 3
              //       NSLog(@"%@", responseObject);
@@ -162,6 +187,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
              
              self.recipes = recipesD;
              
+             for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
+                 [self.recipes removeObjectAtIndex: 0];
+             }
+
              [ProgressHUD dismiss];
              
              [self loadCards];
@@ -176,8 +205,14 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
              [alertView show];
          }];
         [operation start];
-        remainfoodimagecount = 5;
+
         
+        if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] == nil) {
+            remainfoodimagecount = 5;
+        } else {
+            NSNumber* tmp = [[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"];
+            remainfoodimagecount = tmp.integerValue;
+        }
         
         
         // [self loadCards];
@@ -308,14 +343,22 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     if (remainfoodimagecount == 5) {
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey: @"TimeStartSwipe"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger: remainfoodimagecount] forKey: @"foodlefttoswipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
    
     if(remainfoodimagecount){
     //self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
     remainfoodimagecount--;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger: remainfoodimagecount] forKey: @"foodlefttoswipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     if(remainfoodimagecount == 0){
 
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"foodlefttoswipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         // Mixpanel
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
@@ -366,14 +409,23 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     if (remainfoodimagecount == 5) {
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey: @"TimeStartSwipe"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger: remainfoodimagecount] forKey: @"foodlefttoswipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 
     if(remainfoodimagecount){
     //self.foodtitle.text=[foodtitles5 objectAtIndex:6-remainfoodimagecount];
     remainfoodimagecount--;
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger: remainfoodimagecount] forKey: @"foodlefttoswipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     if(remainfoodimagecount == 0){
         
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"foodlefttoswipe"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
         // Mixpanel
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
