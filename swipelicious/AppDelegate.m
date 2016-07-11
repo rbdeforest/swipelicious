@@ -187,7 +187,7 @@ UILocalNotification *notification;
     if (lastRecipesDate != nil){
         lastRecipesDate = [lastRecipesDate dateByAddingTimeInterval:60*60*24];
         
-        NSDate *today = [NSDate date];
+        NSDate *today = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
         
         //if today is grater than last date + 24 hours
         NSTimeInterval interval = [today timeIntervalSinceDate:lastRecipesDate];
@@ -207,12 +207,11 @@ UILocalNotification *notification;
 
 - (void)updatedRecipes{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *date = [NSDate date];
+    NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
     
     unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:flags fromDate:date];
-    [components setHour:12];
     NSDate* dateOnly = [calendar dateFromComponents:components];
     
     [defaults setObject:dateOnly forKey:@"lastRecipesDate"];
