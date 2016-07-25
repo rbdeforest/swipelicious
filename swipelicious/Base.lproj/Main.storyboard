@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5zZ-oj-1k4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5zZ-oj-1k4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -264,13 +264,16 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="YOE-Sp-LAh">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="URw-RE-Qvd">
-                                <rect key="frame" x="287" y="11" width="17" height="22"/>
+                        <barButtonItem key="rightBarButtonItem" id="H4J-NZ-Eki">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UCu-G4-6kz">
+                                <rect key="frame" x="224" y="7" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="dots-icon"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="My Recipes">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="onClickfoldericon:" destination="46h-bS-8Tl" eventType="touchUpInside" id="niJ-VE-Mol"/>
+                                    <action selector="onClickfoldericon:" destination="46h-bS-8Tl" eventType="touchUpInside" id="PRt-AB-gSP"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1097,7 +1100,6 @@
         <image name="directions1" width="185" height="219"/>
         <image name="directions2" width="185" height="219"/>
         <image name="directions3" width="185" height="219"/>
-        <image name="dots-icon" width="17" height="6"/>
         <image name="facebook" width="264" height="58"/>
         <image name="fbbutton.png" width="632" height="118"/>
         <image name="person-icon" width="14" height="16"/>
