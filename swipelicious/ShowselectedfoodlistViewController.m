@@ -98,9 +98,25 @@ NSArray *ingredients;//selected food's ingredients
         cell.foodImage.image= [UIImage imageWithData:data];
     }];
     
+    UILabel* lblViewRecipe = (UILabel*)[cell viewWithTag: 20];
+    if (lblViewRecipe.gestureRecognizers.count == 0) {
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleViewRecipeTap:)];
+        [lblViewRecipe addGestureRecognizer:singleTap];
+    }
     
     return cell;
 }
+
+- (void)handleViewRecipeTap:(UITapGestureRecognizer *)tapRecognizer
+{
+    UILabel* lblViewRecipe = (UILabel*)tapRecognizer.view;
+    
+    CGPoint pointInTable = [lblViewRecipe convertPoint:lblViewRecipe.bounds.origin toView: self.Selectedfoodlist];
+    NSIndexPath *indexPath = [self.Selectedfoodlist indexPathForRowAtPoint:pointInTable];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: ((Draw*)self.recipes[indexPath.row]).link]];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
