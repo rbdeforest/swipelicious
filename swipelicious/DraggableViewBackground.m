@@ -176,7 +176,6 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
                  AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
                  [appDelegate updatedRecipes];
              }
-             
              // 3
              //       NSLog(@"%@", responseObject);
              //NSArray *recipes = responseObject;//[responseObject objectForKey:@"recipes"];
@@ -186,6 +185,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
              }
              
              self.recipes = recipesD;
+             remainfoodimagecount = [self.recipes count];
              
              for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
                  [self.recipes removeObjectAtIndex: 0];
@@ -358,6 +358,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 
         [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"foodlefttoswipe"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self endReached];
         
         // Mixpanel
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -395,6 +396,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     
     if (cardsLoadedIndex < [allCards count]) { //%%% if we haven't reached the end of all cards, put another into the loaded cards
         [loadedCards addObject:[allCards objectAtIndex:cardsLoadedIndex]];
+        
         cardsLoadedIndex++;//%%% loaded a card, so have to increment count
         
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
@@ -425,7 +427,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         
         [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"foodlefttoswipe"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-
+        
+        [self endReached];
         // Mixpanel
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
@@ -438,8 +441,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 
         
         self.notification.hidden = NO;
-        self.xButton.hidden = NO;
-        self.checkButton.hidden = NO;
+//        self.xButton.hidden = NO;
+//        self.checkButton.hidden = NO;
     }
     
 }
@@ -456,7 +459,6 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     }];
     [dragView rightClickAction];
 }
-
 //%%% when you hit the left button, this is called and substitutes the swipe
 -(IBAction)swipeLeft
 {
@@ -470,6 +472,14 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     }];
     [dragView leftClickAction];
 }
+
+
+-(void)endReached{
+    [self.xButton setHidden:YES];
+    [self.checkButton setHidden:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
+}
+
 
 -(void)addFoodData:(NSString *)recipeid:(NSString *)foodtitle:(NSString *)imageurl {
     [foodIdData addObject:recipeid];

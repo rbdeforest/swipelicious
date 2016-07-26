@@ -35,13 +35,19 @@ int likefoodcount;
 @implementation MasterViewController{
     NSInteger cardsLoadedIndex; //%%% the index of the card you have loaded into the loadedCards array last
     NSMutableArray *loadedCards; //%%% the array of card loaded (change max_buffer_size to increase or decrease the number of cards this holds)
+    
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     apiKey= @"bf12802240eb6023ecbe09595d5e656d";
-    self.foodname.lineBreakMode = NSLineBreakByWordWrapping;
-    self.foodname.numberOfLines = 0;
+    
+    NSString *urlString = @"http://swipelicious.com/empty.php";
+    NSURLRequest *request = [NSURLRequest requestWithURL:[[NSURL alloc] initWithString:urlString]];
+    
+    [self.emptyWebView loadRequest:request];
+    [self.emptyWebView setHidden:YES];
     
     foodIdData = [[NSMutableArray alloc] init];
     foodTitleData = [[NSMutableArray alloc] init];
@@ -51,6 +57,7 @@ int likefoodcount;
     [self setOfFoodData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkRefresh) name:@"refreshMessageMasterView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkEmpty) name:@"checkEmpty" object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(checkRefresh)
@@ -63,6 +70,7 @@ int likefoodcount;
     [mixpanel.people increment:USER_OPENED_APP_COUNT by:@1];
     [mixpanel.people set:USER_OPENED_APP_DATE to:[AUtils stringFromDate: [NSDate date]]];
     [mixpanel track: USER_OPENED_APP_COUNT];
+    
 }
 
 -(void)checkRefresh{
@@ -77,6 +85,10 @@ int likefoodcount;
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self refreshview];
     }
+}
+
+-(void)checkEmpty{
+    [self.emptyWebView setHidden:NO];
 }
 
 -(void)refreshview{
