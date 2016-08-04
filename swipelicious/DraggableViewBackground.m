@@ -188,7 +188,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
              remainfoodimagecount = [self.recipes count];
              
              for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
-                 [self.recipes removeObjectAtIndex: 0];
+                 if (self.recipes.count > 0)
+                     [self.recipes removeObjectAtIndex: 0];
              }
 
              [ProgressHUD dismiss];

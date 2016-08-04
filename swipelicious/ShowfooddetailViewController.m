@@ -123,31 +123,40 @@ UIImage *selectedfoodimage;//selected food's image
     [alert show];
 
 }
+
+- (IBAction)onTapShare:(id)sender{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert"
+                                                   message:@"Share"
+                                                  delegate:self
+                                         cancelButtonTitle:@"No"
+                                         otherButtonTitles:@"Yes",nil];
+    [alert show];
+}
+
+- (IBAction)onTapCart:(id)sender{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert"
+                                                   message:@"Cart"
+                                                  delegate:self
+                                         cancelButtonTitle:@"No"
+                                         otherButtonTitles:@"Yes",nil];
+    [alert show];
+}
+
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     // 0 = Tapped yes
-    if (buttonIndex == 1)
-    {
-        [[[AppSession sharedInstance] user] addToFavorites:recipe like:NO];
-//        NSInteger index = likefoodcount-selectedfoodindex-1;
-//        [foodIdData removeObject: [foodIdData objectAtIndex:index]];
-//        [foodTitleData removeObject: [foodTitleData objectAtIndex:index]];
-//        [foodImageUrlData removeObject:[foodImageUrlData objectAtIndex:index]];
-//        likefoodcount--;
-//        PFQuery *query = [PFQuery queryWithClassName:@"FoodData"];
-//        [query whereKey:@"facebook_id" equalTo :userfacebookid ];
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            for (int i = 0; i < [objects count]; i ++) {
-//                if([objects[i][@"recipe_id"] isEqualToString:selectedfoodid]){
-//                    PFObject *deleteObject  =objects[i];
-//                    [deleteObject deleteInBackground];
-//                   
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                }
-//            }
-//        }];
+    if  (alertView.tag == 1){
+        if (buttonIndex == 1)
+        {
+            [[[AppSession sharedInstance] user] addToFavorites:recipe like:NO];
+        }
     }
-    
+    if  (alertView.tag == 2){
+        //
+    }
+    if  (alertView.tag == 3){
+        //
+    }
 }
 
 @end

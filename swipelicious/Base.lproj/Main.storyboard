@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5zZ-oj-1k4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5zZ-oj-1k4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -563,20 +563,84 @@
                                 <color key="textColor" red="0.1019607843" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFI-gu-c1F">
-                                <rect key="frame" x="162" y="633" width="89" height="29"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="12"/>
-                                <state key="normal" title="View Full Recipe">
-                                    <color key="titleColor" red="0.1019607843" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gotodetailrecipe:" destination="aSL-uh-5QQ" eventType="touchUpInside" id="AmK-GP-yHQ"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-cK-T1T">
+                                <rect key="frame" x="0.0" y="610" width="414" height="62"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foI-mP-Jh6" userLabel="Button1">
+                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="62"/>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="button-full-recipe"/>
+                                        <connections>
+                                            <action selector="gotodetailrecipe:" destination="aSL-uh-5QQ" eventType="touchUpInside" id="rxx-wv-8B7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vF7-us-x40" userLabel="Button2">
+                                        <rect key="frame" x="103.5" y="0.0" width="103.5" height="62"/>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="12"/>
+                                        <state key="normal" image="button-share">
+                                            <color key="titleColor" red="0.1019607843" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTapShare:" destination="aSL-uh-5QQ" eventType="touchUpInside" id="NsX-Dh-CeI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ti7-e2-qjp" userLabel="Button3">
+                                        <rect key="frame" x="207" y="0.0" width="103.5" height="62"/>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="12"/>
+                                        <state key="normal" image="button-shopping-cart">
+                                            <color key="titleColor" red="0.1019607843" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTapCart:" destination="aSL-uh-5QQ" eventType="touchUpInside" id="EaD-TB-ejC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLN-gq-Kq1" userLabel="Button4">
+                                        <rect key="frame" x="310.5" y="0.0" width="103.5" height="62"/>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="12"/>
+                                        <state key="normal" image="button-trash">
+                                            <color key="titleColor" red="0.1019607843" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTapDelete:" destination="aSL-uh-5QQ" eventType="touchUpInside" id="N0G-cQ-W2j"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vF7-us-x40" firstAttribute="leading" secondItem="foI-mP-Jh6" secondAttribute="trailing" id="5M5-IP-FIR"/>
+                                    <constraint firstItem="ti7-e2-qjp" firstAttribute="leading" secondItem="vF7-us-x40" secondAttribute="trailing" id="6Vm-vS-82O"/>
+                                    <constraint firstAttribute="width" constant="62" id="CzZ-v6-o8v"/>
+                                    <constraint firstItem="ti7-e2-qjp" firstAttribute="width" secondItem="zLN-gq-Kq1" secondAttribute="width" id="JGL-Vu-aLx"/>
+                                    <constraint firstItem="foI-mP-Jh6" firstAttribute="width" secondItem="vF7-us-x40" secondAttribute="width" id="JK1-4A-Iwb"/>
+                                    <constraint firstAttribute="bottom" secondItem="foI-mP-Jh6" secondAttribute="bottom" id="Qpi-YG-8vP"/>
+                                    <constraint firstAttribute="height" constant="62" id="Sjw-2G-j1P"/>
+                                    <constraint firstItem="foI-mP-Jh6" firstAttribute="top" secondItem="fZu-cK-T1T" secondAttribute="top" id="V3o-Wl-ma3"/>
+                                    <constraint firstAttribute="trailing" secondItem="zLN-gq-Kq1" secondAttribute="trailing" id="YtO-a2-qLX"/>
+                                    <constraint firstAttribute="bottom" secondItem="zLN-gq-Kq1" secondAttribute="bottom" id="aoY-p3-1Gt"/>
+                                    <constraint firstItem="ti7-e2-qjp" firstAttribute="top" secondItem="fZu-cK-T1T" secondAttribute="top" id="cxW-CG-Kt7"/>
+                                    <constraint firstItem="vF7-us-x40" firstAttribute="width" secondItem="ti7-e2-qjp" secondAttribute="width" id="kQU-jr-BeZ"/>
+                                    <constraint firstItem="vF7-us-x40" firstAttribute="top" secondItem="fZu-cK-T1T" secondAttribute="top" id="lXL-JJ-vFZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="vF7-us-x40" secondAttribute="bottom" id="m7e-Ln-Bch"/>
+                                    <constraint firstItem="foI-mP-Jh6" firstAttribute="leading" secondItem="fZu-cK-T1T" secondAttribute="leading" id="tUj-MB-StD"/>
+                                    <constraint firstItem="zLN-gq-Kq1" firstAttribute="leading" secondItem="ti7-e2-qjp" secondAttribute="trailing" id="u9g-K5-JMK"/>
+                                    <constraint firstAttribute="bottom" secondItem="ti7-e2-qjp" secondAttribute="bottom" id="ui2-wa-GQm"/>
+                                    <constraint firstItem="zLN-gq-Kq1" firstAttribute="top" secondItem="fZu-cK-T1T" secondAttribute="top" id="w62-tV-1XH"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CzZ-v6-o8v"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="i8H-Uo-cOf">
-                                <rect key="frame" x="20" y="284" width="374" height="348"/>
+                                <rect key="frame" x="20" y="284" width="374" height="326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="156" id="0ND-W7-qiq"/>
@@ -664,16 +728,16 @@
                             <constraint firstItem="ZyE-aF-gxM" firstAttribute="leading" secondItem="5zn-3c-gzq" secondAttribute="leadingMargin" id="1tT-PV-m4z"/>
                             <constraint firstItem="ZyE-aF-gxM" firstAttribute="bottom" secondItem="J0E-Ds-KCW" secondAttribute="top" constant="-4" id="1yK-ur-52M"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZyE-aF-gxM" secondAttribute="trailing" id="1yd-Jh-FVN"/>
-                            <constraint firstItem="Uxm-3x-X3k" firstAttribute="top" secondItem="YFI-gu-c1F" secondAttribute="bottom" constant="10" id="2cI-z9-Ygw"/>
-                            <constraint firstItem="YFI-gu-c1F" firstAttribute="top" secondItem="i8H-Uo-cOf" secondAttribute="bottom" constant="1" id="63P-jl-SB2"/>
+                            <constraint firstItem="fZu-cK-T1T" firstAttribute="top" secondItem="i8H-Uo-cOf" secondAttribute="bottom" id="4gG-vR-tnq"/>
+                            <constraint firstItem="fZu-cK-T1T" firstAttribute="leading" secondItem="5zn-3c-gzq" secondAttribute="leading" id="5vm-zN-VGv"/>
                             <constraint firstItem="ZyE-aF-gxM" firstAttribute="centerX" secondItem="5zn-3c-gzq" secondAttribute="centerX" id="799-d9-CQw"/>
+                            <constraint firstItem="Uxm-3x-X3k" firstAttribute="top" secondItem="fZu-cK-T1T" secondAttribute="bottom" id="85p-7m-k2F"/>
+                            <constraint firstAttribute="trailing" secondItem="fZu-cK-T1T" secondAttribute="trailing" id="92b-P4-Agx"/>
                             <constraint firstItem="i8H-Uo-cOf" firstAttribute="top" secondItem="Kpq-0L-Npq" secondAttribute="bottom" constant="8" id="BBd-GX-Hc1"/>
                             <constraint firstItem="Kpq-0L-Npq" firstAttribute="top" secondItem="J0E-Ds-KCW" secondAttribute="bottom" constant="4" id="Cjz-X6-Jqu"/>
-                            <constraint firstItem="J0E-Ds-KCW" firstAttribute="top" secondItem="YFI-gu-c1F" secondAttribute="bottom" id="Fza-QZ-wVJ"/>
                             <constraint firstItem="i8H-Uo-cOf" firstAttribute="leading" secondItem="5zn-3c-gzq" secondAttribute="leadingMargin" id="GAN-lL-KEf"/>
                             <constraint firstItem="i8H-Uo-cOf" firstAttribute="centerX" secondItem="5zn-3c-gzq" secondAttribute="centerX" id="GeC-Di-YTd"/>
                             <constraint firstItem="i8H-Uo-cOf" firstAttribute="top" secondItem="ZyE-aF-gxM" secondAttribute="bottom" constant="8" id="JZ1-gl-PZZ"/>
-                            <constraint firstItem="YFI-gu-c1F" firstAttribute="centerX" secondItem="5zn-3c-gzq" secondAttribute="centerX" id="WlI-a5-mPK"/>
                             <constraint firstItem="ZyE-aF-gxM" firstAttribute="top" secondItem="iaR-Bn-EKf" secondAttribute="bottom" constant="8" id="Zce-n8-4aR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i8H-Uo-cOf" secondAttribute="trailing" id="fdB-ll-jTU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iaR-Bn-EKf" secondAttribute="trailing" id="k2W-En-fbU"/>
@@ -686,7 +750,6 @@
                             <mask key="constraints">
                                 <exclude reference="799-d9-CQw"/>
                                 <exclude reference="BBd-GX-Hc1"/>
-                                <exclude reference="Fza-QZ-wVJ"/>
                             </mask>
                         </variation>
                     </view>
@@ -1098,6 +1161,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="button-full-recipe" width="31" height="42"/>
+        <image name="button-share" width="38" height="33"/>
+        <image name="button-shopping-cart" width="40" height="39"/>
+        <image name="button-trash" width="29" height="39"/>
         <image name="checkedicon" width="12" height="11"/>
         <image name="directions1" width="185" height="219"/>
         <image name="directions2" width="185" height="219"/>
