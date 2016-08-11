@@ -120,6 +120,7 @@ UIImage *selectedfoodimage;//selected food's image
                                                   delegate:self
                                          cancelButtonTitle:@"No"
                                          otherButtonTitles:@"Yes",nil];
+    alert.tag = 1;
     [alert show];
 
 }
@@ -130,6 +131,7 @@ UIImage *selectedfoodimage;//selected food's image
                                                   delegate:self
                                          cancelButtonTitle:@"No"
                                          otherButtonTitles:@"Yes",nil];
+    alert.tag = 2;
     [alert show];
 }
 
@@ -139,6 +141,7 @@ UIImage *selectedfoodimage;//selected food's image
                                                   delegate:self
                                          cancelButtonTitle:@"No"
                                          otherButtonTitles:@"Yes",nil];
+    alert.tag = 3;
     [alert show];
 }
 

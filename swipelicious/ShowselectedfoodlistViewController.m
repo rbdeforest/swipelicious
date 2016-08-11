@@ -36,7 +36,6 @@ NSArray *ingredients;//selected food's ingredients
 - (void)viewDidLoad {
     [super viewDidLoad];
     ingredients = [[NSArray alloc] init];
-    self.recipes = [[[AppSession sharedInstance] user] favorites];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -45,6 +44,8 @@ NSArray *ingredients;//selected food's ingredients
     // Mixpanel
     [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey: @"StartSelectedFoodListPage"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    self.recipes = [[[AppSession sharedInstance] user] favorites];
     
     [self.Selectedfoodlist reloadData];
 }

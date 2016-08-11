@@ -80,10 +80,13 @@ int likefoodcount;
         [[NSUserDefaults standardUserDefaults] setBool: true forKey: @"shouldupdate"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self refreshview];
-    } else if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] != nil) {
-        [[NSUserDefaults standardUserDefaults] setBool: false forKey: @"shouldupdate"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self refreshview];
+    } else {
+        [self checkEmpty];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] != nil) {
+            [[NSUserDefaults standardUserDefaults] setBool: false forKey: @"shouldupdate"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self refreshview];
+        }
     }
 }
 

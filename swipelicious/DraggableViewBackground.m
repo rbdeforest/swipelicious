@@ -186,11 +186,14 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
              
              self.recipes = recipesD;
              remainfoodimagecount = [self.recipes count];
-             
-             for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
-                 if (self.recipes.count > 0)
-                     [self.recipes removeObjectAtIndex: 0];
+             if (self.recipes.count == 0){
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
              }
+             
+//             for (int i = 0; i < MAX_FOOD_COUNT - remainfoodimagecount; i++) {
+//                 if (self.recipes.count > 0)
+//                     [self.recipes removeObjectAtIndex: 0];
+//             }
 
              [ProgressHUD dismiss];
              
@@ -260,6 +263,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     draggableView.title.text= title.uppercaseString;
     draggableView.favoriteCount.text = [NSString stringWithFormat:@"%@", recipe.favorite_count] ;
     draggableView.createdBy.text = [NSString stringWithFormat:@"Recipe by: %@", recipe.owner] ;
+    draggableView.descriptionLabel.text = recipe.description;
     draggableView.ingredientsCount.text = [NSString stringWithFormat:@"%@", recipe.ingredient_count];
     draggableView.index = index;
     
