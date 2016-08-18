@@ -25,7 +25,9 @@ import Foundation
     var rating_average: String?
     var ingredients: [String]?
     var categories: [String]?
-    
+    var prep_time: String?
+    var cook_time: String?
+    var ready_time: String?
     
     init(data: NSDictionary ){
         
@@ -56,6 +58,9 @@ import Foundation
         ingredients = data["ingredients"] as? [String]
         categories = data["categories"] as? [String]
         
+        prep_time = data["prep_time"] as? String
+        cook_time = data["cook_time"] as? String
+        ready_time = data["ready_time"] as? String
     }
         
     func finished() -> Bool{

@@ -263,7 +263,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     draggableView.title.text= title.uppercaseString;
     draggableView.favoriteCount.text = [NSString stringWithFormat:@"%@", recipe.favorite_count] ;
     draggableView.createdBy.text = [NSString stringWithFormat:@"Recipe by: %@", recipe.owner] ;
-    draggableView.descriptionLabel.text = recipe.description;
+    draggableView.descriptionLabel.text = recipe.short_description;
     draggableView.ingredientsCount.text = [NSString stringWithFormat:@"%@", recipe.ingredient_count];
     draggableView.index = index;
     
@@ -275,8 +275,63 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     
     draggableView.translatesAutoresizingMaskIntoConstraints = NO;
     
+    draggableView.likeButton.tag = index;
+    draggableView.ingredientsButton.tag = index;
+    draggableView.timeButton.tag = index;
+    
+    [draggableView.likeButton addTarget:self action:@selector(likeHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [draggableView.ingredientsButton addTarget:self action:@selector(ingredientsHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [draggableView.timeButton addTarget:self action:@selector(timeHandler:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     return draggableView;
 }
+
+- (void)likeHandler:(UIButton *)sender{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Like"
+                                                        message:@"a message"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)ingredientsHandler:(UIButton *)sender{
+    Draw *recipe = self.recipes[sender.tag];
+    NSString *sentence = [recipe.ingredients componentsJoinedByString:@", "];
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ingredients"
+                                                        message:sentence
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)timeHandler:(UIButton *)sender{
+    Draw *recipe = self.recipes[sender.tag];
+    
+    NSMutableArray *times = [[NSMutableArray alloc] init];
+    
+    if (recipe.prep_time != nil && ![recipe.prep_time isEqualToString:@""])
+        [times addObject:[NSString stringWithFormat:@"Prep time: %@", recipe.prep_time]];
+    
+    if (recipe.cook_time != nil && ![recipe.cook_time isEqualToString:@""])
+        [times addObject:[NSString stringWithFormat:@"Cook time: %@", recipe.cook_time]];
+    
+    if (recipe.ready_time != nil && ![recipe.ready_time isEqualToString:@""])
+        [times addObject:[NSString stringWithFormat:@"Ready time: %@", recipe.ready_time]];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cooking Times"
+                                                        message:[times componentsJoinedByString:@", "]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+
+
 //%%% loads all the cards and puts the first x in the "loaded cards" array
 -(void)loadCards
 {

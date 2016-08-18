@@ -55,6 +55,11 @@
 @property (nonatomic,strong) IBOutlet UILabel* ingredientsCount;
 @property (nonatomic,strong) IBOutlet UILabel* createdBy;
 @property (nonatomic,strong) IBOutlet UILabel* descriptionLabel;
+
+@property (nonatomic,strong) IBOutlet UIButton* likeButton;
+@property (nonatomic,strong) IBOutlet UIButton* timeButton;
+@property (nonatomic,strong) IBOutlet UIButton* ingredientsButton;
+
 @property (nonatomic) NSInteger index;
 
 -(void)leftClickAction;

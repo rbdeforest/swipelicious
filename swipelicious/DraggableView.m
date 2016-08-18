@@ -62,7 +62,6 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        [self setupView];
         panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
         
         [self addGestureRecognizer:panGestureRecognizer];
@@ -71,11 +70,37 @@
     return self;
 }
 
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    [self setupView];
+}
+
 -(void)setupView
 {
     self.layer.shadowRadius = 6;
     self.layer.shadowOpacity = 0.4;
     self.layer.shadowOffset = CGSizeMake(7, 1);
+    
+    self.likeButton.superview.layer.cornerRadius = 3;
+    self.ingredientsButton.superview.layer.cornerRadius = 3;
+    self.timeButton.superview.layer.cornerRadius = 3;
+    
+    self.likeButton.superview.layer.borderWidth = .5f;
+    self.ingredientsButton.superview.layer.borderWidth = .5f;
+    self.timeButton.superview.layer.borderWidth = .5f;
+    
+    self.likeButton.superview.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.ingredientsButton.superview.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.timeButton.superview.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    self.likeButton.superview.clipsToBounds = true;
+    self.ingredientsButton.superview.clipsToBounds = true;
+    self.timeButton.superview.clipsToBounds = true;
+    
+    self.timeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.ingredientsButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.likeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
 }
 
 /*
@@ -238,7 +263,6 @@
     
     NSLog(@"NO");
 }
-
 
 
 @end
