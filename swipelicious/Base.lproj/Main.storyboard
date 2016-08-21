@@ -222,7 +222,7 @@
         <!--SWIPELICIOUS-->
         <scene sceneID="UHj-p4-22P">
             <objects>
-                <viewController storyboardIdentifier="Master" title="SWIPELICIOUS" id="46h-bS-8Tl" customClass="MasterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Master" title="SWIPELICIOUS" automaticallyAdjustsScrollViewInsets="NO" id="46h-bS-8Tl" customClass="MasterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vh9-c0-cdz"/>
                         <viewControllerLayoutGuide type="bottom" id="2c2-vr-CWQ"/>
