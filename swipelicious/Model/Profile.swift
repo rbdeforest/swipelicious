@@ -26,6 +26,7 @@ import Foundation
     var notifications : String?
     
     init(data: NSDictionary ){
+        
         id = data["id"] as? String
         email = data["email"] as? String
         first_name = data["first_name"] as? String

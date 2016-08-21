@@ -19,6 +19,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+#import "ECSlidingViewController.h"
+
 NSString *apiKey;
 NSMutableArray *foodIdData;
 NSMutableArray *foodTitleData;
@@ -156,14 +158,14 @@ int likefoodcount;
 }
 
 - (IBAction)onClickSetting:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:@"Sign Out"
-                                               otherButtonTitles:@"Contact Us",@"Cancel",nil];
     
-    [actionSheet showInView:self.view];
+    if ([self.navigationController.slidingViewController underLeftShowing]) {
+        [self.navigationController.slidingViewController resetTopView];
+    } else {
+        [self.navigationController.slidingViewController anchorTopViewTo:ECRight];
+    }
 }
+
 - (IBAction)onClickfoldericon:(id)sender {
     
     // Mixpanel
@@ -174,12 +176,15 @@ int likefoodcount;
 
     [self performSegueWithIdentifier:@"showlikefoodlist" sender:self];
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex ==0) {
-    [login logOut];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"" forKey:@"userfacebookid"];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        [login logOut];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"" forKey:@"userfacebookid"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
     }else if(buttonIndex ==1){
         NSString *messagebody;
         
@@ -200,8 +205,6 @@ int likefoodcount;
         {
             NSLog(@"This device cannot send email");
         }
-
-        
     }
 }
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -226,6 +229,5 @@ int likefoodcount;
         
         [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
 
 @end

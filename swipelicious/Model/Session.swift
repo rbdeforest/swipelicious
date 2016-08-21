@@ -90,7 +90,6 @@ import Alamofire
         defaults.setObject(user.email, forKey: Constants.Preferences.User.Email)
         defaults.setObject(user.password, forKey: Constants.Preferences.User.Password)
         defaults.setObject(user.fbid, forKey: Constants.Preferences.User.FBId)
-                
         defaults.synchronize()
     }
     

@@ -68,6 +68,12 @@ FBSDKLoginManager *login;
     //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserLoginViewController.didRegister(_:)), name: Constants.Notifications.UserDidRegister, object: nil)
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
+    
+    self.navigationController.navigationBarHidden = false;
+}
+
 - (void)didDismissLogin:(NSNotification *)notification{
     [self performSegueWithIdentifier:@"logined" sender:self];
 }

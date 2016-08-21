@@ -8,6 +8,8 @@ pod 'Mixpanel'
 pod 'Alamofire', '~> 3.0'
 pod 'HanekeSwift'
 pod 'VICMAImageView', '~> 1.0'
+pod 'ECSlidingViewController', '~> 1.3'
+pod 'SDWebImage'
 
 end
 

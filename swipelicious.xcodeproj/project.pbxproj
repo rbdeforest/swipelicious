@@ -87,6 +87,12 @@
 		6ADC895F1B91FA3D004DE05B /* button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC895E1B91FA3D004DE05B /* button.jpeg */; };
 		6AFDA2121B87AB0700F1EA3A /* cell_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFDA2111B87AB0700F1EA3A /* cell_background.png */; };
 		6AFDA2141B87AB3400F1EA3A /* selected_food_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFDA2131B87AB3400F1EA3A /* selected_food_background.png */; };
+		8B3E05741D69887A0076D218 /* InitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E05731D69887A0076D218 /* InitialSlidingViewController.m */; };
+		8B3E05771D6988CF0076D218 /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E05761D6988CF0076D218 /* HomeNavigationController.m */; };
+		8B3E05791D698A890076D218 /* home_btn_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E05781D698A890076D218 /* home_btn_menu.png */; };
+		8B3E057C1D698CB60076D218 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E057B1D698CB60076D218 /* MenuViewController.m */; };
+		8B3E05821D69953A0076D218 /* MenuRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E05811D69953A0076D218 /* MenuRoundButton.swift */; };
+		8BAF99C31D69A9D100337662 /* user_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BAF99C21D69A9D100337662 /* user_default.jpg */; };
 		8BB10D301D066A0F00B7B147 /* AUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB10D2F1D066A0F00B7B147 /* AUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -223,6 +229,15 @@
 		6AFDA2111B87AB0700F1EA3A /* cell_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell_background.png; path = Resource/images/cell_background.png; sourceTree = "<group>"; };
 		6AFDA2131B87AB3400F1EA3A /* selected_food_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected_food_background.png; path = Resource/images/selected_food_background.png; sourceTree = "<group>"; };
 		7554043ABD25BA5D56085563 /* Pods-swipelicious.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swipelicious.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious.debug.xcconfig"; sourceTree = "<group>"; };
+		8B3E05721D69887A0076D218 /* InitialSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialSlidingViewController.h; sourceTree = "<group>"; };
+		8B3E05731D69887A0076D218 /* InitialSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialSlidingViewController.m; sourceTree = "<group>"; };
+		8B3E05751D6988CF0076D218 /* HomeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNavigationController.h; sourceTree = "<group>"; };
+		8B3E05761D6988CF0076D218 /* HomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNavigationController.m; sourceTree = "<group>"; };
+		8B3E05781D698A890076D218 /* home_btn_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_btn_menu.png; sourceTree = "<group>"; };
+		8B3E057A1D698CB60076D218 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		8B3E057B1D698CB60076D218 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		8B3E05811D69953A0076D218 /* MenuRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuRoundButton.swift; sourceTree = "<group>"; };
+		8BAF99C21D69A9D100337662 /* user_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user_default.jpg; sourceTree = "<group>"; };
 		8BB10D2D1D06672900B7B147 /* swipelicious-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "swipelicious-Prefix.pch"; sourceTree = "<group>"; };
 		8BB10D2E1D066A0F00B7B147 /* AUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUtils.h; sourceTree = "<group>"; };
 		8BB10D2F1D066A0F00B7B147 /* AUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUtils.m; sourceTree = "<group>"; };
@@ -300,6 +315,7 @@
 				6A52F5841B65450500AECC90 /* AppDelegate.m */,
 				8BB10D2E1D066A0F00B7B147 /* AUtils.h */,
 				8BB10D2F1D066A0F00B7B147 /* AUtils.m */,
+				8B3E057D1D6994580076D218 /* CustomView */,
 				6A776D4D1B8D05C60044C940 /* Class */,
 				6A52F58C1B65450500AECC90 /* Main.storyboard */,
 				6A52F58F1B65450500AECC90 /* Images.xcassets */,
@@ -433,6 +449,12 @@
 				14B8E4261D22B21700D63903 /* UserRegisterViewController.swift */,
 				6A52F5A81B6546A300AECC90 /* MainViewController.h */,
 				6A52F5A91B6546A300AECC90 /* MainViewController.m */,
+				8B3E05721D69887A0076D218 /* InitialSlidingViewController.h */,
+				8B3E05731D69887A0076D218 /* InitialSlidingViewController.m */,
+				8B3E05751D6988CF0076D218 /* HomeNavigationController.h */,
+				8B3E05761D6988CF0076D218 /* HomeNavigationController.m */,
+				8B3E057A1D698CB60076D218 /* MenuViewController.h */,
+				8B3E057B1D698CB60076D218 /* MenuViewController.m */,
 				6AD7D51C1B7352A6009FB7D2 /* MasterViewController.h */,
 				6AD7D51D1B7352A6009FB7D2 /* MasterViewController.m */,
 				6A776C491B8A22540044C940 /* LogoutViewController.h */,
@@ -479,6 +501,8 @@
 		6AC325271B68C07500D495D4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8BAF99C21D69A9D100337662 /* user_default.jpg */,
+				8B3E05781D698A890076D218 /* home_btn_menu.png */,
 				6ADC895E1B91FA3D004DE05B /* button.jpeg */,
 				6A776D301B8C17980044C940 /* dislikeicon.png */,
 				6A776D311B8C17980044C940 /* likeicon.png */,
@@ -536,6 +560,14 @@
 				3A4EE207D3C965F525B2C2EE /* Pods_swipelicious.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B3E057D1D6994580076D218 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8B3E05811D69953A0076D218 /* MenuRoundButton.swift */,
+			);
+			name = CustomView;
 			sourceTree = "<group>";
 		};
 		FDEDB5A414CD1603D2916E41 /* Pods */ = {
@@ -633,6 +665,7 @@
 			files = (
 				6A776D001B8AC93D0044C940 /* ProgressHUD.bundle in Resources */,
 				143A80721CD8D9E900DA41A2 /* DraggableViewBackground.xib in Resources */,
+				8BAF99C31D69A9D100337662 /* user_default.jpg in Resources */,
 				44DBB7031B6F6EF600780CE4 /* 1.png in Resources */,
 				6AAA90821B9759C500FF0107 /* alarm.mp3 in Resources */,
 				6A776D341B8C17980044C940 /* dislikeicon.png in Resources */,
@@ -651,6 +684,7 @@
 				143A80701CD7DA3A00DA41A2 /* RecipeView.xib in Resources */,
 				44DBB7041B6F6EF600780CE4 /* 2.png in Resources */,
 				6AFDA2141B87AB3400F1EA3A /* selected_food_background.png in Resources */,
+				8B3E05791D698A890076D218 /* home_btn_menu.png in Resources */,
 				443889D11B6B6BE80079E871 /* splash1.jpg in Resources */,
 				6A776D371B8C17980044C940 /* yesButton.png in Resources */,
 				6A52F5901B65450500AECC90 /* Images.xcassets in Resources */,
@@ -723,6 +757,7 @@
 				6A776CF41B8AC93D0044C940 /* AFURLConnectionOperation.m in Sources */,
 				6A776CFE1B8AC93D0044C940 /* UIRefreshControl+AFNetworking.m in Sources */,
 				6A776CFB1B8AC93D0044C940 /* UIButton+AFNetworking.m in Sources */,
+				8B3E05741D69887A0076D218 /* InitialSlidingViewController.m in Sources */,
 				8BB10D301D066A0F00B7B147 /* AUtils.m in Sources */,
 				6A776CFD1B8AC93D0044C940 /* UIProgressView+AFNetworking.m in Sources */,
 				6A776CEF1B8AC93D0044C940 /* AFHTTPRequestOperation.m in Sources */,
@@ -743,6 +778,7 @@
 				140E7CF11D08C7A800CE8218 /* Draw.swift in Sources */,
 				6A776CF81B8AC93D0044C940 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				1449C9721D084F28005A7437 /* Profile.swift in Sources */,
+				8B3E057C1D698CB60076D218 /* MenuViewController.m in Sources */,
 				6A52F5851B65450500AECC90 /* AppDelegate.m in Sources */,
 				6A52F5AA1B6546A300AECC90 /* MainViewController.m in Sources */,
 				6A776D291B8BFF340044C940 /* DraggableView.m in Sources */,
@@ -756,6 +792,8 @@
 				14CE251C1CDB9E5E00644138 /* HCSStarRatingView.m in Sources */,
 				6A776CF21B8AC93D0044C940 /* AFNetworkReachabilityManager.m in Sources */,
 				6A776D2D1B8C127B0044C940 /* DraggableViewBackground.m in Sources */,
+				8B3E05771D6988CF0076D218 /* HomeNavigationController.m in Sources */,
+				8B3E05821D69953A0076D218 /* MenuRoundButton.swift in Sources */,
 				6A776CFF1B8AC93D0044C940 /* UIWebView+AFNetworking.m in Sources */,
 				6A776CF61B8AC93D0044C940 /* AFURLResponseSerialization.m in Sources */,
 				6A52F5821B65450500AECC90 /* main.m in Sources */,
@@ -894,8 +932,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ling zhang (85EYA4XEVW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ling zhang (85EYA4XEVW)";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -910,7 +948,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.looping.helphire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f712b571-a38e-4778-ac21-63ef6c87aa3a";
 				SWIFT_OBJC_BRIDGING_HEADER = "swipelicious-Bridging-Header.h";
 			};
 			name = Debug;
@@ -922,8 +960,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ling zhang (85EYA4XEVW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ling zhang (85EYA4XEVW)";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -938,7 +976,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.looping.helphire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f712b571-a38e-4778-ac21-63ef6c87aa3a";
 				SWIFT_OBJC_BRIDGING_HEADER = "swipelicious-Bridging-Header.h";
 			};
 			name = Release;

@@ -85,13 +85,17 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ECSlidingViewController/ECSlidingViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HanekeSwift/Haneke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Mixpanel/Mixpanel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VICMAImageView/VICMAImageView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ECSlidingViewController/ECSlidingViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HanekeSwift/Haneke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Mixpanel/Mixpanel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VICMAImageView/VICMAImageView.framework"
 fi
