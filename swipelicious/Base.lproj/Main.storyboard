@@ -544,6 +544,39 @@
             </objects>
             <point key="canvasLocation" x="1876" y="-20"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="xzd-wq-G9U">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="rpl-ii-w3b" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TIQ-WB-EkD"/>
+                        <viewControllerLayoutGuide type="bottom" id="z7D-Or-WWg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VRE-gb-zjm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzE-Zx-DNf">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z7D-Or-WWg" firstAttribute="top" secondItem="QzE-Zx-DNf" secondAttribute="bottom" id="CvK-yt-9VE"/>
+                            <constraint firstItem="QzE-Zx-DNf" firstAttribute="top" secondItem="TIQ-WB-EkD" secondAttribute="bottom" id="LX7-4S-g8E"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QzE-Zx-DNf" secondAttribute="trailing" id="M3O-6o-lit"/>
+                            <constraint firstItem="QzE-Zx-DNf" firstAttribute="leading" secondItem="VRE-gb-zjm" secondAttribute="leadingMargin" id="rbm-Nv-CVQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myWebView" destination="QzE-Zx-DNf" id="jXS-B6-MbN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBM-Yu-rJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2084" y="810"/>
+        </scene>
         <!--SWIPELICIOUS-->
         <scene sceneID="IQ7-6e-JJK">
             <objects>

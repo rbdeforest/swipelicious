@@ -15,6 +15,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "ProgressHUD.h"
 #import <Parse/Parse.h>
+#import "WebViewController.h"
 
 NSString *detaillink;//selected food's detaillink
 NSString *foodtitle;//selected food's foodtitle
@@ -51,9 +52,15 @@ UIImage *selectedfoodimage;//selected food's image
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
     [mixpanel.people increment:USER_CLICKED_VIEW_FULL_RECIPE by:@1];
     [mixpanel track: USER_CLICKED_VIEW_FULL_RECIPE];
-
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:recipe.link]];
+    NSString *link = recipe.blog_url != nil ? recipe.blog_url : recipe.link;
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WebViewController *webVC = [sb instantiateViewControllerWithIdentifier:@"WebViewController"];
+    
+    webVC.urlToLoad = [NSURL URLWithString:link];
+    [self.navigationController pushViewController:webVC animated:true];
+    
 }
 
 - (void)didReceiveMemoryWarning {
