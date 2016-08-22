@@ -53,12 +53,10 @@ UIImage *selectedfoodimage;//selected food's image
     [mixpanel.people increment:USER_CLICKED_VIEW_FULL_RECIPE by:@1];
     [mixpanel track: USER_CLICKED_VIEW_FULL_RECIPE];
     
-    NSString *link = recipe.blog_url != nil ? recipe.blog_url : recipe.link;
-    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WebViewController *webVC = [sb instantiateViewControllerWithIdentifier:@"WebViewController"];
     
-    webVC.urlToLoad = [NSURL URLWithString:link];
+    webVC.urlToLoad = [NSURL URLWithString:recipe.link];
     [self.navigationController pushViewController:webVC animated:true];
     
 }
@@ -133,13 +131,9 @@ UIImage *selectedfoodimage;//selected food's image
 }
 
 - (IBAction)onTapShare:(id)sender{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert"
-                                                   message:@"Share"
-                                                  delegate:self
-                                         cancelButtonTitle:@"No"
-                                         otherButtonTitles:@"Yes",nil];
-    alert.tag = 2;
-    [alert show];
+    NSArray *items = [NSArray arrayWithObjects:recipe.blog_url ? recipe.blog_url : recipe.link, @"Check out this recipe", nil];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    [self.navigationController presentViewController:activityVC animated:true completion:nil];
 }
 
 - (IBAction)onTapCart:(id)sender{
