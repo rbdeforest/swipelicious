@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>81C2D7BA-74EC-450E-B8C6-1A3CBF97EB55</string>
+	<key>IDESourceControlProjectName</key>
+	<string>swipelicious</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7A8676EDA12FCC22EF2708C6DF767026B5F3ACDC</key>
+		<string>https://github.com/rbdeforest/swipelicious.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>swipelicious.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7A8676EDA12FCC22EF2708C6DF767026B5F3ACDC</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rbdeforest/swipelicious.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7A8676EDA12FCC22EF2708C6DF767026B5F3ACDC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7A8676EDA12FCC22EF2708C6DF767026B5F3ACDC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>swipelicious</string>
+		</dict>
+	</array>
+</dict>
+</plist>
