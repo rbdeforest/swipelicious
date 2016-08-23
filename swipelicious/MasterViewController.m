@@ -109,13 +109,13 @@ int likefoodcount;
     
     tempview.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:-60]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
 
