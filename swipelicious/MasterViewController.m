@@ -111,7 +111,7 @@ int likefoodcount;
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeHeight multiplier:1 constant:-60]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
