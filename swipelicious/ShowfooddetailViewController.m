@@ -44,6 +44,9 @@ UIImage *selectedfoodimage;//selected food's image
         self.foodimage.image = [UIImage imageWithData:data];
     }];
     
+    [self.ingredientslist setRowHeight:UITableViewAutomaticDimension];
+    [self.ingredientslist setEstimatedRowHeight:20];
+    
 }
 - (IBAction)gotodetailrecipe:(id)sender {
     

@@ -91,7 +91,9 @@ NSArray *ingredients;//selected food's ingredients
     
     cell.foodTitleLabel.text = title.uppercaseString;
     NSString *imageUrl = recipe.photo_url;
+    
     cell.descriptionLabel.text = recipe.short_description;
+    
     cell.createdByLabel.text = [NSString stringWithFormat:@"Created by %@",recipe.owner];
     
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {

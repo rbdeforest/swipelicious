@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *dislikebutton;
 @property (weak, nonatomic) IBOutlet UIButton *likebutton;
 @property (weak, nonatomic) IBOutlet UIWebView *emptyWebView;
+
+@property (weak, nonatomic) IBOutlet UIView *onboardViewContainer;
+@property (weak, nonatomic) IBOutlet UILabel *onbardTapLabel;
+
 extern NSMutableArray *foodIdData;
 extern NSMutableArray * foodTitleData;
 extern NSMutableArray *foodImageUrlData;

@@ -28,6 +28,7 @@ NSMutableArray *foodImageUrlData;
 DraggableViewBackground *draggableBackground;
 UIView *tempview;
 int likefoodcount;
+int currentOverlay;
 
 
 @interface MasterViewController ()
@@ -73,6 +74,49 @@ int likefoodcount;
     [mixpanel.people set:USER_OPENED_APP_DATE to:[AUtils stringFromDate: [NSDate date]]];
     [mixpanel track: USER_OPENED_APP_COUNT];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    bool overlayShown = [defaults boolForKey:@"overlayShown"];
+    
+    if (!overlayShown) {
+        self.navigationController.navigationBar.layer.zPosition = -1;
+        
+        currentOverlay = 1;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onboardTap:)];
+        
+        [self.onboardViewContainer addGestureRecognizer:tap];
+        
+        [self.view bringSubviewToFront:self.onboardViewContainer];
+        
+    }else{
+        [self.onboardViewContainer removeFromSuperview];
+        self.onboardViewContainer = nil;
+    }
+    
+}
+
+- (void)onboardTap:(UITapGestureRecognizer *)tap{
+    [UIView animateWithDuration:.4f animations:^{
+        [self.onboardViewContainer viewWithTag:currentOverlay].alpha = 0;
+        if ([self.onboardViewContainer viewWithTag:currentOverlay+1] != nil){
+            [self.onboardViewContainer viewWithTag:currentOverlay+1].alpha = 1;
+            currentOverlay ++;
+            if (currentOverlay == 3){
+                self.onbardTapLabel.text = @"START SWIPING!";
+            }
+        }else{
+            self.onboardViewContainer.alpha = 0;
+        }
+    } completion:^(BOOL finished) {
+        if (self.onboardViewContainer.alpha == 0) {
+            [self.view setBackgroundColor:[UIColor whiteColor]];
+            [self.onboardViewContainer removeFromSuperview];
+            self.onboardViewContainer = nil;
+            self.navigationController.navigationBar.layer.zPosition = 0;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:true forKey:@"overlayShown"];
+        }
+        
+    }];
 }
 
 -(void)checkRefresh{
@@ -116,6 +160,10 @@ int likefoodcount;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    if (self.onboardViewContainer) {
+        [self.view bringSubviewToFront:self.onboardViewContainer];
+    }
 }
 
 

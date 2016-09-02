@@ -31,11 +31,17 @@
     _lblName.text = @"";
     _lblName.text = [NSString stringWithFormat: @"%@ %@", currentUser.profile.first_name, currentUser.profile.last_name];
     
-    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:currentUser.profile.photo] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-        if (image) {
-            [self.imgvPhoto setImage: image];
-        }
-    }];
+    if (currentUser.fbid != nil && ![currentUser.fbid isEqualToString:@""]) {
+        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", currentUser.fbid]];
+        
+        [[SDWebImageManager sharedManager] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (image) {
+                self.imgvPhoto.contentMode = UIViewContentModeScaleAspectFit;
+                [self.imgvPhoto setImage: image];
+            }
+        }];
+    }
+    
 }
 
 - (IBAction)onBtnSubmitRecipe:(id)sender {
