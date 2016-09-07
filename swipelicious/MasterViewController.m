@@ -78,6 +78,7 @@ int currentOverlay;
     bool overlayShown = [defaults boolForKey:@"overlayShown"];
     
     if (!overlayShown) {
+        [self.view setBackgroundColor:[UIColor clearColor]];
         self.navigationController.navigationBar.layer.zPosition = -1;
         
         currentOverlay = 1;
@@ -88,6 +89,7 @@ int currentOverlay;
         [self.view bringSubviewToFront:self.onboardViewContainer];
         
     }else{
+        [self.view setBackgroundColor:[UIColor whiteColor]];
         [self.onboardViewContainer removeFromSuperview];
         self.onboardViewContainer = nil;
     }

@@ -14,7 +14,6 @@
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
-#import <Parse/Parse.h>
 #import "MasterViewController.h"
 #import "AppDelegate.h"
 

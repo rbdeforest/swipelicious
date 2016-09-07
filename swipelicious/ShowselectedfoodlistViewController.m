@@ -17,7 +17,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "FoodTableViewCell.h"
-#import <Parse/Parse.h>
+#import "TagTableViewController.h"
 
 NSString *selectedfoodid;
 int selectedfoodindex;
@@ -26,18 +26,23 @@ NSArray *ingredients;//selected food's ingredients
 @interface ShowselectedfoodlistViewController ()
 
 @property (nonatomic, retain) NSArray *recipes;
+@property (nonatomic, retain) NSMutableArray *filteredRecipes;
+@property (nonatomic, retain) NSArray *currentList;
 
 @end
 
 @implementation ShowselectedfoodlistViewController
 
 @synthesize recipes;
+@synthesize filteredRecipes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     ingredients = [[NSArray alloc] init];
+    self.filteredRecipes = [NSMutableArray new];
     // Do any additional setup after loading the view.
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear: animated];
 
@@ -45,9 +50,10 @@ NSArray *ingredients;//selected food's ingredients
     [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey: @"StartSelectedFoodListPage"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    self.recipes = [[[AppSession sharedInstance] user] favorites];
-    
-    [self.Selectedfoodlist reloadData];
+    if (self.recipes == nil) {
+        self.recipes = [[[AppSession sharedInstance] user] favorites];
+        [self.Selectedfoodlist reloadData];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -67,8 +73,16 @@ NSArray *ingredients;//selected food's ingredients
     // Dispose of any resources that can be recreated.
 }
 
+- (NSArray *)currentList{
+    if ([self.filteredRecipes count] == 0){
+        return self.recipes;
+    }else{
+        return self.filteredRecipes;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [recipes count];
+    return [[self currentList] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,7 +99,7 @@ NSArray *ingredients;//selected food's ingredients
         cell = (FoodTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] ;
     }
     
-    Draw *recipe = self.recipes[indexPath.row];
+    Draw *recipe = self.currentList[indexPath.row];
     cell.foodImage.image = nil;
     NSString *title = recipe.title;
     
@@ -133,9 +147,17 @@ NSArray *ingredients;//selected food's ingredients
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    ShowfooddetailViewController *vc = [segue destinationViewController];
-    int row = (int)self.Selectedfoodlist.indexPathForSelectedRow.row;
-    vc.recipe = self.recipes[row];
+    if ([[segue identifier] isEqualToString:@"showfooddetail"]){
+        ShowfooddetailViewController *vc = [segue destinationViewController];
+        int row = (int)self.Selectedfoodlist.indexPathForSelectedRow.row;
+        vc.recipe = self.recipes[row];
+    }else{
+        TagTableViewController *vc = [segue destinationViewController];
+        vc.finishedPickingTags = ^(NSArray *tags){
+            [self filterWithTags:tags];
+            NSLog(@"%@", tags);
+        };
+    }
 }
 
 - (IBAction)onClickbackbutton:(id)sender {
@@ -147,6 +169,97 @@ NSArray *ingredients;//selected food's ingredients
         [button setSelected:false];
     }
     [sender setSelected:YES];
+}
+
+- (void)filterWithTags:(NSArray *)tags{
+    [self.filteredRecipes removeAllObjects];
+    for (Draw *recipe in self.recipes) {
+        BOOL isSubset = [[NSSet setWithArray: tags] isSubsetOfSet: [NSSet setWithArray:recipe.categories]];
+        
+        if (isSubset){
+            [self.filteredRecipes addObject:recipe];
+        }
+    }
+    
+    if ([self.filteredRecipes count] == 0){
+        UIAlertController* alert = [UIAlertController
+                                    alertControllerWithTitle:@"No recipes found"
+                                    message:@"No recipes have been found with selected tags"
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    [self.Selectedfoodlist reloadData];
+}
+
+- (IBAction)sortButton:(id)sender{
+    UIAlertController* alert = [UIAlertController
+                                alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ingredients count" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [((Draw *)a).ingredient_count intValue];
+            int second = [((Draw *)b).ingredient_count intValue];
+            if (first < second)
+                return NSOrderedAscending;
+            else if (first > second)
+                return NSOrderedDescending;
+            else 
+                return NSOrderedSame;
+            
+        }] mutableCopy];
+        [self.Selectedfoodlist reloadData];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ingredients count desc" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [((Draw *)a).ingredient_count intValue];
+            int second = [((Draw *)b).ingredient_count intValue];
+            if (first < second)
+                return NSOrderedDescending;
+            else if (first > second)
+                return NSOrderedAscending;
+            else
+                return NSOrderedSame;
+            
+        }] mutableCopy];
+        [self.Selectedfoodlist reloadData];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cook time" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [((Draw *)a).cook_time intValue];
+            int second = [((Draw *)b).cook_time intValue];
+            if (first < second)
+                return NSOrderedDescending;
+            else if (first > second)
+                return NSOrderedAscending;
+            else
+                return NSOrderedSame;
+            
+        }] mutableCopy];
+        [self.Selectedfoodlist reloadData];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cook time desc" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [((Draw *)a).cook_time intValue];
+            int second = [((Draw *)b).cook_time intValue];
+            if (first < second)
+                return NSOrderedDescending;
+            else if (first > second)
+                return NSOrderedAscending;
+            else
+                return NSOrderedSame;
+            
+        }] mutableCopy];
+        [self.Selectedfoodlist reloadData];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 

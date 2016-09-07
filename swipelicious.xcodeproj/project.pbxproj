@@ -10,6 +10,8 @@
 		140E7CF11D08C7A800CE8218 /* Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E7CF01D08C7A800CE8218 /* Draw.swift */; };
 		143A80701CD7DA3A00DA41A2 /* RecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143A806F1CD7DA3A00DA41A2 /* RecipeView.xib */; };
 		143A80721CD8D9E900DA41A2 /* DraggableViewBackground.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143A80711CD8D9E900DA41A2 /* DraggableViewBackground.xib */; };
+		14410AD11D808DC6008D4FE5 /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14410AD01D808DC6008D4FE5 /* TagTableViewController.m */; };
+		14410AD51D8090E5008D4FE5 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14410AD41D8090E5008D4FE5 /* Tag.swift */; };
 		1449C9701D084F28005A7437 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449C96A1D084F28005A7437 /* Constants.swift */; };
 		1449C9721D084F28005A7437 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449C96C1D084F28005A7437 /* Profile.swift */; };
 		1449C9731D084F28005A7437 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449C96D1D084F28005A7437 /* Session.swift */; };
@@ -112,6 +114,9 @@
 		140E7CF01D08C7A800CE8218 /* Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draw.swift; sourceTree = "<group>"; };
 		143A806F1CD7DA3A00DA41A2 /* RecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeView.xib; sourceTree = "<group>"; };
 		143A80711CD8D9E900DA41A2 /* DraggableViewBackground.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraggableViewBackground.xib; sourceTree = "<group>"; };
+		14410ACF1D808DC6008D4FE5 /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagTableViewController.h; sourceTree = "<group>"; };
+		14410AD01D808DC6008D4FE5 /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagTableViewController.m; sourceTree = "<group>"; };
+		14410AD41D8090E5008D4FE5 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = swipelicious/Model/Tag.swift; sourceTree = "<group>"; };
 		1449C9661D084D0C005A7437 /* swipelicious-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "swipelicious-Bridging-Header.h"; sourceTree = "<group>"; };
 		1449C96A1D084F28005A7437 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = swipelicious/Model/Constants.swift; sourceTree = "<group>"; };
 		1449C96C1D084F28005A7437 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = swipelicious/Model/Profile.swift; sourceTree = "<group>"; };
@@ -288,6 +293,7 @@
 				1449C96A1D084F28005A7437 /* Constants.swift */,
 				1449C96C1D084F28005A7437 /* Profile.swift */,
 				140E7CF01D08C7A800CE8218 /* Draw.swift */,
+				14410AD41D8090E5008D4FE5 /* Tag.swift */,
 				1449C96D1D084F28005A7437 /* Session.swift */,
 				1449C96E1D084F28005A7437 /* User.swift */,
 				6A52F57E1B65450500AECC90 /* swipelicious */,
@@ -466,6 +472,8 @@
 				6A729A621B87932F00296E47 /* ShowselectedfoodlistViewController.m */,
 				6A776C461B89BD050044C940 /* ShowfooddetailViewController.h */,
 				6A776C471B89BD050044C940 /* ShowfooddetailViewController.m */,
+				14410ACF1D808DC6008D4FE5 /* TagTableViewController.h */,
+				14410AD01D808DC6008D4FE5 /* TagTableViewController.m */,
 				14CE25171CDB991B00644138 /* FoodTableViewCell.h */,
 				14CE25181CDB991B00644138 /* FoodTableViewCell.m */,
 				6A776D4F1B8D06520044C940 /* swipe */,
@@ -774,6 +782,7 @@
 				14B8E4281D22B21700D63903 /* UserRegisterViewController.swift in Sources */,
 				6A729A631B87932F00296E47 /* ShowselectedfoodlistViewController.m in Sources */,
 				6AD7D51E1B7352A6009FB7D2 /* MasterViewController.m in Sources */,
+				14410AD51D8090E5008D4FE5 /* Tag.swift in Sources */,
 				6A776CFC1B8AC93D0044C940 /* UIImageView+AFNetworking.m in Sources */,
 				145A4A631CDBE0AC00622305 /* HeaderButton.m in Sources */,
 				6A776CF11B8AC93D0044C940 /* AFHTTPSessionManager.m in Sources */,
@@ -798,6 +807,7 @@
 				6A776CF21B8AC93D0044C940 /* AFNetworkReachabilityManager.m in Sources */,
 				6A776D2D1B8C127B0044C940 /* DraggableViewBackground.m in Sources */,
 				8B3E05771D6988CF0076D218 /* HomeNavigationController.m in Sources */,
+				14410AD11D808DC6008D4FE5 /* TagTableViewController.m in Sources */,
 				8B3E05821D69953A0076D218 /* MenuRoundButton.swift in Sources */,
 				6A776CFF1B8AC93D0044C940 /* UIWebView+AFNetworking.m in Sources */,
 				1479D05E1D6B440000347874 /* WebViewController.m in Sources */,

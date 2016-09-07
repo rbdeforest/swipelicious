@@ -69,6 +69,10 @@ struct Constants {
             static let RemoveFavorite = Base + "draws/remove_favorite.json"
         }
         
+        struct Category {
+            static let Index = Base + "categories.json"
+        }
+        
     }
     
 }
