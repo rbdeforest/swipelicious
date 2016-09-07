@@ -29,6 +29,7 @@ import Foundation
     var cook_time: String?
     var ready_time: String?
     var blog_url: String?
+    var pos: String?
     
     init(data: NSDictionary ){
         

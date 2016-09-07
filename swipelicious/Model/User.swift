@@ -35,9 +35,12 @@ import Foundation
         favorites = [Draw]()
         favoriteIds = [String]()
         
+        var i : Int = 0
         if let favoriteDraws = draws{
             for item in favoriteDraws{
                 let draw = Draw.init(data: item as! NSDictionary)
+                draw.pos = String(i)
+                i += 1
                 favorites?.append(draw)
                 favoriteIds?.append(draw.id)
             }

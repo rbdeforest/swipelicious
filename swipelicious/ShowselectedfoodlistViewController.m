@@ -200,6 +200,21 @@ NSArray *ingredients;//selected food's ingredients
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleActionSheet];
     
+    [alert addAction:[UIAlertAction actionWithTitle:@"Recently added" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [((Draw *)a).pos intValue];
+            int second = [((Draw *)b).pos intValue];
+            if (first < second)
+                return NSOrderedAscending;
+            else if (first > second)
+                return NSOrderedDescending;
+            else
+                return NSOrderedSame;
+            
+        }] mutableCopy];
+        [self.Selectedfoodlist reloadData];
+    }]];
+    
     [alert addAction:[UIAlertAction actionWithTitle:@"Ingredients count" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
             int first = [((Draw *)a).ingredient_count intValue];
