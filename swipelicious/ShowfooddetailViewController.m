@@ -14,7 +14,6 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "ProgressHUD.h"
-#import <Parse/Parse.h>
 #import "WebViewController.h"
 
 NSString *detaillink;//selected food's detaillink

@@ -43,7 +43,7 @@ class UserLoginViewController: UIViewController {
 
     @IBAction func loginHandler(sender:UIButton) {
         
-        if let email = emailTextField.text, password = passwordTextField.text{
+        if let email = emailTextField.text, let password = passwordTextField.text{
             
             if email.isEmpty || password.isEmpty{
                 let alert = UIAlertController.init(title: "Error", message: "Please complete all fields", preferredStyle: UIAlertControllerStyle.Alert)

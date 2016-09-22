@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Parse/Parse.h>
 #import "MainViewController.h"
 #import "MasterViewController.h"
 
@@ -24,9 +23,6 @@ UILocalNotification *notification;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    [Parse enableLocalDatastore];
-    [Parse setApplicationId:@"OljqdevZuNmaIveVYrLT84v6TqI1SjfThAsp35MS" clientKey:@"qEcTRyV4GU3lCOTFKBT9H22VnAF1dj3pOmrhNMi7"];
-    
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];
     NSString *tch = [startUser objectForKey:@"touchId"];
     if ([tch isEqualToString:@"yes"]) {

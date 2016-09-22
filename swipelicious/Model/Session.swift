@@ -19,7 +19,7 @@ import Alamofire
         
     }
     
-    func login(user:User, completion:(user:User?, error: NSError?) -> ()) -> (){
+    func login(user:User, completion:(_ : User?, _: NSError?) -> ()) -> (){
         
         let url : String = Constants.API.User.Login
         
@@ -36,7 +36,7 @@ import Alamofire
                 let errorString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)
                 print(errorString)
                 self.user = nil
-                completion(user: nil, error: error)
+                completion(nil, error)
             }else{
 
                 if let JSON = response.result.value {
@@ -52,9 +52,9 @@ import Alamofire
                         
                         self.user = user
                         
-                        completion(user: user, error: nil)
+                        completion(user, nil)
                     }else{
-                        completion(user: nil, error: NSError(domain: "", code: 10, userInfo: [:]))
+                        completion(nil, NSError(domain: "", code: 10, userInfo: [:]))
                     }
                     
                     
@@ -63,11 +63,12 @@ import Alamofire
         }
     }
     
-    func loginCurrentUser(completion:(user: User?, error: NSError?) ->()) -> (){
+    func loginCurrentUser(completion:(_: User?, _: NSError?) ->()) -> (){
         if user?.FBToken != nil
         {
             AppSession.sharedInstance.login(user!) { (user, error) -> () in
-                completion(user: user, error: error)
+                completion(user, error)
+                
             }
         }else{
             let defaults = NSUserDefaults.standardUserDefaults()
@@ -77,10 +78,10 @@ import Alamofire
                 let user = User.init(email: email, password: password)
                 
                 AppSession.sharedInstance.login(user) { (user, error) -> () in
-                    completion(user: user, error: error)
+                    completion(user, error)
                 }
             }else{
-                completion(user: nil, error: nil)
+                completion(nil, nil)
             }
         }
     }

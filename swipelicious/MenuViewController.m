@@ -5,6 +5,8 @@
 #import <SDWebImage/SDWebImageManager.h>
 
 #import "swipelicious-Swift.h"
+#import "FriendsViewController.h"
+#import "HomeNavigationController.h"
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgvPhoto;
@@ -74,6 +76,15 @@
     [defaults setObject:@"" forKey:@"userfacebookid"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+
+- (IBAction)onBtnFriends:(id)sender {
+    FriendsViewController *friendsVC = (FriendsViewController*)[STORYBOARD instantiateViewControllerWithIdentifier: @"FriendsViewController"];
+    
+    [(HomeNavigationController *)self.slidingViewController.topViewController pushViewController:friendsVC animated:YES];
+    [self.slidingViewController resetTopView];
+}
+
 
 - (IBAction)onBtnContactUs:(id)sender {
     

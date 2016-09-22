@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/mixpanel/mixpanel-iphone.svg?branch=yolo-travis-ci)](https://travis-ci.org/mixpanel/mixpanel-iphone)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mixpanel/mixpanel-iphone.svg)](http://isitmaintained.com/project/mixpanel/mixpanel-iphone "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/mixpanel/mixpanel-iphone.svg)](http://isitmaintained.com/project/mixpanel/mixpanel-iphone "Percentage of issues still open")
 [![CocoaPods Version](http://img.shields.io/cocoapods/v/Mixpanel.svg?style=flat)](https://mixpanel.com)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Apache License](http://img.shields.io/cocoapods/l/Mixpanel.svg?style=flat)](https://mixpanel.com)
@@ -6,6 +8,8 @@
 **Want to Contribute?**
 
 The Mixpanel library for iOS is an open source project, and we'd love to see your contributions! We'd also love for you to come and work with us! Check out http://boards.greenhouse.io/mixpanel/jobs/25226#.U_4JXEhORKU for details.
+
+If you are using Swift, we recommend our **[Swift Library](https://github.com/mixpanel/mixpanel-swift)** (currently supports the tracking and people API).
 
 # Painless Installation (CocoaPods)
 
@@ -29,6 +33,7 @@ Git clone the latest version of "mixpanel-iphone" to your local machine using th
 
 ```
 git clone https://github.com/mixpanel/mixpanel-iphone.git
+git checkout tags/v3.0.3
 ```
 
 If you don't have git installed, get it [here](http://git-scm.com/downloads).

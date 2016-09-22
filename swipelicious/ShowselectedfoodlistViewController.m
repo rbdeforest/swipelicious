@@ -150,7 +150,7 @@ NSArray *ingredients;//selected food's ingredients
     if ([[segue identifier] isEqualToString:@"showfooddetail"]){
         ShowfooddetailViewController *vc = [segue destinationViewController];
         int row = (int)self.Selectedfoodlist.indexPathForSelectedRow.row;
-        vc.recipe = self.recipes[row];
+        vc.recipe = self.currentList[row];
     }else{
         TagTableViewController *vc = [segue destinationViewController];
         vc.finishedPickingTags = ^(NSArray *tags){

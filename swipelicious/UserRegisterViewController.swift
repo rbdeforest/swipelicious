@@ -55,9 +55,9 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         if  let email = emailTextField.text,
-                password = passwordTextField.text,
-                firstName = firstNameTextField.text,
-                lastName = lastNameTextField.text
+            let password = passwordTextField.text,
+            let firstName = firstNameTextField.text,
+            let lastName = lastNameTextField.text
         {
             
             if !(email.isEmpty || password.isEmpty || firstName.isEmpty || lastName.isEmpty ){

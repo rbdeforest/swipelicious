@@ -15,7 +15,6 @@
 #import "AppDelegate.h"
 #import "ProgressHUD.h"
 #import "DraggableViewBackground.h"
-#import <Parse/Parse.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -57,7 +56,6 @@ int currentOverlay;
     foodImageUrlData = [[NSMutableArray alloc] init];
     tempview = [[UIView alloc] init];
     [self.view addSubview:tempview];
-    [self setOfFoodData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkRefresh) name:@"refreshMessageMasterView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkEmpty) name:@"checkEmpty" object:nil];
@@ -175,24 +173,6 @@ int currentOverlay;
     
     [self checkRefresh];
 }
-
--(void)setOfFoodData{
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"FoodData"];
-    [query whereKey:@"facebook_id" equalTo :userfacebookid];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if([objects count]>0){
-        for (int i = 0; i < [objects count]; i ++) {
-            [foodIdData addObject:objects[i][@"recipe_id"]];
-            [foodTitleData addObject:objects[i][@"title"]];
-            [foodImageUrlData addObject:objects[i][@"image_url"]];
-        }
-        likefoodcount = (int)[objects count];
-        }
-    }];
-
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

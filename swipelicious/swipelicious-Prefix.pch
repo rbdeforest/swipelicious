@@ -15,7 +15,7 @@
 #endif /* swipelicious_Prefix_pch */
 
 #import "AUtils.h"
-#import "Mixpanel.h"
+@import Mixpanel;
 
 #define MIXPANEL_TOKEN @"bb1bea704eb0d61b3a5cac067bc31651"
 

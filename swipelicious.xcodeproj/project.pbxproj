@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		140E7CF11D08C7A800CE8218 /* Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E7CF01D08C7A800CE8218 /* Draw.swift */; };
+		1419188B1D86E3A9005C55B9 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419188A1D86E3A9005C55B9 /* FriendTableViewCell.m */; };
+		1419188E1D86ED17005C55B9 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419188D1D86ED17005C55B9 /* FriendsViewController.m */; };
+		141918901D86EEAF005C55B9 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1419188F1D86EEAF005C55B9 /* FBSDKShareKit.framework */; };
 		143A80701CD7DA3A00DA41A2 /* RecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143A806F1CD7DA3A00DA41A2 /* RecipeView.xib */; };
 		143A80721CD8D9E900DA41A2 /* DraggableViewBackground.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143A80711CD8D9E900DA41A2 /* DraggableViewBackground.xib */; };
 		14410AD11D808DC6008D4FE5 /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14410AD01D808DC6008D4FE5 /* TagTableViewController.m */; };
@@ -64,7 +67,6 @@
 		6A776CFF1B8AC93D0044C940 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A776CE91B8AC93D0044C940 /* UIWebView+AFNetworking.m */; };
 		6A776D001B8AC93D0044C940 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A776CEB1B8AC93D0044C940 /* ProgressHUD.bundle */; };
 		6A776D011B8AC93D0044C940 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A776CED1B8AC93D0044C940 /* ProgressHUD.m */; };
-		6A776D081B8B3CF80044C940 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D041B8B3CF70044C940 /* Parse.framework */; };
 		6A776D0C1B8B3ED00044C940 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D0B1B8B3ED00044C940 /* Foundation.framework */; };
 		6A776D0E1B8B3EDD0044C940 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D0D1B8B3EDD0044C940 /* MobileCoreServices.framework */; };
 		6A776D141B8B3F130044C940 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D131B8B3F130044C940 /* AudioToolbox.framework */; };
@@ -73,7 +75,6 @@
 		6A776D1A1B8B3F2D0044C940 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D191B8B3F2D0044C940 /* Accelerate.framework */; };
 		6A776D1C1B8B3F360044C940 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D1B1B8B3F360044C940 /* Social.framework */; };
 		6A776D1E1B8B3F3F0044C940 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D1D1B8B3F3F0044C940 /* CFNetwork.framework */; };
-		6A776D201B8B4BAA0044C940 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D1F1B8B4BAA0044C940 /* FacebookSDK.framework */; };
 		6A776D221B8B86440044C940 /* recipedetailbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A776D211B8B86440044C940 /* recipedetailbackground.png */; };
 		6A776D241B8BB3390044C940 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A776D231B8BB3380044C940 /* LocalAuthentication.framework */; };
 		6A776D291B8BFF340044C940 /* DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A776D261B8BFF340044C940 /* DraggableView.m */; };
@@ -111,17 +112,22 @@
 
 /* Begin PBXFileReference section */
 		01ABEE272484B7E7A0F70EE4 /* Pods-swipelicious.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swipelicious.release.xcconfig"; path = "Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious.release.xcconfig"; sourceTree = "<group>"; };
-		140E7CF01D08C7A800CE8218 /* Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draw.swift; sourceTree = "<group>"; };
+		140E7CF01D08C7A800CE8218 /* Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw.swift; path = ../Draw.swift; sourceTree = "<group>"; };
+		141918891D86E3A9005C55B9 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		1419188A1D86E3A9005C55B9 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
+		1419188C1D86ED17005C55B9 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		1419188D1D86ED17005C55B9 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		1419188F1D86EEAF005C55B9 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		143A806F1CD7DA3A00DA41A2 /* RecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeView.xib; sourceTree = "<group>"; };
 		143A80711CD8D9E900DA41A2 /* DraggableViewBackground.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraggableViewBackground.xib; sourceTree = "<group>"; };
 		14410ACF1D808DC6008D4FE5 /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagTableViewController.h; sourceTree = "<group>"; };
 		14410AD01D808DC6008D4FE5 /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagTableViewController.m; sourceTree = "<group>"; };
-		14410AD41D8090E5008D4FE5 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = swipelicious/Model/Tag.swift; sourceTree = "<group>"; };
+		14410AD41D8090E5008D4FE5 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Model/Tag.swift; sourceTree = "<group>"; };
 		1449C9661D084D0C005A7437 /* swipelicious-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "swipelicious-Bridging-Header.h"; sourceTree = "<group>"; };
-		1449C96A1D084F28005A7437 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = swipelicious/Model/Constants.swift; sourceTree = "<group>"; };
-		1449C96C1D084F28005A7437 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = swipelicious/Model/Profile.swift; sourceTree = "<group>"; };
-		1449C96D1D084F28005A7437 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = swipelicious/Model/Session.swift; sourceTree = "<group>"; };
-		1449C96E1D084F28005A7437 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = swipelicious/Model/User.swift; sourceTree = "<group>"; };
+		1449C96A1D084F28005A7437 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Model/Constants.swift; sourceTree = "<group>"; };
+		1449C96C1D084F28005A7437 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Model/Profile.swift; sourceTree = "<group>"; };
+		1449C96D1D084F28005A7437 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Model/Session.swift; sourceTree = "<group>"; };
+		1449C96E1D084F28005A7437 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		145A4A611CDBE0AC00622305 /* HeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderButton.h; sourceTree = "<group>"; };
 		145A4A621CDBE0AC00622305 /* HeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderButton.m; sourceTree = "<group>"; };
 		1462F41A1D09B3A100B4AE7B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -204,9 +210,6 @@
 		6A776CEB1B8AC93D0044C940 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		6A776CEC1B8AC93D0044C940 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		6A776CED1B8AC93D0044C940 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
-		6A776D031B8B3CF70044C940 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		6A776D041B8B3CF70044C940 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		6A776D061B8B3CF70044C940 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		6A776D0B1B8B3ED00044C940 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6A776D0D1B8B3EDD0044C940 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6A776D131B8B3F130044C940 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -215,7 +218,6 @@
 		6A776D191B8B3F2D0044C940 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6A776D1B1B8B3F360044C940 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6A776D1D1B8B3F3F0044C940 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		6A776D1F1B8B4BAA0044C940 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6A776D211B8B86440044C940 /* recipedetailbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recipedetailbackground.png; path = Resource/images/recipedetailbackground.png; sourceTree = "<group>"; };
 		6A776D231B8BB3380044C940 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		6A776D251B8BFF340044C940 /* DraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableView.h; sourceTree = "<group>"; };
@@ -268,10 +270,9 @@
 				6A776D181B8B3F250044C940 /* SystemConfiguration.framework in Frameworks */,
 				6A776D161B8B3F1C0044C940 /* QuartzCore.framework in Frameworks */,
 				6A776D141B8B3F130044C940 /* AudioToolbox.framework in Frameworks */,
-				6A776D201B8B4BAA0044C940 /* FacebookSDK.framework in Frameworks */,
 				6A776D0E1B8B3EDD0044C940 /* MobileCoreServices.framework in Frameworks */,
+				141918901D86EEAF005C55B9 /* FBSDKShareKit.framework in Frameworks */,
 				6A776D0C1B8B3ED00044C940 /* Foundation.framework in Frameworks */,
-				6A776D081B8B3CF80044C940 /* Parse.framework in Frameworks */,
 				51EAB368D45EE8BA0D1BBA09 /* Pods_swipelicious.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,16 +287,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6A52F5731B65450500AECC90 = {
+		14F18D201D940AD8008698F9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1449C9661D084D0C005A7437 /* swipelicious-Bridging-Header.h */,
 				1449C96A1D084F28005A7437 /* Constants.swift */,
 				1449C96C1D084F28005A7437 /* Profile.swift */,
 				140E7CF01D08C7A800CE8218 /* Draw.swift */,
 				14410AD41D8090E5008D4FE5 /* Tag.swift */,
 				1449C96D1D084F28005A7437 /* Session.swift */,
 				1449C96E1D084F28005A7437 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6A52F5731B65450500AECC90 = {
+			isa = PBXGroup;
+			children = (
+				1449C9661D084D0C005A7437 /* swipelicious-Bridging-Header.h */,
 				6A52F57E1B65450500AECC90 /* swipelicious */,
 				6A52F59B1B65450500AECC90 /* swipeliciousTests */,
 				6A52F57D1B65450500AECC90 /* Products */,
@@ -316,6 +324,7 @@
 		6A52F57E1B65450500AECC90 /* swipelicious */ = {
 			isa = PBXGroup;
 			children = (
+				14F18D201D940AD8008698F9 /* Model */,
 				6AC913491B720C4600E96CD1 /* Frameworks */,
 				6AC325261B68C06400D495D4 /* Resource */,
 				6A776CC01B8AC93D0044C940 /* AFNetworking */,
@@ -440,17 +449,6 @@
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
-		6A776D021B8B3CF70044C940 /* parse */ = {
-			isa = PBXGroup;
-			children = (
-				6A776D1F1B8B4BAA0044C940 /* FacebookSDK.framework */,
-				6A776D031B8B3CF70044C940 /* Bolts.framework */,
-				6A776D041B8B3CF70044C940 /* Parse.framework */,
-				6A776D061B8B3CF70044C940 /* ParseUI.framework */,
-			);
-			path = parse;
-			sourceTree = "<group>";
-		};
 		6A776D4D1B8D05C60044C940 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +474,10 @@
 				14410AD01D808DC6008D4FE5 /* TagTableViewController.m */,
 				14CE25171CDB991B00644138 /* FoodTableViewCell.h */,
 				14CE25181CDB991B00644138 /* FoodTableViewCell.m */,
+				1419188C1D86ED17005C55B9 /* FriendsViewController.h */,
+				1419188D1D86ED17005C55B9 /* FriendsViewController.m */,
+				141918891D86E3A9005C55B9 /* FriendTableViewCell.h */,
+				1419188A1D86E3A9005C55B9 /* FriendTableViewCell.m */,
 				6A776D4F1B8D06520044C940 /* swipe */,
 				1479D05C1D6B440000347874 /* WebViewController.h */,
 				1479D05D1D6B440000347874 /* WebViewController.m */,
@@ -550,7 +552,6 @@
 				6A776D131B8B3F130044C940 /* AudioToolbox.framework */,
 				6A776D0D1B8B3EDD0044C940 /* MobileCoreServices.framework */,
 				6A776D0B1B8B3ED00044C940 /* Foundation.framework */,
-				6A776D021B8B3CF70044C940 /* parse */,
 				6AC9134D1B720F7400E96CD1 /* FacebookSDK */,
 			);
 			path = Frameworks;
@@ -559,6 +560,7 @@
 		6AC9134D1B720F7400E96CD1 /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
+				1419188F1D86EEAF005C55B9 /* FBSDKShareKit.framework */,
 				1462F41A1D09B3A100B4AE7B /* FBSDKCoreKit.framework */,
 				1462F41B1D09B3A100B4AE7B /* FBSDKLoginKit.framework */,
 			);
@@ -599,12 +601,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A52F5A21B65450500AECC90 /* Build configuration list for PBXNativeTarget "swipelicious" */;
 			buildPhases = (
-				3D5731FB98CC62688273E7CF /* 📦 Check Pods Manifest.lock */,
+				3D5731FB98CC62688273E7CF /* [CP] Check Pods Manifest.lock */,
 				6A52F5781B65450500AECC90 /* Sources */,
 				6A52F5791B65450500AECC90 /* Frameworks */,
 				6A52F57A1B65450500AECC90 /* Resources */,
-				AB5A7E1D779F5D18EB6C9093 /* 📦 Embed Pods Frameworks */,
-				79DB733BD2AFEC92618937DC /* 📦 Copy Pods Resources */,
+				AB5A7E1D779F5D18EB6C9093 /* [CP] Embed Pods Frameworks */,
+				79DB733BD2AFEC92618937DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -639,12 +641,13 @@
 		6A52F5741B65450500AECC90 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = dennis;
 				TargetAttributes = {
 					6A52F57B1B65450500AECC90 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = T2E3HD22C2;
+						LastSwiftMigration = 0800;
 					};
 					6A52F5971B65450500AECC90 = {
 						CreatedOnToolsVersion = 6.3;
@@ -714,14 +717,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D5731FB98CC62688273E7CF /* 📦 Check Pods Manifest.lock */ = {
+		3D5731FB98CC62688273E7CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,14 +732,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		79DB733BD2AFEC92618937DC /* 📦 Copy Pods Resources */ = {
+		79DB733BD2AFEC92618937DC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,14 +747,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB5A7E1D779F5D18EB6C9093 /* 📦 Embed Pods Frameworks */ = {
+		AB5A7E1D779F5D18EB6C9093 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,6 +775,7 @@
 				6A776CFB1B8AC93D0044C940 /* UIButton+AFNetworking.m in Sources */,
 				8B3E05741D69887A0076D218 /* InitialSlidingViewController.m in Sources */,
 				8BB10D301D066A0F00B7B147 /* AUtils.m in Sources */,
+				1419188B1D86E3A9005C55B9 /* FriendTableViewCell.m in Sources */,
 				6A776CFD1B8AC93D0044C940 /* UIProgressView+AFNetworking.m in Sources */,
 				6A776CEF1B8AC93D0044C940 /* AFHTTPRequestOperation.m in Sources */,
 				6A776CEE1B8AC93D0044C940 /* AFAppDotNetAPIClient.m in Sources */,
@@ -794,6 +798,7 @@
 				1449C9721D084F28005A7437 /* Profile.swift in Sources */,
 				8B3E057C1D698CB60076D218 /* MenuViewController.m in Sources */,
 				6A52F5851B65450500AECC90 /* AppDelegate.m in Sources */,
+				1419188E1D86ED17005C55B9 /* FriendsViewController.m in Sources */,
 				6A52F5AA1B6546A300AECC90 /* MainViewController.m in Sources */,
 				6A776D291B8BFF340044C940 /* DraggableView.m in Sources */,
 				1449C9741D084F28005A7437 /* User.swift in Sources */,
@@ -868,8 +873,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -915,8 +922,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -937,6 +946,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = swipelicious;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -945,6 +955,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7554043ABD25BA5D56085563 /* Pods-swipelicious.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -966,6 +977,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "swipelicious-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -973,6 +985,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01ABEE272484B7E7A0F70EE4 /* Pods-swipelicious.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -994,6 +1007,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "swipelicious-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
