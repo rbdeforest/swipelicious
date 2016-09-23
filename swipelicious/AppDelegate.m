@@ -21,6 +21,7 @@ UILocalNotification *notification;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];
@@ -42,50 +43,10 @@ UILocalNotification *notification;
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     
     notification.applicationIconBadgeNumber= 0;
-  [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
     
     [self scheduleNotification];
-    /////////////////////////////////////////////////////////////////////////////////////
-//    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-//    
-//    NSDateComponents *componentsForReferenceDate = [calendar components:(NSCalendarUnitDay | NSCalendarUnitYear | NSCalendarUnitMonth ) fromDate:[NSDate date]];
-//    
-//    [componentsForReferenceDate setDay:1];
-//    [componentsForReferenceDate setMonth:9];
-//    [componentsForReferenceDate setYear:2015];
-//    
-//    NSDate *referenceDate = [calendar dateFromComponents:componentsForReferenceDate];
-//    
-//    // set components for time 7:00 a.m.
-//    
-//    NSDateComponents *componentsForFireDate = [calendar components:(NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond ) fromDate: referenceDate];
-//    
-//    [componentsForFireDate setHour:6];
-//    [componentsForFireDate setMinute:10];
-//    [componentsForFireDate setSecond:10];
-//    
-//    NSDate *fireDateOfNotification = [calendar dateFromComponents:componentsForFireDate];
-//    
-//    // Create the notification
-//    
-//    UILocalNotification *notification = [[UILocalNotification alloc] init];
-//    
-//    notification.fireDate = fireDateOfNotification;
-//    notification.timeZone = [NSTimeZone localTimeZone];
-//    notification.alertBody = [NSString stringWithFormat: @"5 new recipes arrived"];
-//    notification.alertAction = @"1";
-//    notification.userInfo= @{@"information": [NSString stringWithFormat:@"Some information"]};
-//    notification.repeatInterval= NSCalendarUnitDay;
-//    notification.soundName = UILocalNotificationDefaultSoundName;
-//    if(notification)
-//        application.applicationIconBadgeNumber=0;
-//    
-//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    // Override point for customization after application launch.
     
-    
-    
-    // Mixpanel
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     
     
@@ -150,17 +111,17 @@ UILocalNotification *notification;
     [defaults setBool:YES forKey:@"gotnotification"];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMessageMasterView" object:nil userInfo:nil];
-        UIAlertView *notificationAlert = [[UIAlertView alloc] initWithTitle:@"Notification"    message:@"5 new recipes arrived"
-                                                               delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     
-    [notificationAlert show];
-}
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    // the user clicked OK
-    if (buttonIndex == 0) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification" message:@"New recipes arrived" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
         MasterViewController *master = [[MasterViewController alloc] init];
         [master viewWillAppear:YES];
-    }
+        
+    }]];
+    
+    [[self.window rootViewController] presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -205,7 +166,7 @@ UILocalNotification *notification;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
     
-    unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    unsigned int flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:flags fromDate:date];
     NSDate* dateOnly = [calendar dateFromComponents:components];

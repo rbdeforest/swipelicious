@@ -12,7 +12,7 @@
 
 #import "FriendTableViewCell.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-
+@import Haneke;
 
 @interface FriendsViewController ()
 
@@ -86,13 +86,7 @@
     id friend = self.friends[indexPath.row];
     cell.friendNameLabel.text = [friend objectForKey:@"name"];
     NSURL *url = [NSURL URLWithString:friend[@"picture"][@"data"][@"url"]];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        cell.friendImage.image = [UIImage imageWithData:data];
-    }];
-    
+    [cell.friendImage hnk_setImageFromURL:url];
     
     return cell;
 }

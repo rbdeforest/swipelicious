@@ -15,10 +15,7 @@
 #import "ProgressHUD.h"
 #import "FoodTableViewCell.h"
 #import "TagTableViewController.h"
-
-NSString *selectedfoodid;
-int selectedfoodindex;
-NSArray *ingredients;//selected food's ingredients
+@import Haneke;
 
 @interface ShowselectedfoodlistViewController ()
 
@@ -35,7 +32,6 @@ NSArray *ingredients;//selected food's ingredients
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ingredients = [[NSArray alloc] init];
     self.filteredRecipes = [NSMutableArray new];
     // Do any additional setup after loading the view.
 }
@@ -107,10 +103,7 @@ NSArray *ingredients;//selected food's ingredients
     
     cell.createdByLabel.text = [NSString stringWithFormat:@"Created by %@",recipe.owner];
     
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        //self.sampleimage = [UIImage imageWithData:data];
-        cell.foodImage.image= [UIImage imageWithData:data];
-    }];
+    [cell.foodImage hnk_setImageFromURL:[NSURL URLWithString:imageUrl]];
     
     UILabel* lblViewRecipe = (UILabel*)[cell viewWithTag: 20];
     if (lblViewRecipe.gestureRecognizers.count == 0) {
