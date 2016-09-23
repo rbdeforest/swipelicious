@@ -16,6 +16,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "ECSlidingViewController.h"
+#import <AdSupport/ASIdentifierManager.h>
 
 NSString *apiKey;
 DraggableViewBackground *draggableBackground;
@@ -35,6 +36,12 @@ int currentOverlay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUUID *adId = [[ASIdentifierManager sharedManager] advertisingIdentifier];
+    NSString *str = [adId UUIDString];
+    
+    NSLog(@"%@", str);
+    
     apiKey= @"bf12802240eb6023ecbe09595d5e656d";
     
     NSString *urlString = @"http://swipelicious.com/empty.php";
@@ -47,6 +54,7 @@ int currentOverlay;
     [self.view addSubview:tempview];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkRefresh) name:@"refreshMessageMasterView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishSwiping) name:@"didFinishSwiping" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkEmpty) name:@"checkEmpty" object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
@@ -110,18 +118,28 @@ int currentOverlay;
 
 -(void)checkRefresh{
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if ([appDelegate shouldUpdateRecipes]){
-        [[NSUserDefaults standardUserDefaults] setBool: true forKey: @"shouldupdate"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [defaults setBool:true forKey: @"shouldupdate"];
+        [defaults synchronize];
         [self refreshview];
     } else {
-        [self checkEmpty];
-        if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] != nil) {
-            [[NSUserDefaults standardUserDefaults] setBool: false forKey: @"shouldupdate"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+        id freeShare = [defaults objectForKey:kPreferenceFreeShareRecipes];
+        if ([freeShare boolValue]){
+            [defaults setBool:true forKey: @"shouldupdate"];
             [self refreshview];
+            [defaults setBool:NO forKey: kPreferenceFreeShareRecipes];
+            [defaults synchronize];
+        }else{
+            [self checkEmpty];
+            if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] != nil) {
+                [[NSUserDefaults standardUserDefaults] setBool: false forKey: @"shouldupdate"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self refreshview];
+            }
         }
+        
     }
 }
 
@@ -129,14 +147,29 @@ int currentOverlay;
     [self.emptyWebView setHidden:NO];
 }
 
+- (void)didFinishSwiping{
+    [self checkEmpty];
+    
+    [[Kiip sharedInstance] saveMoment:@"my_first_moment" withCompletionHandler:^(KPPoptart *poptart, NSError *error) {
+        if (error) {
+            NSLog(@"something's wrong");
+            // handle with an Alert dialog.
+        }
+        if (poptart) {
+            [poptart show];
+        }
+        if (!poptart) {
+            // handle logic when there is no reward to give.
+        }
+    }];
+}
+
 -(void)refreshview{
     if ([tempview superview] != nil) {
         [tempview removeFromSuperview];
     }
-    //draggableBackground = [[DraggableViewBackground alloc]initWithFrame:CGRectMake(0, 57, 320, 500)];
     
     draggableBackground = (DraggableViewBackground *)[[[NSBundle mainBundle] loadNibNamed:@"DraggableViewBackground" owner:self options:nil] firstObject];
-    
     tempview = draggableBackground;
     [self.view addSubview:tempview];
     

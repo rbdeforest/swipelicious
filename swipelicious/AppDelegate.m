@@ -49,9 +49,14 @@ UILocalNotification *notification;
     
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     
+    Kiip *kiip = [[Kiip alloc] initWithAppKey:@"dbd4e08eab078285867d65bee1531ca2" andSecret:@"767c825c0c66d5d90d938c29c8da9e47"];
+    kiip.delegate = self;
+    [Kiip setSharedInstance:kiip];
+    return YES;
     
     return YES;
 }
+
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                           openURL:url

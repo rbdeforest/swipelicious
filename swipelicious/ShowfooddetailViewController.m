@@ -90,7 +90,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[[AppSession sharedInstance] user] addToFavorites:recipe like:NO];
     }]];
     
@@ -103,7 +103,29 @@
     NSArray *items = [NSArray arrayWithObjects:recipe.blog_url ? recipe.blog_url : recipe.link, @"Check out this recipe", nil];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     [self.navigationController presentViewController:activityVC animated:true completion:nil];
+    
+//    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+//    content.contentURL = [NSURL URLWithString:recipe.blog_url ? recipe.blog_url : recipe.link];
+//    [FBSDKShareDialog showFromViewController:self withContent:content delegate:self];
 }
+
+
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:kPreferenceFreeShareRecipes] == nil){
+        [defaults setObject:@YES forKey:kPreferenceFreeShareRecipes];
+        [defaults synchronize];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Success!" message:@"You get 10 more recipes for sharing" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+
+}
+
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{}
+- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{}
 
 - (IBAction)onTapCart:(id)sender{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Cart" preferredStyle:UIAlertControllerStyleAlert];
@@ -111,7 +133,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
     

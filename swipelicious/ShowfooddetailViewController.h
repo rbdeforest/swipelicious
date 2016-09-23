@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @class Draw;
 
-@interface ShowfooddetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ShowfooddetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FBSDKSharingDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *foodtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *foodimage;
 

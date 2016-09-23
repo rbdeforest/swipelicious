@@ -32,5 +32,7 @@
 #define USER_CLICKED_VIEW_FULL_RECIPE @"Clicked View Full Recipe"
 #define USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS @"Clicked Recipe To View Ingredients"
 
+#define kPreferenceFreeShareRecipes @"freeShareRecipes"
+
 #define STORYBOARD [UIStoryboard storyboardWithName:@"Main" bundle:nil]
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width

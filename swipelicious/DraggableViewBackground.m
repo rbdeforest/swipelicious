@@ -47,10 +47,18 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         cardsLoadedIndex = 0;
         
         NSString *requestURL = [Draw getURL];
+        NSMutableDictionary *params = [NSMutableDictionary new];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL freeShare = [[defaults objectForKey:kPreferenceFreeShareRecipes] boolValue];
+        
+        if (freeShare){
+            [params setObject:@"1" forKey:@"freeRecipes"];
+        }
+        
         [ProgressHUD show:@"Loading" Interaction:NO];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        [manager GET:requestURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        [manager GET:requestURL parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
             if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 [appDelegate updatedRecipes];
@@ -70,6 +78,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             [ProgressHUD dismiss];
             
             [self loadCards];
+            
         } failure:^(NSURLSessionTask *operation, NSError *error) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Retrieving Recipes" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
             
@@ -335,7 +344,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 -(void)endReached{
     [self.xButton setHidden:YES];
     [self.checkButton setHidden:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didFinishSwiping" object:nil];
 }
 
 - (UIViewController *) firstAvailableUIViewController {
