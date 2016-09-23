@@ -9,9 +9,6 @@
 #import "MasterViewController.h"
 #import "MainViewController.h"
 #import <MessageUI/MessageUI.h>
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 #import "AppDelegate.h"
 #import "ProgressHUD.h"
 #import "DraggableViewBackground.h"
@@ -21,9 +18,6 @@
 #import "ECSlidingViewController.h"
 
 NSString *apiKey;
-NSMutableArray *foodIdData;
-NSMutableArray *foodTitleData;
-NSMutableArray *foodImageUrlData;
 DraggableViewBackground *draggableBackground;
 UIView *tempview;
 int likefoodcount;
@@ -35,9 +29,7 @@ int currentOverlay;
 @end
 
 @implementation MasterViewController{
-    NSInteger cardsLoadedIndex; //%%% the index of the card you have loaded into the loadedCards array last
-    NSMutableArray *loadedCards; //%%% the array of card loaded (change max_buffer_size to increase or decrease the number of cards this holds)
-    
+        
 }
 
 
@@ -51,9 +43,6 @@ int currentOverlay;
     [self.emptyWebView loadRequest:request];
     [self.emptyWebView setHidden:YES];
     
-    foodIdData = [[NSMutableArray alloc] init];
-    foodTitleData = [[NSMutableArray alloc] init];
-    foodImageUrlData = [[NSMutableArray alloc] init];
     tempview = [[UIView alloc] init];
     [self.view addSubview:tempview];
     
@@ -120,7 +109,7 @@ int currentOverlay;
 }
 
 -(void)checkRefresh{
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     if ([appDelegate shouldUpdateRecipes]){
         [[NSUserDefaults standardUserDefaults] setBool: true forKey: @"shouldupdate"];
@@ -205,59 +194,6 @@ int currentOverlay;
     [mixpanel track: USER_CLICKED_TOP_RIGHT_BUTTON];
 
     [self performSegueWithIdentifier:@"showlikefoodlist" sender:self];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex ==0) {
-        
-        [login logOut];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:@"" forKey:@"userfacebookid"];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-
-    }else if(buttonIndex ==1){
-        NSString *messagebody;
-        
-        messagebody = @"";
-        //    NSLog(@"%@" , messagebody);
-        
-        if ([MFMailComposeViewController canSendMail])
-        {
-            MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
-            mail.mailComposeDelegate = self;
-            [mail setSubject:@"Recipes App Submission"];
-            [mail setMessageBody:messagebody isHTML:NO];
-            [mail setToRecipients:@[@"contact@swipelicious.com"]];
-            
-            [self presentViewController:mail animated:YES completion:NULL];
-        }
-        else
-        {
-            NSLog(@"This device cannot send email");
-        }
-    }
-}
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-    {
-        switch (result) {
-            case MFMailComposeResultSent:
-                NSLog(@"You sent the email.");
-                break;
-            case MFMailComposeResultSaved:
-                NSLog(@"You saved a draft of this email");
-                break;
-            case MFMailComposeResultCancelled:
-                NSLog(@"You cancelled sending this email.");
-                break;
-            case MFMailComposeResultFailed:
-                NSLog(@"Mail failed:  An error occurred when trying to compose this email");
-                break;
-            default:
-                NSLog(@"An error occurred when trying to compose this email");
-                break;
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

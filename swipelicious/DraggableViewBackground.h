@@ -38,10 +38,9 @@
 //methods called in DraggableView
 -(void)cardSwipedLeft:(UIView *)card;
 -(void)cardSwipedRight:(UIView *)card;
+- (UIViewController *) firstAvailableUIViewController;
+- (id) traverseResponderChainForUIViewController;
 
-@property (retain,nonatomic)NSMutableArray* foodimageurls5; //%%% the labels the cards
-//@property (retain,nonatomic)NSMutableArray* foodtitles;
-@property (retain,nonatomic)NSMutableArray* foodids5;
 @property (retain,nonatomic)NSString* ingredients;
 @property (retain,nonatomic)NSMutableArray* allCards; //%%% the labels the cards
 @property (retain,nonatomic)NSMutableArray* recipes; //%%% the labels the cards
@@ -50,7 +49,6 @@
 
 @property (nonatomic,strong) IBOutlet UIButton* checkButton;
 @property (nonatomic,strong) IBOutlet UIButton* xButton;
-
 @property (nonatomic,strong) IBOutlet UILabel * notification;
 @property int page;
 extern NSMutableArray *foodtitles5;

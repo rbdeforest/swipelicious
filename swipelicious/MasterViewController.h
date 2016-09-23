@@ -20,9 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIView *onboardViewContainer;
 @property (weak, nonatomic) IBOutlet UILabel *onbardTapLabel;
 
-extern NSMutableArray *foodIdData;
-extern NSMutableArray * foodTitleData;
-extern NSMutableArray *foodImageUrlData;
 extern int likefoodcount;
 extern NSString *apiKey;
 extern DraggableViewBackground *draggableBackground;

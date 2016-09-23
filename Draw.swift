@@ -28,8 +28,10 @@ import Foundation
     var prep_time: String?
     var cook_time: String?
     var ready_time: String?
+    var total_time: String?
     var blog_url: String?
     var pos: String?
+    
     
     init(data: NSDictionary ){
         
@@ -63,6 +65,7 @@ import Foundation
         prep_time = data["prep_time"] as? String
         cook_time = data["cook_time"] as? String
         ready_time = data["ready_time"] as? String
+        total_time = data["total_time"] as? String
         blog_url = data["blog_url"] as? String
     }
         

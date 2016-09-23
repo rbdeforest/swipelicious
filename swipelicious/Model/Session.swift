@@ -114,7 +114,7 @@ import Alamofire
         return self.user == nil
     }
     
-    func register(user:User, completion:(user:User?, error: NSError?) -> ()) -> (){
+    func register(user:User, completion:(_ :User?, _: NSError?) -> ()) -> (){
         
         let url : String = Constants.API.User.Register
         
@@ -127,20 +127,20 @@ import Alamofire
             print(errorString)
             
             if let error = response.result.error {
-                completion(user: nil, error: error)
+                completion(nil, error)
             }else{
                 if let JSON = response.result.value {
                     let userData = JSON as! NSDictionary
                     if let user = User.init(data: userData){
                         self.saveToPreferences(user)
-                        completion(user: user, error: nil)
+                        completion(user, nil)
                     }else{
-                        completion(user: nil, error: nil)
+                        completion(nil, nil)
                     }
                     
                     //self.login(user, completion: completion)
                 }else{
-                    completion(user: nil, error: nil)
+                    completion(nil, nil)
                 }
             }
         }

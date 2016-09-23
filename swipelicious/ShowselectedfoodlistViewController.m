@@ -245,8 +245,8 @@ NSArray *ingredients;//selected food's ingredients
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cook time" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-            int first = [((Draw *)a).cook_time intValue];
-            int second = [((Draw *)b).cook_time intValue];
+            int first = [((Draw *)a).total_time intValue];
+            int second = [((Draw *)b).total_time intValue];
             if (first < second)
                 return NSOrderedDescending;
             else if (first > second)
@@ -259,8 +259,8 @@ NSArray *ingredients;//selected food's ingredients
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cook time desc" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         self.filteredRecipes = [[self.currentList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-            int first = [((Draw *)a).cook_time intValue];
-            int second = [((Draw *)b).cook_time intValue];
+            int first = [((Draw *)a).total_time intValue];
+            int second = [((Draw *)b).total_time intValue];
             if (first < second)
                 return NSOrderedDescending;
             else if (first > second)

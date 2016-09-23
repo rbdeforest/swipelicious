@@ -160,24 +160,7 @@ FBSDKLoginManager *login;
 - (IBAction)onClickContactUs:(id)sender {
     
     [self performSegueWithIdentifier:@"login" sender:self];
-    /*
-    NSString *messagebody;
-    messagebody = @"";
-    if ([MFMailComposeViewController canSendMail])
-    {
-        MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
-        mail.mailComposeDelegate = self;
-        [mail setSubject:@"Recipes App Submission"];
-        [mail setMessageBody:messagebody isHTML:NO];
-        [mail setToRecipients:@[@"contact@swipelicious.com"]];
-        
-        [self presentViewController:mail animated:YES completion:NULL];
-    }
-    else
-    {
-        NSLog(@"This device cannot send email");
-    }
-     */
+    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
