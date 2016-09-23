@@ -13,9 +13,6 @@
 #import "MasterViewController.h"
 #import "DraggableViewBackground.h"
 #import "ProgressHUD.h"
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 #import "FoodTableViewCell.h"
 #import "TagTableViewController.h"
 

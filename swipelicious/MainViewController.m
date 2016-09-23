@@ -12,7 +12,6 @@
 #import <MessageUI/MessageUI.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "AFHTTPRequestOperation.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "swipelicious-Bridging-Header.h"
 

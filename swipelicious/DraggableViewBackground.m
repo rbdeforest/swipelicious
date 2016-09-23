@@ -11,9 +11,6 @@
 #import "MasterViewController.h"
 #import "MainViewController.h"
 #import "ProgressHUD.h"
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 #import "MasterViewController.h"
 #import "AppDelegate.h"
 
@@ -52,48 +49,36 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         NSString *requestURL = [Draw getURL];
         [ProgressHUD show:@"Loading" Interaction:NO];
         
-        NSURL *url = [NSURL URLWithString:requestURL];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        // 2
-        
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        operation.responseSerializer = [AFJSONResponseSerializer serializer];
-        operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
-                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                 [appDelegate updatedRecipes];
-             }
-             
-             NSMutableArray *recipesD = [NSMutableArray new];
-             for (NSDictionary *d in responseObject) {
-                 [recipesD addObject:[[Draw alloc] initWithData:d]];
-             }
-             
-             self.recipes = recipesD;
-             remainCount = [self.recipes count];
-             if (self.recipes.count == 0){
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
-             }
-             
-             [ProgressHUD dismiss];
-             
-             [self loadCards];
-             
-             
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Retrieving Recipes" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-             
-             [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
-             
-             if ([self firstAvailableUIViewController] != nil){
-                 [[self firstAvailableUIViewController] presentViewController:alert animated:YES completion:nil];
-             }
-             
-         }];
-        
-        [operation start];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        [manager GET:requestURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                [appDelegate updatedRecipes];
+            }
+            
+            NSMutableArray *recipesD = [NSMutableArray new];
+            for (NSDictionary *d in responseObject) {
+                [recipesD addObject:[[Draw alloc] initWithData:d]];
+            }
+            
+            self.recipes = recipesD;
+            remainCount = [self.recipes count];
+            if (self.recipes.count == 0){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
+            }
+            
+            [ProgressHUD dismiss];
+            
+            [self loadCards];
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Retrieving Recipes" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+            
+            if ([self firstAvailableUIViewController] != nil){
+                [[self firstAvailableUIViewController] presentViewController:alert animated:YES completion:nil];
+            }
+        }];
         
     }
     return self;

@@ -10,9 +10,6 @@
 #import "MasterViewController.h"
 #import "MainViewController.h"
 #import "ShowselectedfoodlistViewController.h"
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 #import "ProgressHUD.h"
 #import "WebViewController.h"
 

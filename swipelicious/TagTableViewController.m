@@ -8,9 +8,6 @@
 
 #import "swipelicious-Swift.h"
 #import "TagTableViewController.h"
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 
 @interface TagTableViewController ()
 
@@ -37,26 +34,18 @@
     
     NSString *requestURL = [Tag getURL];
     
-    NSURL *url = [NSURL URLWithString:requestURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    // 2
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:requestURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSMutableArray *categories = [NSMutableArray new];
         for (NSDictionary *d in responseObject) {
             [categories addObject:[[Tag alloc] initWithData:d]];
         }
         self.tags = [categories copy];
         [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
     }];
     
-    [operation start];
 }
 
 - (void)done:(id)sender{

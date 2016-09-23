@@ -12,9 +12,6 @@
 
 #import "FriendTableViewCell.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 
 
 @interface FriendsViewController ()
