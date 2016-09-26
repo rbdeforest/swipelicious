@@ -11,6 +11,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "MainViewController.h"
 #import "MasterViewController.h"
+@import Firebase;
 
 UILocalNotification *notification;
 @interface AppDelegate ()
@@ -23,7 +24,9 @@ UILocalNotification *notification;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    [FIRApp configure];
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];
     NSString *tch = [startUser objectForKey:@"touchId"];
     if ([tch isEqualToString:@"yes"]) {

@@ -18,6 +18,8 @@
 #import "ECSlidingViewController.h"
 #import <AdSupport/ASIdentifierManager.h>
 
+#import "ShowselectedfoodlistViewController.h"
+
 NSString *apiKey;
 DraggableViewBackground *draggableBackground;
 UIView *tempview;
@@ -26,11 +28,12 @@ int currentOverlay;
 
 
 @interface MasterViewController ()
+    @property (strong, nonatomic) NSArray *shareRecipes;
 
 @end
 
 @implementation MasterViewController{
-        
+    
 }
 
 
@@ -54,7 +57,7 @@ int currentOverlay;
     [self.view addSubview:tempview];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkRefresh) name:@"refreshMessageMasterView" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishSwiping) name:@"didFinishSwiping" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishSwiping:) name:kDidFinishSwipingNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkEmpty) name:@"checkEmpty" object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
@@ -120,6 +123,9 @@ int currentOverlay;
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    self.shareButton.hidden = YES;
+    [self.emptyWebView setHidden:YES];
+    
     if ([appDelegate shouldUpdateRecipes]){
         [defaults setBool:true forKey: @"shouldupdate"];
         [defaults synchronize];
@@ -129,7 +135,7 @@ int currentOverlay;
         if ([freeShare boolValue]){
             [defaults setBool:true forKey: @"shouldupdate"];
             [self refreshview];
-            [defaults setBool:NO forKey: kPreferenceFreeShareRecipes];
+            [defaults setBool:false forKey:kPreferenceFreeShareRecipes];
             [defaults synchronize];
         }else{
             [self checkEmpty];
@@ -147,21 +153,39 @@ int currentOverlay;
     [self.emptyWebView setHidden:NO];
 }
 
-- (void)didFinishSwiping{
+- (void)didFinishSwiping:(NSNotification *)notification{
     [self checkEmpty];
     
-    [[Kiip sharedInstance] saveMoment:@"my_first_moment" withCompletionHandler:^(KPPoptart *poptart, NSError *error) {
-        if (error) {
-            NSLog(@"something's wrong");
-            // handle with an Alert dialog.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id freeShare = [defaults objectForKey:kPreferenceFreeShareRecipes];
+    
+    if (freeShare == nil){
+        self.shareRecipes = [notification object];
+        if (self.shareRecipes != nil && [self.shareRecipes count] > 0){
+            self.shareButton.hidden = NO;
+            [self.view bringSubviewToFront:self.shareButton];
         }
-        if (poptart) {
-            [poptart show];
-        }
-        if (!poptart) {
-            // handle logic when there is no reward to give.
-        }
-    }];
+        
+        [[Kiip sharedInstance] saveMoment:@"my_first_moment" withCompletionHandler:^(KPPoptart *poptart, NSError *error) {
+            if (error) {
+                NSLog(@"something's wrong");
+                // handle with an Alert dialog.
+            }
+            if (poptart) {
+                [poptart show];
+            }
+            if (!poptart) {
+                // handle logic when there is no reward to give.
+            }
+        }];
+    }
+}
+
+- (IBAction)shareRecipe:(id)sender{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ShowselectedfoodlistViewController *showRecipesViewController = [sb instantiateViewControllerWithIdentifier:@"ShowselectedfoodlistViewController"];
+    showRecipesViewController.recipes = self.shareRecipes;
+    [self.navigationController pushViewController:showRecipesViewController animated:YES];
 }
 
 -(void)refreshview{

@@ -116,7 +116,7 @@ public enum ServerTrustPolicy {
     case PinCertificates(certificates: [SecCertificate], validateCertificateChain: Bool, validateHost: Bool)
     case PinPublicKeys(publicKeys: [SecKey], validateCertificateChain: Bool, validateHost: Bool)
     case DisableEvaluation
-    case CustomEvaluation((serverTrust: SecTrust, host: String) -> Bool)
+    case CustomEvaluation((_ : SecTrust, _: String) -> Bool)
 
     // MARK: - Bundle Location
 
@@ -137,7 +137,7 @@ public enum ServerTrustPolicy {
         for path in paths {
             if let
                 certificateData = NSData(contentsOfFile: path),
-                certificate = SecCertificateCreateWithData(nil, certificateData)
+                let certificate = SecCertificateCreateWithData(nil, certificateData)
             {
                 certificates.append(certificate)
             }
@@ -241,7 +241,7 @@ public enum ServerTrustPolicy {
         case .DisableEvaluation:
             serverTrustIsValid = true
         case let .CustomEvaluation(closure):
-            serverTrustIsValid = closure(serverTrust: serverTrust, host: host)
+            serverTrustIsValid = closure(_: serverTrust, _: host)
         }
 
         return serverTrustIsValid
@@ -255,7 +255,7 @@ public enum ServerTrustPolicy {
         var result = SecTrustResultType(rawValue: SecTrustResultType.Invalid.rawValue)
         let status = SecTrustEvaluate(trust, &result!)
     #else
-        var result = SecTrustResultType(SecTrustResultType.Invalid)
+        var result = SecTrustResultType(kSecTrustResultInvalid)
         let status = SecTrustEvaluate(trust, &result)
     #endif
 
@@ -301,7 +301,7 @@ public enum ServerTrustPolicy {
         for index in 0..<SecTrustGetCertificateCount(trust) {
             if let
                 certificate = SecTrustGetCertificateAtIndex(trust, index),
-                publicKey = publicKeyForCertificate(certificate)
+                let publicKey = publicKeyForCertificate(certificate)
             {
                 publicKeys.append(publicKey)
             }
@@ -317,7 +317,7 @@ public enum ServerTrustPolicy {
         var trust: SecTrust?
         let trustCreationStatus = SecTrustCreateWithCertificates(certificate, policy, &trust)
 
-        if let trust = trust where trustCreationStatus == errSecSuccess {
+        if let trust = trust  where trustCreationStatus == errSecSuccess {
             publicKey = SecTrustCopyPublicKey(trust)
         }
 

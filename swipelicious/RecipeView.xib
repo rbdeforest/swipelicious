@@ -13,6 +13,21 @@
             <rect key="frame" x="0.0" y="0.0" width="474" height="569"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nL2-Tw-yW5">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCc-pO-qZq" customClass="GADNativeExpressAdView">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="oCc-pO-qZq" secondAttribute="trailing" constant="24" id="3QF-oD-pM9"/>
+                        <constraint firstItem="oCc-pO-qZq" firstAttribute="centerY" secondItem="nL2-Tw-yW5" secondAttribute="centerY" id="EAk-AZ-kDG"/>
+                        <constraint firstItem="oCc-pO-qZq" firstAttribute="leading" secondItem="nL2-Tw-yW5" secondAttribute="leading" constant="24" id="dGp-XY-NZG"/>
+                        <constraint firstItem="oCc-pO-qZq" firstAttribute="centerX" secondItem="nL2-Tw-yW5" secondAttribute="centerX" id="dRS-QP-jfz"/>
+                        <constraint firstItem="oCc-pO-qZq" firstAttribute="top" secondItem="nL2-Tw-yW5" secondAttribute="top" constant="24" id="fcw-7Z-wLz"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbF-7c-sqW">
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="nML-ok-bPv">
@@ -159,8 +174,8 @@
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="hT5-wf-iLX"/>
                                     <exclude reference="DVq-MO-FId"/>
+                                    <exclude reference="hT5-wf-iLX"/>
                                 </mask>
                             </variation>
                         </view>
@@ -214,11 +229,15 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="HbF-7c-sqW" secondAttribute="bottom" id="1En-aQ-dgm"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9xL-yU-DV3"/>
+                <constraint firstAttribute="bottom" secondItem="nL2-Tw-yW5" secondAttribute="bottom" id="DMd-iD-XXf"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="F5K-bk-HCF"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KX2-dr-Fgb"/>
                 <constraint firstAttribute="trailing" secondItem="HbF-7c-sqW" secondAttribute="trailing" constant="24" id="OR9-3a-gEI"/>
+                <constraint firstItem="nL2-Tw-yW5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VGx-6V-gnT"/>
+                <constraint firstAttribute="trailing" secondItem="nL2-Tw-yW5" secondAttribute="trailing" id="Wzk-Ao-o7Z"/>
                 <constraint firstAttribute="trailing" secondItem="HbF-7c-sqW" secondAttribute="trailing" id="Ynz-aI-Fto"/>
                 <constraint firstAttribute="bottom" secondItem="HbF-7c-sqW" secondAttribute="bottom" constant="100" id="ddu-La-z9Y"/>
+                <constraint firstItem="nL2-Tw-yW5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jye-fl-N9y"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vA7-5O-Bx8"/>
                 <constraint firstItem="HbF-7c-sqW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vIf-1v-fOG"/>
             </constraints>
@@ -232,6 +251,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="adContainer" destination="nL2-Tw-yW5" id="p6S-3a-lra"/>
                 <outlet property="createdBy" destination="Tue-I9-69Y" id="Ebk-6S-0dQ"/>
                 <outlet property="descriptionLabel" destination="ws4-PU-oRO" id="tUs-oo-xaL"/>
                 <outlet property="favoriteCount" destination="JiY-AL-IS6" id="YHc-bW-Ht6"/>
@@ -239,6 +259,8 @@
                 <outlet property="ingredientsButton" destination="IIV-r0-gvo" id="DDA-WG-nj6"/>
                 <outlet property="ingredientsCount" destination="Qxn-lj-7fV" id="FHc-bf-OUc"/>
                 <outlet property="likeButton" destination="cKP-iN-Dmw" id="4CL-6G-qy8"/>
+                <outlet property="nativeExpressAdView" destination="oCc-pO-qZq" id="i6s-PP-ZWi"/>
+                <outlet property="recipeContainer" destination="HbF-7c-sqW" id="MT6-8m-vHt"/>
                 <outlet property="timeButton" destination="9li-fd-dz6" id="L6t-2P-LrU"/>
                 <outlet property="title" destination="lZR-zP-esQ" id="qkz-aX-nMC"/>
             </connections>

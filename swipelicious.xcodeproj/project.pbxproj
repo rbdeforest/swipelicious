@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1405C0EE1D99799500B15161 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1405C0ED1D99799500B15161 /* GoogleService-Info.plist */; };
 		140E7CF11D08C7A800CE8218 /* Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E7CF01D08C7A800CE8218 /* Draw.swift */; };
 		1419188B1D86E3A9005C55B9 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419188A1D86E3A9005C55B9 /* FriendTableViewCell.m */; };
 		1419188E1D86ED17005C55B9 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419188D1D86ED17005C55B9 /* FriendsViewController.m */; };
@@ -99,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		01ABEE272484B7E7A0F70EE4 /* Pods-swipelicious.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swipelicious.release.xcconfig"; path = "Pods/Target Support Files/Pods-swipelicious/Pods-swipelicious.release.xcconfig"; sourceTree = "<group>"; };
+		1405C0ED1D99799500B15161 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		140E7CF01D08C7A800CE8218 /* Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw.swift; path = ../Draw.swift; sourceTree = "<group>"; };
 		141918891D86E3A9005C55B9 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
 		1419188A1D86E3A9005C55B9 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 		6A52F57E1B65450500AECC90 /* swipelicious */ = {
 			isa = PBXGroup;
 			children = (
+				1405C0ED1D99799500B15161 /* GoogleService-Info.plist */,
 				142811601D959A24008ED3D9 /* swipelicious.entitlements */,
 				14F18D201D940AD8008698F9 /* Model */,
 				6AC913491B720C4600E96CD1 /* Frameworks */,
@@ -589,6 +592,7 @@
 				44DBB7071B6F6EF600780CE4 /* fbbutton.png in Resources */,
 				443889D31B6B6BE80079E871 /* splash3.jpg in Resources */,
 				6A776D351B8C17980044C940 /* likeicon.png in Resources */,
+				1405C0EE1D99799500B15161 /* GoogleService-Info.plist in Resources */,
 				6A52F58E1B65450500AECC90 /* Main.storyboard in Resources */,
 				6A7C35641B730989008A6E68 /* main.png in Resources */,
 				6A776D361B8C17980044C940 /* noButton.png in Resources */,

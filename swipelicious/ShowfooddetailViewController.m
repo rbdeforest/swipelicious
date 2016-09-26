@@ -124,9 +124,6 @@
 
 }
 
-- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{}
-- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{}
-
 - (IBAction)onTapCart:(id)sender{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Cart" preferredStyle:UIAlertControllerStyleAlert];
     

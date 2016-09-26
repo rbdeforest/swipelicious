@@ -19,7 +19,6 @@
 
 @interface ShowselectedfoodlistViewController ()
 
-@property (nonatomic, retain) NSArray *recipes;
 @property (nonatomic, retain) NSMutableArray *filteredRecipes;
 @property (nonatomic, retain) NSArray *currentList;
 
@@ -46,6 +45,11 @@
     if (self.recipes == nil) {
         self.recipes = [[[AppSession sharedInstance] user] favorites];
         [self.Selectedfoodlist reloadData];
+    }else{
+        self.sharing = YES;
+        self.footer.hidden = YES;
+        self.title = @"Share a Recipe";
+        self.navigationItem.title = @"Share a Recipe";
     }
 }
 
@@ -131,10 +135,39 @@
     [mixpanel.people increment:USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS by:@1];
     [mixpanel track: USER_CLICKED_RECIPE_TO_VIEW_INGREDIENTS];
     
-    [self performSegueWithIdentifier:@"showfooddetail" sender:nil];
+    if (self.sharing){
+        Draw *recipe = [self.recipes objectAtIndex:indexPath.row];
+        FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+        content.contentURL = [NSURL URLWithString:recipe.blog_url ? recipe.blog_url : recipe.link];
+        [FBSDKShareDialog showFromViewController:self withContent:content delegate:self];
+        
+    }else{
+        [self performSegueWithIdentifier:@"showfooddetail" sender:nil];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:kPreferenceFreeShareRecipes] == nil){
+        [defaults setObject:@YES forKey:kPreferenceFreeShareRecipes];
+        [defaults synchronize];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Success!" message:@"You get 10 more recipes for sharing" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:^{
+            //[self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{}
+- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"showfooddetail"]){

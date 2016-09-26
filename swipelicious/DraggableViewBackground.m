@@ -70,7 +70,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             }
             
             self.recipes = recipesD;
-            remainCount = [self.recipes count];
+            remainCount = [self.recipes count] + 1;
             if (self.recipes.count == 0){
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
             }
@@ -150,6 +150,25 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     return draggableView;
 }
 
+- (DraggableView *)createDraggableViewWithAd{
+    DraggableView *draggableView = (DraggableView *)[[[NSBundle mainBundle] loadNibNamed:@"RecipeView" owner:self options:nil] firstObject];
+    draggableView.delegate = self;
+    
+    draggableView.showAd = YES;
+    draggableView.nativeExpressAdView.adUnitID = @"ca-app-pub-3459157044438598/5158670062";
+    draggableView.nativeExpressAdView.rootViewController = [self traverseResponderChainForUIViewController];
+    
+    GADRequest *request = [GADRequest request];
+    [draggableView.nativeExpressAdView loadRequest:request];
+    request.testDevices = @[ @"fde038bb9247e92af3f6c8ca0a1ad0c2" ];
+    
+    [draggableView addConstraint:[NSLayoutConstraint constraintWithItem:draggableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.frame.size.width]];
+    
+    draggableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    return draggableView;
+}
+
 - (void)likeHandler:(UIButton *)sender{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Like" message:@"a message" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -203,10 +222,12 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 -(void)loadCards
 {
     if([recipes count] > 0) {
-        NSInteger numLoadedCardsCap =(([recipes count] > MAX_BUFFER_SIZE)?MAX_BUFFER_SIZE:[recipes count]);
+        NSInteger numLoadedCardsCap =((remainCount > MAX_BUFFER_SIZE)?MAX_BUFFER_SIZE:remainCount);
         //%%% if the buffer size is greater than the data size, there will be an array error, so this makes sure that doesn't happen
         //%%% loops through the exampleCardsLabels array to create a card for each label.  This should be customized by removing "foodimageurls" with your own array of data
-        for (int i = 0; i<[recipes count]; i++) {
+        
+        int i = 0;
+        for (i = 0; i<[recipes count]; i++) {
             DraggableView* newCard = [self createDraggableViewWithDataAtIndex:i];
             [allCards addObject:newCard];
             
@@ -215,6 +236,15 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
                 [loadedCards addObject:newCard];
             }
         }
+        
+        DraggableView* newCard = [self createDraggableViewWithAd];
+        [allCards addObject:newCard];
+        
+        if (i<numLoadedCardsCap) {
+            //%%% adds a small number of cards to be loaded
+            [loadedCards addObject:newCard];
+        }
+        
         
         //%%% displays the small number of loaded cards dictated by MAX_BUFFER_SIZE so that not all the cards
         // are showing at once and clogging a ton of data
@@ -247,8 +277,12 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     BOOL like = !left;
     
     DraggableView *c = (DraggableView *)card;
-    Draw *recipe = self.recipes[c.index];
-    [[[AppSession sharedInstance] user] addToFavorites:recipe like:like];
+    if (!c.showAd){
+        
+        Draw *recipe = self.recipes[c.index];
+        [[[AppSession sharedInstance] user] addToFavorites:recipe like:like];
+        
+    }
     
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -344,7 +378,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 -(void)endReached{
     [self.xButton setHidden:YES];
     [self.checkButton setHidden:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didFinishSwiping" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishSwipingNotification object:self.recipes];
 }
 
 - (UIViewController *) firstAvailableUIViewController {

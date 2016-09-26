@@ -33,6 +33,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OverlayView.h"
+@import GoogleMobileAds;
 
 @protocol DraggableViewDelegate <NSObject>
 
@@ -44,6 +45,12 @@
 @interface DraggableView : UIView
 
 @property (weak) id <DraggableViewDelegate> delegate;
+
+@property(nonatomic, weak) IBOutlet GADNativeExpressAdView *nativeExpressAdView;
+@property(nonatomic, weak) IBOutlet UIView *adContainer;
+@property(nonatomic) BOOL showAd;
+
+@property(nonatomic, weak) IBOutlet UIView *recipeContainer;
 
 @property (nonatomic, strong)UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic)CGPoint originalPoint;

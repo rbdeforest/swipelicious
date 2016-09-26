@@ -37,14 +37,6 @@
     if (self) {
         [self setupView];
         
-        information = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, self.frame.size.width, 100)];
-        information.text = @"no info given";
-        [information setTextAlignment:NSTextAlignmentCenter];
-        information.textColor = [UIColor blackColor];
-        
-        foodimage =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 263, 260)];
-        [self addSubview:foodimage];
-        
         self.backgroundColor = [UIColor whiteColor];
         panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
         
@@ -101,6 +93,12 @@
     self.ingredientsButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.likeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
+}
+
+- (void)setShowAd:(BOOL)showAd{
+    _showAd = showAd;
+    self.adContainer.hidden = !showAd;
+    self.recipeContainer.hidden = showAd;
 }
 
 /*

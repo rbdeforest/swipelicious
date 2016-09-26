@@ -11,6 +11,8 @@ pod 'Haneke', '~> 1.0'
 pod 'VICMAImageView', '~> 1.0'
 pod 'ECSlidingViewController', '~> 1.3'
 pod 'SDWebImage'
+pod 'Firebase/Core'
+pod 'Firebase/AdMob'
 
 end
 
