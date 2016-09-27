@@ -52,7 +52,7 @@ struct Constants {
             static func View(id : String!) -> String{
                 return Constants.API.Base + "draws/\(id).json"
             }
-            static let Index = Constants.API.Base + "draws.json"
+            static let Index = Constants.API.Base + "queues.json"
             
             static let Favorites = Base + "draws/favorites.json"
             static let AddFavorite = Base + "draws/add_favorite.json"

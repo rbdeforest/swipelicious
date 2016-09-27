@@ -70,7 +70,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             }
             
             self.recipes = recipesD;
-            remainCount = [self.recipes count] + 1;
+            remainCount = [self.recipes count];
             if (self.recipes.count == 0){
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
             }
@@ -120,47 +120,40 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     
     Draw *recipe = self.recipes[index];
     
-    [draggableView.foodimage hnk_setImageFromURL:[NSURL URLWithString:recipe.photo_url]];
+    NSLog(@"%@", recipe.ad_identifier);
     
-    self.foodtitle.text = recipe.title;
-    
-    NSString *title = recipe.title;
-    draggableView.title.text= title.uppercaseString;
-    draggableView.favoriteCount.text = [NSString stringWithFormat:@"%@", recipe.favorite_count] ;
-    draggableView.createdBy.text = [NSString stringWithFormat:@"Recipe by: %@", recipe.owner] ;
-    draggableView.descriptionLabel.text = recipe.short_description;
-    draggableView.ingredientsCount.text = [NSString stringWithFormat:@"%@", recipe.ingredient_count];
-    draggableView.index = index;
+    if (recipe.ad_identifier == nil || [recipe.ad_identifier isEqualToString:@""] || [recipe.ad_identifier isEqual:[NSNull null]]){
+        [draggableView.foodimage hnk_setImageFromURL:[NSURL URLWithString:recipe.photo_url]];
+        
+        self.foodtitle.text = recipe.title;
+        
+        NSString *title = recipe.title;
+        draggableView.title.text= title.uppercaseString;
+        draggableView.favoriteCount.text = [NSString stringWithFormat:@"%@", recipe.favorite_count] ;
+        draggableView.createdBy.text = [NSString stringWithFormat:@"Recipe by: %@", recipe.owner] ;
+        draggableView.descriptionLabel.text = recipe.short_description;
+        draggableView.ingredientsCount.text = [NSString stringWithFormat:@"%@", recipe.ingredient_count];
+        draggableView.index = index;
+        
+        draggableView.likeButton.tag = index;
+        draggableView.ingredientsButton.tag = index;
+        draggableView.timeButton.tag = index;
+        
+        [draggableView.likeButton addTarget:self action:@selector(likeHandler:) forControlEvents:UIControlEventTouchUpInside];
+        [draggableView.ingredientsButton addTarget:self action:@selector(ingredientsHandler:) forControlEvents:UIControlEventTouchUpInside];
+        [draggableView.timeButton addTarget:self action:@selector(timeHandler:) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        draggableView.showAd = YES;
+        draggableView.nativeExpressAdView.adUnitID = recipe.ad_identifier;
+        draggableView.nativeExpressAdView.rootViewController = [self traverseResponderChainForUIViewController];
+        
+        GADRequest *request = [GADRequest request];
+        [draggableView.nativeExpressAdView loadRequest:request];
+        request.testDevices = @[ @"fde038bb9247e92af3f6c8ca0a1ad0c2" ];
+        
+    }
     
     draggableView.delegate = self;
-    
-    [draggableView addConstraint:[NSLayoutConstraint constraintWithItem:draggableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.frame.size.width]];
-    
-    draggableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    draggableView.likeButton.tag = index;
-    draggableView.ingredientsButton.tag = index;
-    draggableView.timeButton.tag = index;
-    
-    [draggableView.likeButton addTarget:self action:@selector(likeHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [draggableView.ingredientsButton addTarget:self action:@selector(ingredientsHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [draggableView.timeButton addTarget:self action:@selector(timeHandler:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    return draggableView;
-}
-
-- (DraggableView *)createDraggableViewWithAd{
-    DraggableView *draggableView = (DraggableView *)[[[NSBundle mainBundle] loadNibNamed:@"RecipeView" owner:self options:nil] firstObject];
-    draggableView.delegate = self;
-    
-    draggableView.showAd = YES;
-    draggableView.nativeExpressAdView.adUnitID = @"ca-app-pub-3459157044438598/5158670062";
-    draggableView.nativeExpressAdView.rootViewController = [self traverseResponderChainForUIViewController];
-    
-    GADRequest *request = [GADRequest request];
-    [draggableView.nativeExpressAdView loadRequest:request];
-    request.testDevices = @[ @"fde038bb9247e92af3f6c8ca0a1ad0c2" ];
     
     [draggableView addConstraint:[NSLayoutConstraint constraintWithItem:draggableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.frame.size.width]];
     
@@ -235,16 +228,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
                 //%%% adds a small number of cards to be loaded
                 [loadedCards addObject:newCard];
             }
-        }
-        
-        DraggableView* newCard = [self createDraggableViewWithAd];
-        [allCards addObject:newCard];
-        
-        if (i<numLoadedCardsCap) {
-            //%%% adds a small number of cards to be loaded
-            [loadedCards addObject:newCard];
-        }
-        
+        }        
         
         //%%% displays the small number of loaded cards dictated by MAX_BUFFER_SIZE so that not all the cards
         // are showing at once and clogging a ton of data
