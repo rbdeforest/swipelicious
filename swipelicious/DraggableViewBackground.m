@@ -52,12 +52,20 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         BOOL freeShare = [[defaults objectForKey:kPreferenceFreeShareRecipes] boolValue];
         
         if (freeShare){
-            [params setObject:@"1" forKey:@"freeRecipes"];
+            [params setObject:@"1" forKey:@"free_recipes"];
         }
         
         [ProgressHUD show:@"Loading" Interaction:NO];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        User *user = [[AppSession sharedInstance] user];
+        if (user.fbid != nil && ![user.fbid isEqualToString:@""]) {
+            [params setObject:user.FBToken forKey:@"fbtoken"];
+        }else{
+            [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:user.email password:user.password];
+        }
+        
         [manager GET:requestURL parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
             if ([[NSUserDefaults standardUserDefaults] boolForKey: @"shouldupdate"]) {
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -87,6 +95,9 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             if ([self firstAvailableUIViewController] != nil){
                 [[self firstAvailableUIViewController] presentViewController:alert animated:YES completion:nil];
             }
+            
+            [ProgressHUD dismiss];
+            
         }];
         
     }
