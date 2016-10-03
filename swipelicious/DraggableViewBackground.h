@@ -50,7 +50,8 @@
 @property (nonatomic,strong) IBOutlet UIButton* checkButton;
 @property (nonatomic,strong) IBOutlet UIButton* xButton;
 @property (nonatomic,strong) IBOutlet UILabel * notification;
+@property (nonatomic) NSInteger remainCount;
+
 @property int page;
-extern NSMutableArray *foodtitles5;
 
 @end

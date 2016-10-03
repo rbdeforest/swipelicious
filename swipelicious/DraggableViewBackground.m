@@ -18,7 +18,6 @@
 
 @implementation DraggableViewBackground{
     NSInteger cardsLoadedIndex; //%%% the index of the card you have loaded into the loadedCards array last
-    NSInteger remainCount;
     NSMutableArray *loadedCards; //%%% the array of card loaded (change max_buffer_size to increase or decrease the number of cards this holds)
     NSMutableArray *likefoods;
 }
@@ -32,6 +31,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 @synthesize ingredients;
 @synthesize allCards;//%%% all the cards
 @synthesize recipes;
+@synthesize remainCount;
 
 #define MAX_FOOD_COUNT 5
 

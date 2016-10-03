@@ -138,7 +138,6 @@ int currentOverlay;
             [defaults setBool:false forKey:kPreferenceFreeShareRecipes];
             [defaults synchronize];
         }else{
-            [self checkEmpty];
             if ([[NSUserDefaults standardUserDefaults] objectForKey: @"foodlefttoswipe"] != nil) {
                 [[NSUserDefaults standardUserDefaults] setBool: false forKey: @"shouldupdate"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -147,10 +146,20 @@ int currentOverlay;
         }
         
     }
+    
+    [self checkEmpty];
 }
 
 -(void)checkEmpty{
-    [self.emptyWebView setHidden:NO];
+    if (draggableBackground == nil) {
+        [self.emptyWebView setHidden:YES];
+    }else{
+        if (draggableBackground.remainCount == 0){
+            [self.emptyWebView setHidden:YES];
+        }else{
+            [self.emptyWebView setHidden:NO];
+        }
+    }
 }
 
 - (void)didFinishSwiping:(NSNotification *)notification{
@@ -163,6 +172,7 @@ int currentOverlay;
         self.shareRecipes = [notification object];
         if (self.shareRecipes != nil && [self.shareRecipes count] > 0){
             self.shareButton.hidden = NO;
+            self.emptyWebView.hidden = YES;
             [self.view bringSubviewToFront:self.shareButton];
         }
         
@@ -185,6 +195,7 @@ int currentOverlay;
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ShowselectedfoodlistViewController *showRecipesViewController = [sb instantiateViewControllerWithIdentifier:@"ShowselectedfoodlistViewController"];
     showRecipesViewController.recipes = self.shareRecipes;
+    showRecipesViewController.sharing = YES;
     [self.navigationController pushViewController:showRecipesViewController animated:YES];
 }
 

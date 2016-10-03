@@ -42,14 +42,13 @@
     [[NSUserDefaults standardUserDefaults] setObject: [NSDate date] forKey: @"StartSelectedFoodListPage"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if (self.recipes == nil) {
-        self.recipes = [[[AppSession sharedInstance] user] favorites];
-        [self.Selectedfoodlist reloadData];
-    }else{
-        self.sharing = YES;
+    if (self.sharing){
         self.footer.hidden = YES;
         self.title = @"Share a Recipe";
         self.navigationItem.title = @"Share a Recipe";
+    }else{
+        self.recipes = [[[AppSession sharedInstance] user] favorites];
+        [self.Selectedfoodlist reloadData];
     }
 }
 
