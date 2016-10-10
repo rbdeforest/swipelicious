@@ -52,10 +52,15 @@
 }
 
 - (IBAction)inviteMore:(id)sender{
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_INVITE_FRIENDS by:@1];
+    [mixpanel track: USER_CLICKED_INVITE_FRIENDS];
+    
+    
     FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
     content.appLinkURL = [NSURL URLWithString:@"https://itunes.apple.com/uy/app/gameon-edicion-copa-america/id986474919?l=es&mt=8"];
-    
-    //content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://www.swipelicious.com/my_invite_image.jpg"];
     
     [FBSDKAppInviteDialog showFromViewController:self
                                      withContent:content

@@ -282,13 +282,13 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
-    if (like){
-        [mixpanel.people increment:USER_LIKED_RECIPES by:@1];
-        [mixpanel track: USER_LIKED_RECIPES];
-    }else{
-        [mixpanel.people increment:USER_NOTLIKED_RECIPES by:@1];
-        [mixpanel track: USER_NOTLIKED_RECIPES];
-    }
+//    if (like){
+//        [mixpanel.people increment:USER_LIKED_RECIPES by:@1];
+//        [mixpanel track: USER_LIKED_RECIPES];
+//    }else{
+//        [mixpanel.people increment:USER_NOTLIKED_RECIPES by:@1];
+//        [mixpanel track: USER_NOTLIKED_RECIPES];
+//    }
     
     
     //do whatever you want with the card that was swiped

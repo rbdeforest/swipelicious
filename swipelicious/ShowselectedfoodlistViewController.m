@@ -102,7 +102,7 @@
     cell.foodTitleLabel.text = title.uppercaseString;
     NSString *imageUrl = recipe.photo_url;
     
-    cell.descriptionLabel.text = recipe.short_description;
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"prep %@ minutes, cook %@ minutes\nIngredients %@", recipe.prep_time, recipe.cook_time, recipe.ingredient_count];
     
     cell.createdByLabel.text = [NSString stringWithFormat:@"Created by %@",recipe.owner];
     
@@ -137,7 +137,7 @@
     if (self.sharing){
         Draw *recipe = [self.recipes objectAtIndex:indexPath.row];
         FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-        content.contentURL = [NSURL URLWithString:recipe.blog_url ? recipe.blog_url : recipe.link];
+        content.contentURL = [NSURL URLWithString:recipe.blog_url];
         [FBSDKShareDialog showFromViewController:self withContent:content delegate:self];
         
     }else{
@@ -174,6 +174,13 @@
         int row = (int)self.Selectedfoodlist.indexPathForSelectedRow.row;
         vc.recipe = self.currentList[row];
     }else{
+        
+        // Mixpanel
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+        [mixpanel.people increment:USER_CLICKED_FILTER_BUTTON by:@1];
+        [mixpanel track: USER_CLICKED_FILTER_BUTTON];
+         
         TagTableViewController *vc = [segue destinationViewController];
         vc.finishedPickingTags = ^(NSArray *tags){
             [self filterWithTags:tags];
@@ -217,6 +224,15 @@
 }
 
 - (IBAction)sortButton:(id)sender{
+    
+    // Mixpanel
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_SORT_BUTTON by:@1];
+    [mixpanel track: USER_CLICKED_SORT_BUTTON];
+    
+    [self performSegueWithIdentifier:@"showlikefoodlist" sender:self];
+    
     UIAlertController* alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
                                 message:nil

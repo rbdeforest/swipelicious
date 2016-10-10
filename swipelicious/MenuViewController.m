@@ -79,6 +79,12 @@
 
 
 - (IBAction)onBtnFriends:(id)sender {
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_MY_FRIENDS by:@1];
+    [mixpanel track: USER_CLICKED_MY_FRIENDS];
+    
     FriendsViewController *friendsVC = (FriendsViewController*)[STORYBOARD instantiateViewControllerWithIdentifier: @"FriendsViewController"];
     
     [(HomeNavigationController *)self.slidingViewController.topViewController pushViewController:friendsVC animated:YES];

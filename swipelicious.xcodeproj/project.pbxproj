@@ -116,6 +116,7 @@
 		142811611D959A24008ED3D9 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		143A806F1CD7DA3A00DA41A2 /* RecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeView.xib; sourceTree = "<group>"; };
 		143A80711CD8D9E900DA41A2 /* DraggableViewBackground.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraggableViewBackground.xib; sourceTree = "<group>"; };
+		143B27D61DA58A71007DA6E8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		14410ACF1D808DC6008D4FE5 /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagTableViewController.h; sourceTree = "<group>"; };
 		14410AD01D808DC6008D4FE5 /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagTableViewController.m; sourceTree = "<group>"; };
 		14410AD41D8090E5008D4FE5 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Model/Tag.swift; sourceTree = "<group>"; };
@@ -463,6 +464,7 @@
 		75D95A444456AAF13D19E19A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				143B27D61DA58A71007DA6E8 /* CoreLocation.framework */,
 				142811611D959A24008ED3D9 /* PassKit.framework */,
 				1428115E1D9597E9008ED3D9 /* MediaPlayer.framework */,
 				1428115A1D9597DB008ED3D9 /* AdSupport.framework */,

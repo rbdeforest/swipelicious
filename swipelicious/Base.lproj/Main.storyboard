@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5zZ-oj-1k4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5zZ-oj-1k4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--SWIPELICIOUS-->
+        <!--SOUS-->
         <scene sceneID="JVV-7x-73u">
             <objects>
                 <viewController id="iin-wf-A5N" customClass="MainViewController" sceneMemberID="viewController">
@@ -27,7 +27,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt2-Vm-Ley">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="J2a-dF-GhQ"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sous" translatesAutoresizingMaskIntoConstraints="NO" id="J2a-dF-GhQ"/>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -86,7 +86,7 @@
                             <constraint firstItem="nt2-Vm-Ley" firstAttribute="leading" secondItem="bbj-rg-hK6" secondAttribute="leading" id="g8R-ZH-uwC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="SWIPELICIOUS" id="xAT-6p-GI8"/>
+                    <navigationItem key="navigationItem" title="SOUS" id="xAT-6p-GI8"/>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="568"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="181" y="54"/>
         </scene>
-        <!--SWIPELICIOUS-->
+        <!--SOUS-->
         <scene sceneID="UHj-p4-22P">
             <objects>
-                <viewController storyboardIdentifier="Master" title="SWIPELICIOUS" automaticallyAdjustsScrollViewInsets="NO" id="46h-bS-8Tl" customClass="MasterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Master" title="SOUS" automaticallyAdjustsScrollViewInsets="NO" id="46h-bS-8Tl" customClass="MasterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vh9-c0-cdz"/>
                         <viewControllerLayoutGuide type="bottom" id="2c2-vr-CWQ"/>
@@ -304,7 +304,7 @@ you have liked before!</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="SWIPELICIOUS" id="3vU-Zr-tHd">
+                    <navigationItem key="navigationItem" title="SOUS" id="3vU-Zr-tHd">
                         <barButtonItem key="backBarButtonItem" title=" " id="qen-W3-dDD"/>
                         <barButtonItem key="leftBarButtonItem" id="iJw-NX-tSS">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hXU-SP-6JI">
@@ -359,10 +359,10 @@ you have liked before!</string>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="50" id="MPy-BU-mwZ" customClass="FriendTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MPy-BU-mwZ" id="447-oZ-hSp">
-                                            <frame key="frameInset" width="1000" height="49"/>
+                                            <frame key="frameInset" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Pk-b1-Ssh">
@@ -451,7 +451,7 @@ you have liked before!</string>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9cX-aa-y4I">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="zea-TJ-XcB">
-                                            <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="64" width="1000" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wN-bU-JBj" customClass="HeaderButton">
@@ -501,10 +501,10 @@ you have liked before!</string>
                                         </view>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="110" id="oA7-tX-3oZ" customClass="FoodTableViewCell">
-                                                <rect key="frame" x="0.0" y="86" width="375" height="110"/>
+                                                <rect key="frame" x="0.0" y="86" width="1000" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oA7-tX-3oZ" id="5BK-8U-Uvw">
-                                                    <frame key="frameInset" width="375" height="109"/>
+                                                    <frame key="frameInset" width="1000" height="109.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L4O-h3-UzL">
@@ -728,7 +728,7 @@ you have liked before!</string>
             </objects>
             <point key="canvasLocation" x="1753" y="1229"/>
         </scene>
-        <!--SWIPELICIOUS-->
+        <!--SOUS-->
         <scene sceneID="IQ7-6e-JJK">
             <objects>
                 <viewController id="aSL-uh-5QQ" customClass="ShowfooddetailViewController" sceneMemberID="viewController">
@@ -927,7 +927,7 @@ you have liked before!</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="SWIPELICIOUS" id="9tA-z6-xl2"/>
+                    <navigationItem key="navigationItem" title="SOUS" id="9tA-z6-xl2"/>
                     <connections>
                         <outlet property="foodimage" destination="iaR-Bn-EKf" id="DLc-K0-LpN"/>
                         <outlet property="foodtitle" destination="ZyE-aF-gxM" id="u4M-lc-Ijg"/>
@@ -951,7 +951,7 @@ you have liked before!</string>
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8sJ-Ga-a7q" id="qG0-9z-n59">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOR-Ws-QdI">
@@ -1522,10 +1522,10 @@ you have liked before!</string>
         <image name="button-trash" width="29" height="39"/>
         <image name="facebook" width="264" height="58"/>
         <image name="home_btn_menu.png" width="55" height="80"/>
-        <image name="login-logo" width="421" height="374"/>
         <image name="overlay1-icons" width="304" height="113"/>
         <image name="overlay2-icon" width="363" height="43"/>
         <image name="overlay3-icon" width="114" height="81"/>
+        <image name="sous" width="421" height="374"/>
         <image name="user_default.jpg" width="150" height="150"/>
     </resources>
 </document>

@@ -81,9 +81,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
 }
+
 - (IBAction)onTapDelete:(id)sender {
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_DELETE by:@1];
+    [mixpanel track: USER_CLICKED_DELETE];
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Are you sure to delete this recipe?" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -100,7 +105,12 @@
 }
 
 - (IBAction)onTapShare:(id)sender{
-    NSArray *items = [NSArray arrayWithObjects:recipe.blog_url ? recipe.blog_url : recipe.link, @"Check out this recipe", nil];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_SHARE by:@1];
+    [mixpanel track: USER_CLICKED_SHARE];
+    
+    NSArray *items = [NSArray arrayWithObjects:recipe.blog_url, @"Check out this recipe", nil];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     [self.navigationController presentViewController:activityVC animated:true completion:nil];
     
@@ -125,7 +135,12 @@
 }
 
 - (IBAction)onTapCart:(id)sender{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Cart" preferredStyle:UIAlertControllerStyleAlert];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_CART by:@1];
+    [mixpanel track: USER_CLICKED_CART];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Coming Soon" message:@"Cart" preferredStyle:UIAlertControllerStyleAlert];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         

@@ -55,7 +55,6 @@ UILocalNotification *notification;
     Kiip *kiip = [[Kiip alloc] initWithAppKey:@"dbd4e08eab078285867d65bee1531ca2" andSecret:@"767c825c0c66d5d90d938c29c8da9e47"];
     kiip.delegate = self;
     [Kiip setSharedInstance:kiip];
-    return YES;
     
     return YES;
 }
@@ -94,7 +93,7 @@ UILocalNotification *notification;
     
     notification.fireDate = fireDateOfNotification;
     notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.alertBody = [NSString stringWithFormat: @"5 new recipes arrived"];
+    notification.alertBody = [NSString stringWithFormat: @"Your 10 recipes have arrived!"];
     notification.alertAction = @"1";
     notification.userInfo= @{@"information": [NSString stringWithFormat:@"Some information"]};
     notification.repeatInterval= NSCalendarUnitDay;
@@ -118,15 +117,10 @@ UILocalNotification *notification;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"gotnotification"];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMessageMasterView" object:nil userInfo:nil];
-    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification" message:@"New recipes arrived" preferredStyle:UIAlertControllerStyleAlert];
     
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        MasterViewController *master = [[MasterViewController alloc] init];
-        [master viewWillAppear:YES];
-        
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMessageMasterView" object:nil userInfo:nil];
     }]];
     
     [[self.window rootViewController] presentViewController:alert animated:YES completion:nil];

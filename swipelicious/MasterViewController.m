@@ -120,6 +120,11 @@ int currentOverlay;
 }
 
 -(void)checkRefresh{
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    notification.applicationIconBadgeNumber = 0;
+    
+    
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -192,6 +197,12 @@ int currentOverlay;
 }
 
 - (IBAction)shareRecipe:(id)sender{
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_SHARE_FOR_10_MORE by:@1];
+    [mixpanel track: USER_CLICKED_SHARE_FOR_10_MORE];
+    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ShowselectedfoodlistViewController *showRecipesViewController = [sb instantiateViewControllerWithIdentifier:@"ShowselectedfoodlistViewController"];
     showRecipesViewController.recipes = self.shareRecipes;
@@ -225,9 +236,7 @@ int currentOverlay;
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
-    notification.applicationIconBadgeNumber = 0;
-    
+    [super viewWillAppear:animated];
     [self checkRefresh];
 }
 
@@ -263,5 +272,6 @@ int currentOverlay;
 
     [self performSegueWithIdentifier:@"showlikefoodlist" sender:self];
 }
+
 
 @end

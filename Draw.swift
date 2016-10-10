@@ -67,8 +67,9 @@ import Foundation
         cook_time = data["cook_time"] as? String
         ready_time = data["ready_time"] as? String
         total_time = data["total_time"] as? String
-        blog_url = data["blog_url"] as? String
         ad_identifier = data["ad_identifier"] as? String
+        
+        blog_url = "http://my.sousrecipes.com/id=\(self.id)"
     }
         
     func finished() -> Bool{

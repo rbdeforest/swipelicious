@@ -35,7 +35,7 @@ struct Constants {
     struct API {
         
         //static let Base = "http://192.168.1.41/~augusto/Swipelicious/"
-        static let Base = "http://swipelicious.com/api/"
+        static let Base = "http://sousrecipes.com/api/"
         
         struct User {
             static let Login = Constants.API.Base + "users/login.json"
