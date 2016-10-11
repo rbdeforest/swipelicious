@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" constant="27" id="dxL-in-niO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="12"/>
-                                        <state key="normal" title="DON'T HAVE A FACEBOOK ACOCUNT?">
+                                        <state key="normal" title="DON'T HAVE A FACEBOOK ACCOUNT?">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.79555495689655176" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -623,23 +623,6 @@ you have liked before!</string>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFv-Px-LIF">
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAd-Xs-TEE">
-                                                <color key="backgroundColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="62" id="YSf-vx-tl1"/>
-                                                </constraints>
-                                                <state key="normal" title="FILTER">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="YSf-vx-tl1"/>
-                                                    </mask>
-                                                </variation>
-                                                <connections>
-                                                    <segue destination="t3D-OD-OUG" kind="show" id="OWJ-bA-pnm"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSa-Vn-Tzu">
                                                 <color key="backgroundColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -660,14 +643,10 @@ you have liked before!</string>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="LSa-Vn-Tzu" firstAttribute="leading" secondItem="eAd-Xs-TEE" secondAttribute="trailing" id="5kj-Cz-jfl"/>
                                             <constraint firstAttribute="bottom" secondItem="LSa-Vn-Tzu" secondAttribute="bottom" id="EwB-qF-iwR"/>
-                                            <constraint firstAttribute="bottom" secondItem="eAd-Xs-TEE" secondAttribute="bottom" id="FUX-l8-kGc"/>
                                             <constraint firstAttribute="height" constant="62" id="R9I-Yk-8R0"/>
                                             <constraint firstItem="LSa-Vn-Tzu" firstAttribute="top" secondItem="XFv-Px-LIF" secondAttribute="top" id="Vax-2B-t0r"/>
-                                            <constraint firstItem="eAd-Xs-TEE" firstAttribute="top" secondItem="XFv-Px-LIF" secondAttribute="top" id="Wrg-VZ-pbT"/>
-                                            <constraint firstItem="eAd-Xs-TEE" firstAttribute="leading" secondItem="XFv-Px-LIF" secondAttribute="leading" id="daX-mH-Ber"/>
-                                            <constraint firstItem="eAd-Xs-TEE" firstAttribute="width" secondItem="LSa-Vn-Tzu" secondAttribute="width" id="nut-R9-A3j"/>
+                                            <constraint firstItem="LSa-Vn-Tzu" firstAttribute="leading" secondItem="XFv-Px-LIF" secondAttribute="leading" id="Z0S-pC-JBV"/>
                                             <constraint firstAttribute="trailing" secondItem="LSa-Vn-Tzu" secondAttribute="trailing" id="q90-Td-XUC"/>
                                         </constraints>
                                     </view>
@@ -948,7 +927,7 @@ you have liked before!</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagCell" id="8sJ-Ga-a7q">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8sJ-Ga-a7q" id="qG0-9z-n59">
                                     <frame key="frameInset" width="375" height="43.5"/>

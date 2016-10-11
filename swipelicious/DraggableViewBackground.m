@@ -174,7 +174,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 }
 
 - (void)likeHandler:(UIButton *)sender{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Like" message:@"a message" preferredStyle:UIAlertControllerStyleAlert];
+    Draw *recipe = self.recipes[sender.tag];
+    
+    NSString *message = [NSString stringWithFormat:@"%@ people liked this recipe", recipe.favorite_count];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Likes" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
     

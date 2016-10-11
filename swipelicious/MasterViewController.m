@@ -124,7 +124,6 @@ int currentOverlay;
     [UIApplication sharedApplication].applicationIconBadgeNumber=0;
     notification.applicationIconBadgeNumber = 0;
     
-    
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -157,12 +156,12 @@ int currentOverlay;
 
 -(void)checkEmpty{
     if (draggableBackground == nil) {
-        [self.emptyWebView setHidden:YES];
+        [self.emptyWebView setHidden:NO];
     }else{
         if (draggableBackground.remainCount == 0){
-            [self.emptyWebView setHidden:YES];
-        }else{
             [self.emptyWebView setHidden:NO];
+        }else{
+            [self.emptyWebView setHidden:YES];
         }
     }
 }

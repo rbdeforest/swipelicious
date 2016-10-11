@@ -231,8 +231,6 @@
     [mixpanel.people increment:USER_CLICKED_SORT_BUTTON by:@1];
     [mixpanel track: USER_CLICKED_SORT_BUTTON];
     
-    [self performSegueWithIdentifier:@"showlikefoodlist" sender:self];
-    
     UIAlertController* alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
                                 message:nil
@@ -300,9 +298,9 @@
             int first = [((Draw *)a).total_time intValue];
             int second = [((Draw *)b).total_time intValue];
             if (first < second)
-                return NSOrderedDescending;
-            else if (first > second)
                 return NSOrderedAscending;
+            else if (first > second)
+                return NSOrderedDescending;
             else
                 return NSOrderedSame;
             

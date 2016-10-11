@@ -40,7 +40,7 @@
 #define USER_CLICKED_SHARE @"Clicked Share"
 #define USER_CLICKED_CART @"Clicked Cart"
 #define USER_CLICKED_SHARE_FOR_10_MORE @"Clicked Share For 10 More"
-#define USER_CLICKED_PROFILE @"Clicked Profile"
+#define USER_CLICKED_TOP_LEFT_MENU @"Clicked Profile"
 
 #define kPreferenceFreeShareRecipes @"freeShareRecipes"
 #define kDidFinishSwipingNotification @"didFinishSwiping"

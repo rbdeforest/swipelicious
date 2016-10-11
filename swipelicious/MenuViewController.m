@@ -19,6 +19,11 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_TOP_LEFT_MENU by:@1];
+    [mixpanel track: USER_CLICKED_TOP_LEFT_MENU];
+    
     [self.navigationController setNavigationBarHidden: true animated: true];
 }
 
