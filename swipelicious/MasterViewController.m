@@ -47,7 +47,7 @@ int currentOverlay;
     
     apiKey= @"bf12802240eb6023ecbe09595d5e656d";
     
-    NSString *urlString = @"http://swipelicious.com/empty.php";
+    NSString *urlString = @"http://www.sousrecipes.com/empty.php";
     NSURLRequest *request = [NSURLRequest requestWithURL:[[NSURL alloc] initWithString:urlString]];
     
     [self.emptyWebView loadRequest:request];
