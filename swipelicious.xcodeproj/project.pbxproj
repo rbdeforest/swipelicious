@@ -548,6 +548,9 @@
 						DevelopmentTeam = T2E3HD22C2;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.Wallet = {
 								enabled = 1;
 							};
