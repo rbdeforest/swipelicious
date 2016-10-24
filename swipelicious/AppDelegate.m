@@ -11,6 +11,9 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "MainViewController.h"
 #import "MasterViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 @import Firebase;
 
 UILocalNotification *notification;
@@ -24,7 +27,8 @@ UILocalNotification *notification;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    
+    [Fabric with:@[[Crashlytics class]]];
+
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [FIRApp configure];
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];

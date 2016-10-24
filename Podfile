@@ -13,6 +13,8 @@ pod 'ECSlidingViewController', '~> 1.3'
 pod 'SDWebImage'
 pod 'Firebase/Core'
 pod 'Firebase/AdMob'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end
 

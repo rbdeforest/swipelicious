@@ -14,8 +14,11 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (3.5.0)
+  - Alamofire (3.5.1)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
   - ECSlidingViewController (1.3.3)
+  - Fabric (1.6.10)
   - Firebase/AdMob (3.6.0):
     - Firebase/Analytics
     - Google-Mobile-Ads-SDK (= 7.11.0)
@@ -47,7 +50,9 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - Alamofire (~> 3.0)
+  - Crashlytics
   - ECSlidingViewController (~> 1.3)
+  - Fabric
   - Firebase/AdMob
   - Firebase/Core
   - Haneke (~> 1.0)
@@ -57,8 +62,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   ECSlidingViewController: 244de2ad5014424e8a6642acf6fd11166ce79084
+  Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
   Firebase: 34187200ef4979dbd485c7aa685ef078bf587c86
   FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -71,6 +78,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   VICMAImageView: 9f1811d4482ebe37b7eb09f640018554a81a21b2
 
-PODFILE CHECKSUM: e5332d70ec32d75db7694d341b8bddde313f07e9
+PODFILE CHECKSUM: 391f2efdff2ca66d3831132ed5264d411e24504a
 
 COCOAPODS: 1.0.1
