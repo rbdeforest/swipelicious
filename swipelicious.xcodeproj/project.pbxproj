@@ -548,6 +548,7 @@
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = T2E3HD22C2;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -867,6 +868,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T2E3HD22C2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -879,7 +881,7 @@
 				INFOPLIST_FILE = swipelicious/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.looping.swipelicious;
+				PRODUCT_BUNDLE_IDENTIFIER = com.looping.sous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "swipelicious-Bridging-Header.h";
@@ -899,6 +901,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T2E3HD22C2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -911,7 +914,7 @@
 				INFOPLIST_FILE = swipelicious/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.looping.swipelicious;
+				PRODUCT_BUNDLE_IDENTIFIER = com.looping.sous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "swipelicious-Bridging-Header.h";

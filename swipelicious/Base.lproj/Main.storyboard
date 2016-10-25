@@ -451,7 +451,7 @@ you have liked before!</string>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9cX-aa-y4I">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="zea-TJ-XcB">
-                                            <rect key="frame" x="0.0" y="64" width="1000" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wN-bU-JBj" customClass="HeaderButton">
@@ -501,10 +501,10 @@ you have liked before!</string>
                                         </view>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="110" id="oA7-tX-3oZ" customClass="FoodTableViewCell">
-                                                <rect key="frame" x="0.0" y="86" width="1000" height="110"/>
+                                                <rect key="frame" x="0.0" y="86" width="375" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oA7-tX-3oZ" id="5BK-8U-Uvw">
-                                                    <frame key="frameInset" width="1000" height="109.5"/>
+                                                    <frame key="frameInset" width="375" height="109.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L4O-h3-UzL">
@@ -834,7 +834,7 @@ you have liked before!</string>
                                     <constraint firstAttribute="height" priority="999" constant="140" id="K7V-JE-V1b"/>
                                 </constraints>
                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INGREDIENTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wMa-ZD-0s0">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="24"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                     <color key="textColor" red="0.1019607843" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -842,10 +842,10 @@ you have liked before!</string>
                                 </label>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="20" id="Djd-ed-i9h">
-                                        <rect key="frame" x="0.0" y="46" width="1000" height="20"/>
+                                        <rect key="frame" x="0.0" y="46" width="343" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Djd-ed-i9h" id="D4C-5I-Gy6">
-                                            <frame key="frameInset" width="1000" height="20"/>
+                                            <frame key="frameInset" width="343" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a very large ingredient, very important to make it taste like hell" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nau-l0-eFQ">

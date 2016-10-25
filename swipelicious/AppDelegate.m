@@ -28,7 +28,7 @@ UILocalNotification *notification;
     
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [Fabric with:@[[Crashlytics class]]];
-
+    
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [FIRApp configure];
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];

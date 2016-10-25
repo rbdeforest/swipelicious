@@ -64,7 +64,7 @@
         mail.mailComposeDelegate = self;
         [mail setSubject:@"Recipe Submission"];
         [mail setMessageBody:messagebody isHTML:NO];
-        [mail setToRecipients:@[@"contact@swipelicious.com"]];
+        [mail setToRecipients:@[@"contact@sousrecipes.com"]];
         
         [self presentViewController:mail animated:YES completion:NULL];
     }
@@ -110,7 +110,7 @@
         mail.mailComposeDelegate = self;
         [mail setSubject:@"Recipes App Submission"];
         [mail setMessageBody:messagebody isHTML:NO];
-        [mail setToRecipients:@[@"contact@swipelicious.com"]];
+        [mail setToRecipients:@[@"contact@sousrecipes.com"]];
         
         [self presentViewController:mail animated:YES completion:NULL];
     }
