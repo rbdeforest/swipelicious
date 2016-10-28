@@ -76,6 +76,7 @@ int currentOverlay;
     bool overlayShown = [defaults boolForKey:@"overlayShown"];
     
     if (!overlayShown) {
+        self.myRecipesBarButton.enabled = NO;
         [self.view setBackgroundColor:[UIColor clearColor]];
         self.navigationController.navigationBar.layer.zPosition = -1;
         
@@ -94,6 +95,16 @@ int currentOverlay;
     
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    self.shareButton.titleLabel.numberOfLines = 0; // Dynamic number of lines
+    self.shareButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    self.shareButton.imageEdgeInsets = UIEdgeInsetsMake(0., self.shareButton.frame.size.width - self.shareButton.titleEdgeInsets.left, 0., 0.);
+    self.shareButton.titleEdgeInsets = UIEdgeInsetsMake(0., 0., 0., 30);
+    
+    [super viewDidAppear:animated];
+}
+
 - (void)onboardTap:(UITapGestureRecognizer *)tap{
     [UIView animateWithDuration:.4f animations:^{
         [self.onboardViewContainer viewWithTag:currentOverlay].alpha = 0;
@@ -108,6 +119,7 @@ int currentOverlay;
         }
     } completion:^(BOOL finished) {
         if (self.onboardViewContainer.alpha == 0) {
+            self.myRecipesBarButton.enabled = YES;
             [self.view setBackgroundColor:[UIColor whiteColor]];
             [self.onboardViewContainer removeFromSuperview];
             self.onboardViewContainer = nil;
@@ -148,22 +160,25 @@ int currentOverlay;
                 [self refreshview];
             }
         }
-        
     }
     
     [self checkEmpty];
 }
 
 -(void)checkEmpty{
-    if (draggableBackground == nil) {
-        [self.emptyWebView setHidden:NO];
-    }else{
-        if (draggableBackground.remainCount == 0){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (draggableBackground == nil) {
             [self.emptyWebView setHidden:NO];
         }else{
-            [self.emptyWebView setHidden:YES];
+            if (draggableBackground.remainCount == 0){
+                
+                [self.emptyWebView setHidden:NO];
+            }else{
+                [self.emptyWebView setHidden:YES];
+            }
         }
-    }
+    });
+    
 }
 
 - (void)didFinishSwiping:(NSNotification *)notification{

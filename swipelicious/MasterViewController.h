@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *onboardViewContainer;
 @property (weak, nonatomic) IBOutlet UILabel *onbardTapLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *myRecipesBarButton;
 
 extern int likefoodcount;
 extern NSString *apiKey;

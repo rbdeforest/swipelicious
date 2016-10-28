@@ -79,9 +79,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             
             self.recipes = recipesD;
             remainCount = [self.recipes count];
-            if (self.recipes.count == 0){
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
-            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"checkEmpty" object:nil];
             
             [ProgressHUD dismiss];
             
@@ -134,7 +132,8 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     NSLog(@"%@", recipe.ad_identifier);
     
     if (recipe.ad_identifier == nil || [recipe.ad_identifier isEqualToString:@""] || [recipe.ad_identifier isEqual:[NSNull null]]){
-        [draggableView.foodimage hnk_setImageFromURL:[NSURL URLWithString:recipe.photo_url]];
+        NSString *photoUrl = recipe.photo_url;
+        [draggableView.foodimage hnk_setImageFromURL:[NSURL URLWithString:photoUrl]];
         
         self.foodtitle.text = recipe.title;
         
