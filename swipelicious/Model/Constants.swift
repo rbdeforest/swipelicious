@@ -56,7 +56,6 @@ struct Constants {
             
             static let Favorites = Base + "draws/favorites.json"
             static let AddFavorite = Base + "draws/add_favorite.json"
-            static let RemoveFavorite = Base + "draws/remove_favorite.json"
         }
         
         struct Recipe {

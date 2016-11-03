@@ -128,7 +128,7 @@ import Foundation
     func addToFavorites(draw : Draw, like : Bool) {
         //if self.favoriteIds == nil{ return }
         
-        let url = like ? Constants.API.Draw.AddFavorite : Constants.API.Draw.RemoveFavorite
+        let url = Constants.API.Draw.AddFavorite
         let request = AppSession.sharedInstance.requestForURL(.POST, url: url, parameters:["like" : like, "draw_id" : draw.id])
         
         request.responseJSON {
