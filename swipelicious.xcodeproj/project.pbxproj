@@ -30,6 +30,10 @@
 		1462F41C1D09B3A100B4AE7B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462F41A1D09B3A100B4AE7B /* FBSDKCoreKit.framework */; };
 		1462F41D1D09B3A100B4AE7B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462F41B1D09B3A100B4AE7B /* FBSDKLoginKit.framework */; };
 		1479D05E1D6B440000347874 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1479D05D1D6B440000347874 /* WebViewController.m */; };
+		1484B39B1DD354B800A1E768 /* IngredientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1484B39A1DD354B800A1E768 /* IngredientsViewController.m */; };
+		1484B39F1DD362EE00A1E768 /* LikesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1484B39D1DD362EE00A1E768 /* LikesViewController.m */; };
+		1484B3A31DD36C8D00A1E768 /* TimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1484B3A21DD36C8D00A1E768 /* TimesViewController.m */; };
+		1484B3A61DD391E900A1E768 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1484B3A51DD391E900A1E768 /* ReportViewController.m */; };
 		14B8E4271D22B21700D63903 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B8E4251D22B21700D63903 /* UserLoginViewController.swift */; };
 		14B8E4281D22B21700D63903 /* UserRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B8E4261D22B21700D63903 /* UserRegisterViewController.swift */; };
 		14CE25191CDB991B00644138 /* FoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CE25181CDB991B00644138 /* FoodTableViewCell.m */; };
@@ -131,6 +135,14 @@
 		1462F41B1D09B3A100B4AE7B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		1479D05C1D6B440000347874 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		1479D05D1D6B440000347874 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		1484B3991DD354B800A1E768 /* IngredientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngredientsViewController.h; sourceTree = "<group>"; };
+		1484B39A1DD354B800A1E768 /* IngredientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientsViewController.m; sourceTree = "<group>"; };
+		1484B39C1DD362EE00A1E768 /* LikesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikesViewController.h; sourceTree = "<group>"; };
+		1484B39D1DD362EE00A1E768 /* LikesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikesViewController.m; sourceTree = "<group>"; };
+		1484B3A11DD36C8D00A1E768 /* TimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimesViewController.h; sourceTree = "<group>"; };
+		1484B3A21DD36C8D00A1E768 /* TimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimesViewController.m; sourceTree = "<group>"; };
+		1484B3A41DD391E900A1E768 /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
+		1484B3A51DD391E900A1E768 /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		14B8E4251D22B21700D63903 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		14B8E4261D22B21700D63903 /* UserRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegisterViewController.swift; sourceTree = "<group>"; };
 		14CE25171CDB991B00644138 /* FoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewCell.h; sourceTree = "<group>"; };
@@ -373,6 +385,14 @@
 				6A776D4F1B8D06520044C940 /* swipe */,
 				1479D05C1D6B440000347874 /* WebViewController.h */,
 				1479D05D1D6B440000347874 /* WebViewController.m */,
+				1484B3991DD354B800A1E768 /* IngredientsViewController.h */,
+				1484B39A1DD354B800A1E768 /* IngredientsViewController.m */,
+				1484B39C1DD362EE00A1E768 /* LikesViewController.h */,
+				1484B39D1DD362EE00A1E768 /* LikesViewController.m */,
+				1484B3A11DD36C8D00A1E768 /* TimesViewController.h */,
+				1484B3A21DD36C8D00A1E768 /* TimesViewController.m */,
+				1484B3A41DD391E900A1E768 /* ReportViewController.h */,
+				1484B3A51DD391E900A1E768 /* ReportViewController.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -550,6 +570,9 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -698,13 +721,16 @@
 				1419188B1D86E3A9005C55B9 /* FriendTableViewCell.m in Sources */,
 				14CE25191CDB991B00644138 /* FoodTableViewCell.m in Sources */,
 				6A776D2A1B8BFF340044C940 /* OverlayView.m in Sources */,
+				1484B39B1DD354B800A1E768 /* IngredientsViewController.m in Sources */,
 				14B8E4281D22B21700D63903 /* UserRegisterViewController.swift in Sources */,
+				1484B39F1DD362EE00A1E768 /* LikesViewController.m in Sources */,
 				6A729A631B87932F00296E47 /* ShowselectedfoodlistViewController.m in Sources */,
 				6AD7D51E1B7352A6009FB7D2 /* MasterViewController.m in Sources */,
 				14410AD51D8090E5008D4FE5 /* Tag.swift in Sources */,
 				145A4A631CDBE0AC00622305 /* HeaderButton.m in Sources */,
 				14B8E4271D22B21700D63903 /* UserLoginViewController.swift in Sources */,
 				6A776D011B8AC93D0044C940 /* ProgressHUD.m in Sources */,
+				1484B3A31DD36C8D00A1E768 /* TimesViewController.m in Sources */,
 				140E7CF11D08C7A800CE8218 /* Draw.swift in Sources */,
 				1449C9721D084F28005A7437 /* Profile.swift in Sources */,
 				8B3E057C1D698CB60076D218 /* MenuViewController.m in Sources */,
@@ -722,6 +748,7 @@
 				14410AD11D808DC6008D4FE5 /* TagTableViewController.m in Sources */,
 				8B3E05821D69953A0076D218 /* MenuRoundButton.swift in Sources */,
 				1479D05E1D6B440000347874 /* WebViewController.m in Sources */,
+				1484B3A61DD391E900A1E768 /* ReportViewController.m in Sources */,
 				6A52F5821B65450500AECC90 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

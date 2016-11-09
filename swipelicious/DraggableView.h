@@ -66,6 +66,7 @@
 @property (nonatomic,strong) IBOutlet UIButton* likeButton;
 @property (nonatomic,strong) IBOutlet UIButton* timeButton;
 @property (nonatomic,strong) IBOutlet UIButton* ingredientsButton;
+@property (nonatomic,strong) IBOutlet UIButton* reportButton;
 
 @property (nonatomic) NSInteger index;
 

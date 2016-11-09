@@ -13,6 +13,10 @@
 #import "ProgressHUD.h"
 #import "MasterViewController.h"
 #import "AppDelegate.h"
+#import "IngredientsViewController.h"
+#import "LikesViewController.h"
+#import "TimesViewController.h"
+#import "ReportViewController.h"
 
 @import Haneke;
 
@@ -152,6 +156,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
         [draggableView.likeButton addTarget:self action:@selector(likeHandler:) forControlEvents:UIControlEventTouchUpInside];
         [draggableView.ingredientsButton addTarget:self action:@selector(ingredientsHandler:) forControlEvents:UIControlEventTouchUpInside];
         [draggableView.timeButton addTarget:self action:@selector(timeHandler:) forControlEvents:UIControlEventTouchUpInside];
+        [draggableView.reportButton addTarget:self action:@selector(reportHandler:) forControlEvents:UIControlEventTouchUpInside];
     }else{
         draggableView.showAd = YES;
         draggableView.nativeExpressAdView.adUnitID = recipe.ad_identifier;
@@ -175,54 +180,89 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 - (void)likeHandler:(UIButton *)sender{
     Draw *recipe = self.recipes[sender.tag];
     
-    NSString *message = [NSString stringWithFormat:@"%@ people liked this recipe", recipe.favorite_count];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Likes" message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LikesViewController *likesVC = [storyboard instantiateViewControllerWithIdentifier:@"LikesViewController"];
+    likesVC.recipe = recipe;
     
     if ([self firstAvailableUIViewController] != nil){
-        [[self firstAvailableUIViewController] presentViewController:alert animated:YES completion:nil];
+        id controller = [self firstAvailableUIViewController];
+        
+        [controller setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setDefinesPresentationContext:YES];
+        
+        [likesVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        [likesVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        
+        [[controller navigationController] presentViewController:likesVC animated:YES completion:nil];
     }
+    
 }
 
 - (void)ingredientsHandler:(UIButton *)sender{
     Draw *recipe = self.recipes[sender.tag];
-    NSString *sentence = [recipe.ingredients componentsJoinedByString:@", "];
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ingredients" message:sentence preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+  
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    IngredientsViewController *ingredientsVC = [storyboard instantiateViewControllerWithIdentifier:@"IngredientsViewController"];
+    ingredientsVC.recipe = recipe;
     
     if ([self firstAvailableUIViewController] != nil){
-        [[self firstAvailableUIViewController] presentViewController:alert animated:YES completion:nil];
+        id controller = [self firstAvailableUIViewController];
+        
+        [controller setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setDefinesPresentationContext:YES];
+        
+        [ingredientsVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        [ingredientsVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        
+        [[controller navigationController] presentViewController:ingredientsVC animated:YES completion:nil];
     }
 }
 
 - (void)timeHandler:(UIButton *)sender{
     Draw *recipe = self.recipes[sender.tag];
     
-    NSMutableArray *times = [[NSMutableArray alloc] init];
-    
-    if (recipe.prep_time != nil && ![recipe.prep_time isEqualToString:@""])
-        [times addObject:[NSString stringWithFormat:@"Prep time: %@", recipe.prep_time]];
-    
-    if (recipe.cook_time != nil && ![recipe.cook_time isEqualToString:@""])
-        [times addObject:[NSString stringWithFormat:@"Cook time: %@", recipe.cook_time]];
-    
-    if (recipe.ready_time != nil && ![recipe.ready_time isEqualToString:@""])
-        [times addObject:[NSString stringWithFormat:@"Ready time: %@", recipe.ready_time]];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cooking Times" message:[times componentsJoinedByString:@", "] preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TimesViewController *timesVC = [storyboard instantiateViewControllerWithIdentifier:@"TimesViewController"];
+    timesVC.recipe = recipe;
     
     if ([self firstAvailableUIViewController] != nil){
-        [[self firstAvailableUIViewController] presentViewController:alert animated:YES completion:nil];
+        id controller = [self firstAvailableUIViewController];
+        
+        [controller setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setDefinesPresentationContext:YES];
+        
+        [timesVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        [timesVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        
+        [[controller navigationController] presentViewController:timesVC animated:YES completion:nil];
     }
     
 }
 
-
+- (void)reportHandler:(UIButton *)sender{
+    Draw *recipe = self.recipes[sender.tag];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ReportViewController *reportVC = [storyboard instantiateViewControllerWithIdentifier:@"ReportViewController"];
+    reportVC.recipe = recipe;
+    
+    if ([self firstAvailableUIViewController] != nil){
+        id controller = [self firstAvailableUIViewController];
+        
+        [controller setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [[controller navigationController] setDefinesPresentationContext:YES];
+        
+        [reportVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        [reportVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        
+        [[controller navigationController] presentViewController:reportVC animated:YES completion:nil];
+    }
+    
+}
 
 //%%% loads all the cards and puts the first x in the "loaded cards" array
 -(void)loadCards

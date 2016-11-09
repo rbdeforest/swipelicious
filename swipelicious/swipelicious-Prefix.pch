@@ -47,3 +47,5 @@
 
 #define STORYBOARD [UIStoryboard storyboardWithName:@"Main" bundle:nil]
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+
+#define kShareAppURL @"https://itunes.apple.com/us/app/sous-smart-recipe-app-for/id1128268137"

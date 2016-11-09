@@ -60,7 +60,7 @@
     
     
     FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
-    content.appLinkURL = [NSURL URLWithString:@"https://itunes.apple.com/uy/app/gameon-edicion-copa-america/id986474919?l=es&mt=8"];
+    content.appLinkURL = [NSURL URLWithString:kShareAppURL];
     
     [FBSDKAppInviteDialog showFromViewController:self
                                      withContent:content

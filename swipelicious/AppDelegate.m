@@ -30,6 +30,7 @@ UILocalNotification *notification;
     [Fabric with:@[[Crashlytics class]]];
     
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
     [FIRApp configure];
     NSUserDefaults *startUser = [NSUserDefaults standardUserDefaults];
     NSString *tch = [startUser objectForKey:@"touchId"];

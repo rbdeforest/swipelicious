@@ -10,6 +10,7 @@ import Foundation
 
 @objc class Draw : NSObject{
     var id: String
+    var recipe_id: String
     var title: String
     var link: String?
     var result_link: String?
@@ -41,6 +42,7 @@ import Foundation
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         id = data["id"] as! String
+        recipe_id = data["id"] as! String
         title = data["title"] as! String
         link = data["link"] as? String
         if let rl = data["results_link"] as? String{

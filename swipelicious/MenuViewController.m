@@ -84,7 +84,6 @@
 
 
 - (IBAction)onBtnFriends:(id)sender {
-    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
     [mixpanel.people increment:USER_CLICKED_MY_FRIENDS by:@1];
@@ -94,6 +93,30 @@
     
     [(HomeNavigationController *)self.slidingViewController.topViewController pushViewController:friendsVC animated:YES];
     [self.slidingViewController resetTopView];
+}
+
+- (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didCompleteWithResults:(NSDictionary *)results{
+    NSLog(@"%@", results);
+}
+
+- (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didFailWithError:(NSError *)error{
+    NSLog(@"%@", error);
+}
+
+
+- (IBAction)onBtnInvite:(id)sender {    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
+    [mixpanel.people increment:USER_CLICKED_INVITE_FRIENDS by:@1];
+    [mixpanel track: USER_CLICKED_INVITE_FRIENDS];
+    
+    
+    FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
+    content.appLinkURL = [NSURL URLWithString:kShareAppURL];
+    
+    [FBSDKAppInviteDialog showFromViewController:self
+                                     withContent:content
+                                        delegate:self];
 }
 
 
