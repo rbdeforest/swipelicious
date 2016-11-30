@@ -46,10 +46,21 @@
         self.footer.hidden = YES;
         self.title = @"Share a Recipe";
         self.navigationItem.title = @"Share a Recipe";
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(didCancelShare:)];
     }else{
         self.recipes = [[[AppSession sharedInstance] user] favorites];
         [self.Selectedfoodlist reloadData];
     }
+}
+    
+-(void)didCancelShare:(UIBarButtonItem *)sender{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Are you sure you want to cancel sharing a recipe to get 10 more for free?" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDefault handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

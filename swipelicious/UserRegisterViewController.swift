@@ -40,13 +40,20 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
         self.loginButton.layer.cornerRadius = 5
         
         
-        self.datePicker.datePickerMode = UIDatePickerMode.Date        
+        self.datePicker.datePickerMode = UIDatePickerMode.Date
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserRegisterViewController.didDismissLogin), name: "kUserDidDismissLogin", object: nil)
+        
     }
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func didDismissLogin(){
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     @IBAction func registerHandler(sender:UIButton) {
@@ -73,10 +80,11 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
                 
                 AppSession.sharedInstance.register(user) { (user, error) -> () in
                     if user != nil{
-                        self.dismissViewControllerAnimated(true, completion: { 
-                            //user did register notification
-                            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidRegister, object: nil)
-                        })
+                        self.performSegueWithIdentifier("login", sender: self)                        
+//                        self.dismissViewControllerAnimated(true, completion: { 
+//                            //user did register notification
+//                            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidRegister, object: nil)
+//                        })
                     }else{
                         let alert = UIAlertController.init(title: "Error", message: "An error has ocurred", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))

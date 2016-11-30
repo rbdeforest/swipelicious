@@ -158,7 +158,7 @@ FBSDKLoginManager *login;
 
 - (IBAction)onClickContactUs:(id)sender {
     
-    [self performSegueWithIdentifier:@"login" sender:self];
+    [self performSegueWithIdentifier:@"register" sender:self];
     
 }
 

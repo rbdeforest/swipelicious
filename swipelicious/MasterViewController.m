@@ -22,7 +22,6 @@
 
 NSString *apiKey;
 DraggableViewBackground *draggableBackground;
-UIView *tempview;
 int likefoodcount;
 int currentOverlay;
 
@@ -52,9 +51,6 @@ int currentOverlay;
     
     [self.emptyWebView loadRequest:request];
     [self.emptyWebView setHidden:YES];
-    
-    tempview = [[UIView alloc] init];
-    [self.view addSubview:tempview];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkRefresh) name:@"refreshMessageMasterView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishSwiping:) name:kDidFinishSwipingNotification object:nil];
@@ -112,7 +108,7 @@ int currentOverlay;
             [self.onboardViewContainer viewWithTag:currentOverlay+1].alpha = 1;
             currentOverlay ++;
             if (currentOverlay == 3){
-                self.onbardTapLabel.text = @"START SWIPING!";
+                self.onbardTapLabel.text = @"Tap the screen to start swiping!";
             }
         }else{
             self.onboardViewContainer.alpha = 0;
@@ -223,25 +219,25 @@ int currentOverlay;
     showRecipesViewController.sharing = YES;
     [self.navigationController pushViewController:showRecipesViewController animated:YES];
 }
+    
 
 -(void)refreshview{
-    if ([tempview superview] != nil) {
-        [tempview removeFromSuperview];
+    if ([draggableBackground superview] != nil) {
+        [draggableBackground removeFromSuperview];
     }
     
     draggableBackground = (DraggableViewBackground *)[[[NSBundle mainBundle] loadNibNamed:@"DraggableViewBackground" owner:self options:nil] firstObject];
-    tempview = draggableBackground;
-    [self.view addSubview:tempview];
+    [self.view addSubview:draggableBackground];
     
-    tempview.translatesAutoresizingMaskIntoConstraints = NO;
+    draggableBackground.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeHeight multiplier:1 constant:-60]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeHeight multiplier:1 constant:-60]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tempview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
     if (self.onboardViewContainer) {
         [self.view bringSubviewToFront:self.onboardViewContainer];

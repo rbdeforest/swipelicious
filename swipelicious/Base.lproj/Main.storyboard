@@ -100,8 +100,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <segue destination="I7c-ln-z7P" kind="presentation" identifier="login" id="zUl-AH-HiD"/>
                         <segue destination="cg1-xn-hqf" kind="show" identifier="logined" id="e8C-Ga-pIa"/>
+                        <segue destination="kZd-L6-MYq" kind="presentation" identifier="register" id="yU5-ge-heb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foJ-fK-Jge" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -137,7 +137,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dws-N3-TfX">
-                                                <rect key="frame" x="63.5" y="435.5" width="248" height="68.5"/>
+                                                <rect key="frame" x="63.5" y="166.5" width="248" height="68.5"/>
                                                 <string key="text">Decide if you like or don't like
 the recipe by tapping the
 icons or swiping</string>
@@ -164,7 +164,6 @@ icons or swiping</string>
                                             <constraint firstItem="LBr-Go-6dt" firstAttribute="leading" secondItem="sTE-z1-jb8" secondAttribute="leading" id="Hg1-vU-DiB"/>
                                             <constraint firstAttribute="bottom" secondItem="LBr-Go-6dt" secondAttribute="bottom" constant="30" id="UeT-w8-XGr"/>
                                             <constraint firstItem="LBr-Go-6dt" firstAttribute="centerX" secondItem="sTE-z1-jb8" secondAttribute="centerX" id="eGT-Pz-C3m"/>
-                                            <constraint firstItem="LBr-Go-6dt" firstAttribute="top" secondItem="Dws-N3-TfX" secondAttribute="bottom" constant="20" id="ozx-vq-E1H"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -279,6 +278,7 @@ you have liked before!</string>
                                     <constraint firstAttribute="bottom" secondItem="Fcs-7X-SKE" secondAttribute="bottom" id="P3g-V9-mqn"/>
                                     <constraint firstAttribute="trailing" secondItem="Fcs-7X-SKE" secondAttribute="trailing" id="PS7-yj-4eP"/>
                                     <constraint firstItem="Fcs-7X-SKE" firstAttribute="leading" secondItem="Vlt-GD-aLR" secondAttribute="leading" id="U83-o1-9W2"/>
+                                    <constraint firstItem="rIj-NI-42H" firstAttribute="top" secondItem="Dws-N3-TfX" secondAttribute="bottom" constant="60" id="W6p-T9-ALA"/>
                                     <constraint firstItem="XRP-ze-JWh" firstAttribute="leading" secondItem="Vlt-GD-aLR" secondAttribute="leading" id="chF-DS-9zT"/>
                                     <constraint firstAttribute="bottom" secondItem="sTE-z1-jb8" secondAttribute="bottom" id="nPP-JQ-ENd"/>
                                     <constraint firstItem="rIj-NI-42H" firstAttribute="centerX" secondItem="Vlt-GD-aLR" secondAttribute="centerX" id="t3p-0M-Sew"/>
@@ -651,11 +651,11 @@ you have liked before!</string>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="aOD-hq-1bi"/>
+                                                            <exclude reference="vaq-cV-MXe"/>
                                                             <exclude reference="Jvh-wi-097"/>
                                                             <exclude reference="rvA-oR-MgD"/>
                                                             <exclude reference="5M8-pw-Vh2"/>
-                                                            <exclude reference="aOD-hq-1bi"/>
-                                                            <exclude reference="vaq-cV-MXe"/>
                                                         </mask>
                                                     </variation>
                                                 </tableViewCellContentView>
@@ -1199,6 +1199,9 @@ you have liked before!</string>
                             <constraint firstItem="083-No-2Ck" firstAttribute="leading" secondItem="IIH-W5-P9w" secondAttribute="leadingMargin" id="Ytb-Ab-QO0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textLabel" destination="VRZ-Di-qhg" id="kG7-CK-cvq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4K-oa-W8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1285,26 +1288,6 @@ you have liked before!</string>
                                     </mask>
                                 </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQV-mh-FAl">
-                                <rect key="frame" x="313" y="24" width="52" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Xhe-AT-GWX"/>
-                                    <constraint firstAttribute="width" constant="260" id="xnK-oA-WW6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                <state key="normal" title="Register">
-                                    <color key="titleColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Xhe-AT-GWX"/>
-                                        <exclude reference="xnK-oA-WW6"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="kZd-L6-MYq" kind="show" identifier="register" id="pWW-Ww-eKc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12i-CJ-4Bd">
                                 <rect key="frame" x="57.5" y="164" width="260" height="40"/>
                                 <constraints>
@@ -1324,15 +1307,9 @@ you have liked before!</string>
                         <constraints>
                             <constraint firstItem="2OB-nx-fu1" firstAttribute="leading" secondItem="hXd-tg-IxV" secondAttribute="leading" id="4Nt-u3-bKC"/>
                             <constraint firstAttribute="trailing" secondItem="Ycv-Zs-eRc" secondAttribute="trailing" constant="10" id="5ei-P4-HTb"/>
-                            <constraint firstItem="xQV-mh-FAl" firstAttribute="top" secondItem="12i-CJ-4Bd" secondAttribute="bottom" constant="8" id="7kw-aM-alA"/>
                             <constraint firstItem="Ycv-Zs-eRc" firstAttribute="top" secondItem="65o-Fa-Dyi" secondAttribute="bottom" constant="4" id="9LQ-Jl-meB"/>
-                            <constraint firstItem="xQV-mh-FAl" firstAttribute="height" secondItem="12i-CJ-4Bd" secondAttribute="height" id="Ae7-kJ-jMQ"/>
                             <constraint firstItem="65o-Fa-Dyi" firstAttribute="top" secondItem="2OB-nx-fu1" secondAttribute="bottom" constant="8" id="Ea2-a2-aQz"/>
-                            <constraint firstItem="xQV-mh-FAl" firstAttribute="centerY" secondItem="2OB-nx-fu1" secondAttribute="centerY" id="EtE-Xc-xRg"/>
-                            <constraint firstItem="xQV-mh-FAl" firstAttribute="width" secondItem="12i-CJ-4Bd" secondAttribute="width" id="HVq-ay-Wyw"/>
-                            <constraint firstItem="xQV-mh-FAl" firstAttribute="centerX" secondItem="hXd-tg-IxV" secondAttribute="centerX" id="Iy0-lH-dZ6"/>
                             <constraint firstItem="Ycv-Zs-eRc" firstAttribute="leading" secondItem="hXd-tg-IxV" secondAttribute="leading" constant="10" id="K1s-07-iNp"/>
-                            <constraint firstAttribute="trailing" secondItem="xQV-mh-FAl" secondAttribute="trailing" constant="10" id="QAE-fr-lGG"/>
                             <constraint firstItem="Ycv-Zs-eRc" firstAttribute="centerX" secondItem="hXd-tg-IxV" secondAttribute="centerX" id="WCm-KX-BSc"/>
                             <constraint firstItem="65o-Fa-Dyi" firstAttribute="width" secondItem="Ycv-Zs-eRc" secondAttribute="width" id="Xb2-88-DE3"/>
                             <constraint firstItem="65o-Fa-Dyi" firstAttribute="centerX" secondItem="hXd-tg-IxV" secondAttribute="centerX" id="aGi-q8-nFI"/>
@@ -1346,17 +1323,14 @@ you have liked before!</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="b8A-KK-v8G"/>
                                 <exclude reference="ctJ-Ju-zca"/>
                                 <exclude reference="k5F-r5-9xY"/>
                                 <exclude reference="kIR-cJ-YKc"/>
-                                <exclude reference="7kw-aM-alA"/>
-                                <exclude reference="Ae7-kJ-jMQ"/>
-                                <exclude reference="HVq-ay-Wyw"/>
-                                <exclude reference="Iy0-lH-dZ6"/>
+                                <exclude reference="b8A-KK-v8G"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="7kn-Nb-E2Y"/>
                     <connections>
                         <outlet property="emailTextField" destination="65o-Fa-Dyi" id="Wff-RC-E2S"/>
                         <outlet property="loginButton" destination="12i-CJ-4Bd" id="8nH-VG-LKp"/>
@@ -1365,7 +1339,7 @@ you have liked before!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEG-dT-E7r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1468" y="-1053"/>
+            <point key="canvasLocation" x="2241" y="-1039"/>
         </scene>
         <!--User Register View Controller-->
         <scene sceneID="mYF-hV-hWy">
@@ -1535,11 +1509,11 @@ you have liked before!</string>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="Ui3-ze-jYB"/>
                                                 <exclude reference="jva-9N-3Dx"/>
                                                 <exclude reference="F80-rp-VUw"/>
                                                 <exclude reference="Obc-6e-jG8"/>
                                                 <exclude reference="a91-P2-is6"/>
+                                                <exclude reference="Ui3-ze-jYB"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -1573,6 +1547,26 @@ you have liked before!</string>
                                     <action selector="back:" destination="kZd-L6-MYq" eventType="touchUpInside" id="LWv-MV-pmH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0f-RR-ldZ">
+                                <rect key="frame" x="323" y="24" width="36" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="CLc-GF-m5j"/>
+                                    <constraint firstAttribute="height" constant="40" id="uYK-dm-MOO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.1058823529" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="uYK-dm-MOO"/>
+                                        <exclude reference="CLc-GF-m5j"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="I7c-ln-z7P" kind="show" identifier="login" id="vr5-cM-AcR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1580,6 +1574,8 @@ you have liked before!</string>
                             <constraint firstItem="jQO-rr-d75" firstAttribute="leading" secondItem="uJm-bW-f1u" secondAttribute="leading" id="Rk6-lf-0h7"/>
                             <constraint firstAttribute="trailing" secondItem="9qj-NQ-heR" secondAttribute="trailing" id="a2Z-QH-1BK"/>
                             <constraint firstItem="jQO-rr-d75" firstAttribute="top" secondItem="tyK-xx-JC0" secondAttribute="bottom" id="gnc-v6-gTX"/>
+                            <constraint firstItem="T0f-RR-ldZ" firstAttribute="centerY" secondItem="jQO-rr-d75" secondAttribute="centerY" id="rhT-xF-yTw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T0f-RR-ldZ" secondAttribute="trailing" id="vfg-tp-nxw"/>
                             <constraint firstItem="9qj-NQ-heR" firstAttribute="top" secondItem="tyK-xx-JC0" secondAttribute="bottom" constant="28" id="w49-zW-pFy"/>
                             <constraint firstItem="9qj-NQ-heR" firstAttribute="leading" secondItem="uJm-bW-f1u" secondAttribute="leading" id="wNf-sD-Ony"/>
                         </constraints>
@@ -1595,7 +1591,7 @@ you have liked before!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usp-Vq-v8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2430" y="-1054"/>
+            <point key="canvasLocation" x="1402" y="-1039"/>
         </scene>
         <!--Initial Sliding View Controller-->
         <scene sceneID="P0X-4s-blk">
