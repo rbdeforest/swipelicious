@@ -34,42 +34,44 @@ struct Constants {
     
     struct API {
         
+        static let test = 1
+        
         //static let Base = "http://192.168.1.41/~augusto/Swipelicious/"
         static let Base = "http://sousrecipes.com/api/"
         
         struct User {
-            static let Login = Constants.API.Base + "users/login.json"
-            static let Register = Constants.API.Base + "users/add.json"
+            static let Login = Constants.API.Base + "users/login.json?test=\(test)"
+            static let Register = Constants.API.Base + "users/add.json?test=\(test)"
             static func Save(id : String!) -> String{
-                return Base + "users/edit/\(id).json"
+                return Base + "users/edit/\(id).json?test=\(test)"
             }
         }
         
         struct Draw {
             static func Share(id : String!) -> String{
-                return Constants.API.Base + "draws/view/\(id)"
+                return Constants.API.Base + "draws/view/\(id)?test=\(test)"
             }
             static func View(id : String!) -> String{
-                return Constants.API.Base + "draws/\(id).json"
+                return Constants.API.Base + "draws/\(id).json?test=\(test)"
             }
-            static let Index = Constants.API.Base + "queues.json"
+            static let Index = Constants.API.Base + "queues.json?test=\(test)"
             
-            static let Favorites = Base + "draws/favorites.json"
-            static let AddFavorite = Base + "draws/add_favorite.json"
+            static let Favorites = Base + "draws/favorites.json?test=\(test)"
+            static let AddFavorite = Base + "draws/add_favorite.json?test=\(test)"
         }
         
         struct Recipe {
             static func Index(country : String!) -> String{
-                return Constants.API.Base + "draws/index.json"
+                return Constants.API.Base + "draws/index.json?test=\(test)"
             }
             
-            static let Favorites = Base + "draws/favorites.json"
-            static let AddFavorite = Base + "draws/add_favorite.json"
-            static let RemoveFavorite = Base + "draws/remove_favorite.json"
+            static let Favorites = Base + "draws/favorites.json?test=\(test)"
+            static let AddFavorite = Base + "draws/add_favorite.json?test=\(test)"
+            static let RemoveFavorite = Base + "draws/remove_favorite.json?test=\(test)"
         }
         
         struct Category {
-            static let Index = Base + "categories.json"
+            static let Index = Base + "categories.json?test=\(test)"
         }
         
     }
