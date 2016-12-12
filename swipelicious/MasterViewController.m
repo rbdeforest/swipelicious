@@ -19,22 +19,23 @@
 #import <AdSupport/ASIdentifierManager.h>
 
 #import "ShowselectedfoodlistViewController.h"
+#import <malloc/malloc.h>
 
 NSString *apiKey;
-DraggableViewBackground *draggableBackground;
 int likefoodcount;
 int currentOverlay;
 
 
 @interface MasterViewController ()
     @property (strong, nonatomic) NSArray *shareRecipes;
-
+    @property (weak, nonatomic) DraggableViewBackground *draggableBackground;
 @end
 
 @implementation MasterViewController{
     
 }
 
+@synthesize draggableBackground;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -167,7 +168,8 @@ int currentOverlay;
             [self.emptyWebView setHidden:NO];
         }else{
             if (draggableBackground.remainCount == 0){
-                
+                [self.draggableBackground removeFromSuperview];
+                self.draggableBackground = nil;
                 [self.emptyWebView setHidden:NO];
             }else{
                 [self.emptyWebView setHidden:YES];
@@ -222,8 +224,9 @@ int currentOverlay;
     
 
 -(void)refreshview{
-    if ([draggableBackground superview] != nil) {
+    if (draggableBackground != nil) {
         [draggableBackground removeFromSuperview];
+        draggableBackground = nil;
     }
     
     draggableBackground = (DraggableViewBackground *)[[[NSBundle mainBundle] loadNibNamed:@"DraggableViewBackground" owner:self options:nil] firstObject];
@@ -242,6 +245,7 @@ int currentOverlay;
     if (self.onboardViewContainer) {
         [self.view bringSubviewToFront:self.onboardViewContainer];
     }
+
 }
 
 

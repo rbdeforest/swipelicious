@@ -19,5 +19,5 @@
 
 extern int likefoodcount;
 extern NSString *apiKey;
-extern DraggableViewBackground *draggableBackground;
+
 @end

@@ -55,18 +55,18 @@
 @property (nonatomic, strong)UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic)CGPoint originalPoint;
 @property (nonatomic,strong) OverlayView* overlayView;
-@property (nonatomic,strong) IBOutlet UILabel* information; //%%% a placeholder for any card-specific information
-@property (nonatomic,strong) IBOutlet UIImageView* foodimage;
-@property (nonatomic,strong) IBOutlet UILabel* title;
-@property (nonatomic,strong) IBOutlet UILabel* favoriteCount;
-@property (nonatomic,strong) IBOutlet UILabel* ingredientsCount;
-@property (nonatomic,strong) IBOutlet UILabel* createdBy;
-@property (nonatomic,strong) IBOutlet UILabel* descriptionLabel;
+@property (nonatomic,weak) IBOutlet UILabel* information; //%%% a placeholder for any card-specific information
+@property (nonatomic,weak) IBOutlet UIImageView* foodimage;
+@property (nonatomic,weak) IBOutlet UILabel* title;
+@property (nonatomic,weak) IBOutlet UILabel* favoriteCount;
+@property (nonatomic,weak) IBOutlet UILabel* ingredientsCount;
+@property (nonatomic,weak) IBOutlet UILabel* createdBy;
+@property (nonatomic,weak) IBOutlet UILabel* descriptionLabel;
 
-@property (nonatomic,strong) IBOutlet UIButton* likeButton;
-@property (nonatomic,strong) IBOutlet UIButton* timeButton;
-@property (nonatomic,strong) IBOutlet UIButton* ingredientsButton;
-@property (nonatomic,strong) IBOutlet UIButton* reportButton;
+@property (nonatomic,weak) IBOutlet UIButton* likeButton;
+@property (nonatomic,weak) IBOutlet UIButton* timeButton;
+@property (nonatomic,weak) IBOutlet UIButton* ingredientsButton;
+@property (nonatomic,weak) IBOutlet UIButton* reportButton;
 
 @property (nonatomic) NSInteger index;
 

@@ -24,6 +24,7 @@
     NSInteger cardsLoadedIndex; //%%% the index of the card you have loaded into the loadedCards array last
     NSMutableArray *loadedCards; //%%% the array of card loaded (change max_buffer_size to increase or decrease the number of cards this holds)
     NSMutableArray *likefoods;
+    
 }
 
 //this makes it so only two cards are loaded at a time to
@@ -37,11 +38,13 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
 @synthesize recipes;
 @synthesize remainCount;
 
-#define MAX_FOOD_COUNT 5
+#define MAX_FOOD_COUNT 10
+
 
 - (id)initWithCoder:(NSCoder *)aDecorer
 {
     self = [super initWithCoder:aDecorer];
+    remainCount = MAX_FOOD_COUNT;
     if (self) {
         [super layoutSubviews];
         [self setupView];
@@ -90,6 +93,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             [self loadCards];
             
         } failure:^(NSURLSessionTask *operation, NSError *error) {
+            remainCount = [self.recipes count];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Retrieving Recipes" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
             
             [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
@@ -101,6 +105,7 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
             [ProgressHUD dismiss];
             
         }];
+        
         
     }
     return self;
@@ -116,8 +121,6 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     
     [self.checkButton addTarget:self action:@selector(swipeRight) forControlEvents:UIControlEventTouchUpInside];
     
-    self.notification = [[UILabel alloc]initWithFrame:CGRectMake(60, 100, 230, 50)];
-    self.notification.hidden = YES;
     
 }
 
@@ -137,6 +140,21 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     
     if (recipe.ad_identifier == nil || [recipe.ad_identifier isEqualToString:@""] || [recipe.ad_identifier isEqual:[NSNull null]]){
         NSString *photoUrl = recipe.photo_url;
+        NSLog(@"%@", photoUrl);
+        
+        HNKCacheFormat *format = [HNKCache sharedCache].formats[@"thumbnail"];
+        if (!format)
+        {
+            format = [[HNKCacheFormat alloc] initWithName:@"thumbnail"];
+            format.size = draggableView.foodimage.bounds.size;
+            format.scaleMode = HNKScaleModeAspectFill;
+            format.compressionQuality = 0.5;
+            format.diskCapacity = 10 * 1024 * 1024; // 1MB
+            format.preloadPolicy = HNKPreloadPolicyLastSession;
+        }
+        
+        draggableView.foodimage.hnk_cacheFormat = format;
+        
         [draggableView.foodimage hnk_setImageFromURL:[NSURL URLWithString:photoUrl]];
         
         self.foodtitle.text = recipe.title;
@@ -313,10 +331,10 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     
     BOOL like = !left;
     
-    DraggableView *c = (DraggableView *)card;
-    if (!c.showAd){
+    DraggableView *dragCard = (DraggableView *)card;
+    if (!dragCard.showAd){
         
-        Draw *recipe = self.recipes[c.index];
+        Draw *recipe = self.recipes[dragCard.index];
         [[[AppSession sharedInstance] user] addToFavorites:recipe like:like];
         
     }
@@ -324,14 +342,6 @@ static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any gi
     // Mixpanel
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel identify: [[NSUserDefaults standardUserDefaults] stringForKey: @"userfacebookid"]];
-//    if (like){
-//        [mixpanel.people increment:USER_LIKED_RECIPES by:@1];
-//        [mixpanel track: USER_LIKED_RECIPES];
-//    }else{
-//        [mixpanel.people increment:USER_NOTLIKED_RECIPES by:@1];
-//        [mixpanel track: USER_NOTLIKED_RECIPES];
-//    }
-    
     
     //do whatever you want with the card that was swiped
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
