@@ -44,6 +44,7 @@ import Foundation
         id = data["id"] as! String
         recipe_id = data["id"] as! String
         title = data["title"] as! String
+        pos = data["pos"] as? String
         link = data["link"] as? String
         if let rl = data["results_link"] as? String{
             result_link = rl

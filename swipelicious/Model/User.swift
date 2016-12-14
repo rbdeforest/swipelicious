@@ -138,8 +138,15 @@ import Foundation
                 print(NSString.init(data: response.data!, encoding: NSUTF8StringEncoding))
             }else{
                 if like && !self.isFavorite(draw){
-                    self.favoriteIds?.append(draw.id)
-                    self.favorites?.append(draw)
+                    if self.favorites?.count > 0{
+                        if let pos = self.favorites?.first?.pos{
+                            draw.pos = String(Int(pos)! - 1)
+                        }
+                    }
+                    
+                    self.favoriteIds?.insert(draw.id, atIndex: 0)
+                    self.favorites?.insert(draw, atIndex: 0)
+                    
                 }
                 if (!like && self.isFavorite(draw)){
                     self.favoriteIds?.removeAtIndex((self.favoriteIds?.indexOf(draw.id))!)

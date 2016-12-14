@@ -113,7 +113,7 @@
     cell.foodTitleLabel.text = title.uppercaseString;
     NSString *imageUrl = recipe.photo_url;
     
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"prep %@ minutes, cook %@ minutes\nIngredients %@", recipe.prep_time, recipe.cook_time, recipe.ingredient_count];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"prep %@ minutes, cook %@ minutes, total %@ minutes, \nIngredients %@", recipe.prep_time, recipe.cook_time, recipe.total_time, recipe.ingredient_count];
     
     cell.createdByLabel.text = [NSString stringWithFormat:@"Created by %@",recipe.owner];
     
