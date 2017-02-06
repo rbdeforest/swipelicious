@@ -147,10 +147,43 @@
     
     if (self.sharing){
         Draw *recipe = [self.recipes objectAtIndex:indexPath.row];
-        FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-        content.contentURL = [NSURL URLWithString:recipe.blog_url];
-        [FBSDKShareDialog showFromViewController:self withContent:content delegate:self];
         
+        NSURL *shareUrl = [NSURL URLWithString:recipe.blog_url];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[shareUrl] applicationActivities:nil];
+        [activityController setExcludedActivityTypes:@
+         [UIActivityTypeCopyToPasteboard,
+          UIActivityTypeAddToReadingList,
+          @"com.apple.mobilenotes.SharingExtension",
+          @"com.apple.reminders.RemindersEditorExtension"
+          ]
+        ];
+        
+        [self presentViewController:activityController animated:YES completion:nil];
+        
+        [activityController setCompletionWithItemsHandler:^(UIActivityType __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
+            
+            if (completed){
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                
+                if ([defaults objectForKey:kPreferenceFreeShareRecipes] == nil){
+                    [defaults setObject:@YES forKey:kPreferenceFreeShareRecipes];
+                    [defaults synchronize];
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Success!" message:@"You get 10 more recipes for sharing" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }]];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }
+            
+            
+        }];
+        
+//        FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+//        content.contentURL = [NSURL URLWithString:recipe.blog_url];
+//        [FBSDKShareDialog showFromViewController:self withContent:content delegate:self];
+//        
     }else{
         [self performSegueWithIdentifier:@"showfooddetail" sender:nil];
     }

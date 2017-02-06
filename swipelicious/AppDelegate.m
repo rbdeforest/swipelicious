@@ -146,21 +146,10 @@ UILocalNotification *notification;
 - (BOOL)shouldUpdateRecipes
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *lastRecipesDate = [defaults objectForKey:@"lastRecipesDate"];
     
-    if (lastRecipesDate != nil){
-        lastRecipesDate = [lastRecipesDate dateByAddingTimeInterval:60*60*24];
-        
-        NSDate *today = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
-        
-        //if today is grater than last date + 24 hours
-        NSTimeInterval interval = [today timeIntervalSinceDate:lastRecipesDate];
-        if (interval >= 0){
-            [defaults removeObjectForKey: @"foodlefttoswipe"];
-            [defaults synchronize];
-            return true;
-        }
-    }else{
+    NSDate *nextRecipesDate = [self nextRefreshDate];
+    NSDate *now = [NSDate date];
+    if ([now compare:nextRecipesDate] != NSOrderedAscending) {
         [defaults removeObjectForKey: @"foodlefttoswipe"];
         [defaults synchronize];
         return true;
@@ -169,16 +158,53 @@ UILocalNotification *notification;
     return false;
 }
 
+- (NSDate *)nextRefreshDate{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDate *lastRecipesDate = [defaults objectForKey:@"lastRecipesDate"];
+    
+    if (lastRecipesDate != nil) {
+        return [lastRecipesDate dateByAddingTimeInterval:60*60*4];
+    }
+    
+    return [NSDate date];
+}
+
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSDate *lastRecipesDate = [defaults objectForKey:@"lastRecipesDate"];
+//    
+//    if (lastRecipesDate != nil){
+//        lastRecipesDate = [lastRecipesDate dateByAddingTimeInterval:60*60*24];
+//        
+//        NSDate *today = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
+//        
+//        //if today is grater than last date + 24 hours
+//        NSTimeInterval interval = [today timeIntervalSinceDate:lastRecipesDate];
+//        if (interval >= 0){
+//            [defaults removeObjectForKey: @"foodlefttoswipe"];
+//            [defaults synchronize];
+//            return true;
+//        }
+//    }else{
+//        [defaults removeObjectForKey: @"foodlefttoswipe"];
+//        [defaults synchronize];
+//        return true;
+//    }
+//    
+//    return false;
+
 - (void)updatedRecipes{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
+//    NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*12*-1];
+//    
+//    unsigned int flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+//    NSCalendar* calendar = [NSCalendar currentCalendar];
+//    NSDateComponents* components = [calendar components:flags fromDate:date];
+//    NSDate* dateOnly = [calendar dateFromComponents:components];
     
-    unsigned int flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:flags fromDate:date];
-    NSDate* dateOnly = [calendar dateFromComponents:components];
-    
-    [defaults setObject:dateOnly forKey:@"lastRecipesDate"];
+//    [defaults setObject:dateOnly forKey:@"lastRecipesDate"];
+//    [defaults synchronize];
+//    
+    [defaults setObject:[NSDate date] forKey:@"lastRecipesDate"];
     [defaults synchronize];
 }
 

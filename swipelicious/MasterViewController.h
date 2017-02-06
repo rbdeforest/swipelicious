@@ -17,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *onbardTapLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *myRecipesBarButton;
 
+@property (weak, nonatomic) IBOutlet UIView *timeLeftView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLeftDescription;
+
 extern int likefoodcount;
 extern NSString *apiKey;
 

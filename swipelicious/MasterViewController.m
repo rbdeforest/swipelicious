@@ -29,6 +29,7 @@ int currentOverlay;
 @interface MasterViewController ()
     @property (strong, nonatomic) NSArray *shareRecipes;
     @property (weak, nonatomic) DraggableViewBackground *draggableBackground;
+    @property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation MasterViewController{
@@ -36,6 +37,7 @@ int currentOverlay;
 }
 
 @synthesize draggableBackground;
+@synthesize timer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +92,9 @@ int currentOverlay;
         self.onboardViewContainer = nil;
     }
     
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimeLeft) userInfo:nil repeats:YES];
+    [self updateTimeLeft];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -166,17 +171,55 @@ int currentOverlay;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (draggableBackground == nil) {
             [self.emptyWebView setHidden:NO];
+            [self.timeLeftView setHidden:NO];
         }else{
             if (draggableBackground.remainCount == 0){
                 [self.draggableBackground removeFromSuperview];
                 self.draggableBackground = nil;
                 [self.emptyWebView setHidden:NO];
+                [self.timeLeftView setHidden:NO];
             }else{
                 [self.emptyWebView setHidden:YES];
+                [self.timeLeftView setHidden:YES];
             }
         }
     });
+}
+
+- (void)updateTimeLeft{
+    NSDate *lastRequest = [[NSUserDefaults standardUserDefaults] valueForKey:@"lastRecipesDate"];
     
+    if (lastRequest != nil) {
+        
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        if ([appDelegate shouldUpdateRecipes]) {
+            self.timeLeftLabel.text = @"More recipes are waiting for you!";
+            self.timeLeftDescription.text = @"Tap to refresh";
+            if ([[self.timeLeftView gestureRecognizers] count] == 0) {
+                [self.timeLeftView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshview)]];
+            }
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults removeObjectForKey:kPreferenceFreeShareRecipes];
+        }else{
+            if ([[self.timeLeftView gestureRecognizers] count] > 0) {
+                UIGestureRecognizer *tap = [self.timeLeftView gestureRecognizers][0];
+                [self.timeLeftView removeGestureRecognizer:tap];
+            }
+            
+            NSTimeInterval interval = [[appDelegate nextRefreshDate] timeIntervalSinceNow];
+            NSInteger ti = (NSInteger)interval;
+            NSInteger seconds = ti % 60;
+            NSInteger minutes = (ti / 60) % 60;
+            NSInteger hours = (ti / 3600);
+            
+            self.timeLeftLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld hours", (long)hours, (long)minutes, (long)seconds];
+            self.timeLeftDescription.text = @"Until you get 5 more recipes!";
+        }
+    }else{
+        self.timeLeftLabel.text = @"00:00:00 hours";
+    }
 }
 
 - (void)didFinishSwiping:(NSNotification *)notification{
@@ -224,6 +267,7 @@ int currentOverlay;
     
 
 -(void)refreshview{
+    
     if (draggableBackground != nil) {
         [draggableBackground removeFromSuperview];
         draggableBackground = nil;
@@ -234,13 +278,13 @@ int currentOverlay;
     
     draggableBackground.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.timeLeftView attribute:NSLayoutAttributeTop multiplier:1 constant:30]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeHeight multiplier:1 constant:-60]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-30]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.emptyWebView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:draggableBackground attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
     
     if (self.onboardViewContainer) {
         [self.view bringSubviewToFront:self.onboardViewContainer];

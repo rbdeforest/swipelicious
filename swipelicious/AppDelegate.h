@@ -16,6 +16,7 @@ extern UILocalNotification *notification;
 
 - (BOOL)shouldUpdateRecipes;
 - (void)updatedRecipes;
+- (NSDate *)nextRefreshDate;
 
 @end
 

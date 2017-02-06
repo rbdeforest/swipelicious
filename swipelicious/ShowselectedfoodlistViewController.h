@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-@interface ShowselectedfoodlistViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FBSDKSharingDelegate>
+@interface ShowselectedfoodlistViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FBSDKSharingDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *Selectedfoodlist;
 @property (weak, nonatomic) IBOutlet UIView *tabView;
