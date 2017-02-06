@@ -41,12 +41,15 @@
     if (currentUser.fbid != nil && ![currentUser.fbid isEqualToString:@""]) {
         NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", currentUser.fbid]];
         
-        [[SDWebImageManager sharedManager] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        SDWebImageDownloader *downloader = [[SDWebImageManager sharedManager] imageDownloader];
+        
+        [downloader downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
             if (image) {
                 self.imgvPhoto.contentMode = UIViewContentModeScaleAspectFit;
                 [self.imgvPhoto setImage: image];
             }
         }];
+        
     }
     
 }

@@ -25,8 +25,8 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
     var countryPicker: UIPickerView! = UIPickerView()
     
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
     
@@ -35,14 +35,14 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
         
         self.registerForKeyboardNotifications()
         
-        self.loginButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.loginButton.layer.borderColor = UIColor.white.cgColor
         self.loginButton.layer.borderWidth = 0.5
         self.loginButton.layer.cornerRadius = 5
         
         
-        self.datePicker.datePickerMode = UIDatePickerMode.Date
+        self.datePicker.datePickerMode = UIDatePickerMode.date
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserRegisterViewController.didDismissLogin), name: "kUserDidDismissLogin", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UserRegisterViewController.didDismissLogin), name: NSNotification.Name(rawValue: "kUserDidDismissLogin"), object: nil)
         
     }
     
@@ -53,12 +53,12 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func didDismissLogin(){
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func registerHandler(sender:UIButton) {
+    @IBAction func registerHandler(_ sender:UIButton) {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         if  let email = emailTextField.text,
@@ -71,69 +71,69 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
                 let user = User.init(email: email, password: password, firstName: firstName, lastName: lastName)
                 
                 if (!self.isValidEmail(email)){
-                    let alert = UIAlertController.init(title: "Error", message: "Email is incorrect", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController.init(title: "Error", message: "Email is incorrect", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                     
                     return
                 }
                 
                 AppSession.sharedInstance.register(user) { (user, error) -> () in
                     if user != nil{
-                        self.performSegueWithIdentifier("login", sender: self)                        
+                        self.performSegue(withIdentifier: "login", sender: self)                        
 //                        self.dismissViewControllerAnimated(true, completion: { 
 //                            //user did register notification
 //                            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidRegister, object: nil)
 //                        })
                     }else{
-                        let alert = UIAlertController.init(title: "Error", message: "An error has ocurred", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        let alert = UIAlertController.init(title: "Error", message: "An error has ocurred", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                     }
                 }
             }else{
-                let alert = UIAlertController.init(title: "Error", message: "Please complete all fields to register", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController.init(title: "Error", message: "Please complete all fields to register", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             
         }
     }
     
-    func isValidEmail(testStr:String) -> Bool {
+    func isValidEmail(_ testStr:String) -> Bool {
         // println("validate calendar: \(testStr)")
         let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(testStr)
+        return emailTest.evaluate(with: testStr)
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
         return 1
     }
     
     lazy var inputToolbar: UIToolbar = {
         var toolbar = UIToolbar()
-        toolbar.barStyle = .Default
-        toolbar.translucent = true
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
         toolbar.sizeToFit()
         
-        var doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(UserRegisterViewController.inputToolbarDonePressed))
-        var flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        var fixedSpaceButton = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        var doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UserRegisterViewController.inputToolbarDonePressed))
+        var flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        var fixedSpaceButton = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         
-        var nextButton  = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(UserRegisterViewController.keyboardNextButton))
+        var nextButton  = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(UserRegisterViewController.keyboardNextButton))
         nextButton.width = 50.0
         //var previousButton  = UIBarButtonItem(title: "Prev", style: .Plain, target: self, action: "keyboardPrevButton")
         
         toolbar.setItems([fixedSpaceButton, nextButton, fixedSpaceButton, flexibleSpaceButton, doneButton, fixedSpaceButton], animated: false)
-        toolbar.userInteractionEnabled = true
+        toolbar.isUserInteractionEnabled = true
         
         return toolbar
     }()
 
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.inputAccessoryView = inputToolbar
         self.currentTextField = textField
         
@@ -163,24 +163,24 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
     func registerForKeyboardNotifications()
     {
         //Adding notifies on keyboard appearing
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserRegisterViewController.keyboardWasShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserRegisterViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UserRegisterViewController.keyboardWasShown(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UserRegisterViewController.keyboardWillBeHidden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     
     func deregisterFromKeyboardNotifications()
     {
         //Removing notifies on keyboard appearing
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWasShown(notification: NSNotification)
+    func keyboardWasShown(_ notification: Notification)
     {
         //Need to calculate keyboard exact size due to Apple suggestions
-        self.scrollView.scrollEnabled = true
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
+        self.scrollView.isScrollEnabled = true
+        let info : NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
         
         self.scrollView.contentInset = contentInsets
@@ -190,7 +190,7 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
         aRect.size.height -= keyboardSize!.height
         if let activeFieldPresent = self.currentTextField
         {
-            if (!CGRectContainsPoint(aRect, activeFieldPresent.frame.origin))
+            if (!aRect.contains(activeFieldPresent.frame.origin))
             {
                 self.scrollView.scrollRectToVisible(activeFieldPresent.frame, animated: true)
             }
@@ -198,35 +198,35 @@ class UserRegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func keyboardWillBeHidden(notification: NSNotification)
+    func keyboardWillBeHidden(_ notification: Notification)
     {
         //Once keyboard disappears, restore original positions
-        let info : NSDictionary = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
+        let info : NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
         self.view.endEditing(true)
-        self.scrollView.scrollEnabled = false
+        self.scrollView.isScrollEnabled = false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.keyboardNextButton()
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField)
+    func textFieldDidBeginEditing(_ textField: UITextField)
     {
         self.currentTextField = textField
     }
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         self.currentTextField = nil
     }
     
-    @IBAction func back(sender : AnyObject){
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func back(_ sender : AnyObject){
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

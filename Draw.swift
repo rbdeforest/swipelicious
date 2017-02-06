@@ -37,8 +37,8 @@ import Foundation
     
     init(data: NSDictionary ){
         
-        let formatter = NSDateFormatter.init()
-        formatter.timeZone = NSTimeZone(name: "UTC")
+        let formatter = DateFormatter.init()
+        formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         id = data["id"] as! String

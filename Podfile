@@ -5,7 +5,7 @@ target 'swipelicious' do
 use_frameworks!
 
 pod 'Mixpanel'
-pod 'Alamofire', '~> 3.0'
+pod 'Alamofire', '~> 4.3'
 pod 'AFNetworking', '~> 3.0'
 pod 'Haneke', '~> 1.0'
 pod 'VICMAImageView', '~> 1.0'

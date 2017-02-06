@@ -14,42 +14,47 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (3.5.1)
+  - Alamofire (4.3.0)
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
   - ECSlidingViewController (1.3.3)
-  - Fabric (1.6.10)
-  - Firebase/AdMob (3.6.0):
-    - Firebase/Analytics
-    - Google-Mobile-Ads-SDK (= 7.11.0)
-  - Firebase/Analytics (3.6.0):
-    - FirebaseAnalytics (= 3.4.2)
-  - Firebase/Core (3.6.0):
-    - Firebase/Analytics
-  - FirebaseAnalytics (3.4.2):
+  - Fabric (1.6.11)
+  - Firebase/AdMob (3.12.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (= 7.17.0)
+  - Firebase/Core (3.12.0):
+    - FirebaseAnalytics (= 3.6.0)
+    - FirebaseCore (= 3.4.7)
+  - FirebaseAnalytics (3.6.0):
+    - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.2)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.4.7):
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.8)
-  - Google-Mobile-Ads-SDK (7.11.0)
-  - GoogleInterchangeUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.1.1)
-  - GoogleUtilities (1.3.1):
-    - GoogleSymbolUtilities (~> 1.0)
+  - Google-Mobile-Ads-SDK (7.17.0)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - Haneke (1.0.2)
-  - Mixpanel (3.0.3):
-    - Mixpanel/Mixpanel (= 3.0.3)
-  - Mixpanel/Mixpanel (3.0.3)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - Mixpanel (3.0.9):
+    - Mixpanel/Mixpanel (= 3.0.9)
+  - Mixpanel/Mixpanel (3.0.9)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - VICMAImageView (1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
-  - Alamofire (~> 3.0)
+  - Alamofire (~> 4.3)
   - Crashlytics
   - ECSlidingViewController (~> 1.3)
   - Fabric
@@ -62,22 +67,23 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   ECSlidingViewController: 244de2ad5014424e8a6642acf6fd11166ce79084
-  Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
-  Firebase: 34187200ef4979dbd485c7aa685ef078bf587c86
-  FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
+  FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google-Mobile-Ads-SDK: 0e864ab93ba1ff8afe92e16de0e4e883f581ed33
-  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
-  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
-  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  Google-Mobile-Ads-SDK: a8bf4211624999b73e4184be516f94770b139525
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Haneke: 01454a67322faa0dd9d81fc0f447885044e71521
-  Mixpanel: 45867daeaa3c60f88072a3cb1b44e0b6c5cec009
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  Mixpanel: 106bad33d5b9a05312316a01938f17b6baa2d99f
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   VICMAImageView: 9f1811d4482ebe37b7eb09f640018554a81a21b2
 
-PODFILE CHECKSUM: 391f2efdff2ca66d3831132ed5264d411e24504a
+PODFILE CHECKSUM: eda3996ff61944e28ddc5c80c157d95b69950c1b
 
 COCOAPODS: 1.0.1

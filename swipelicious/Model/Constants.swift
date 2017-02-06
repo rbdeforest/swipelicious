@@ -20,7 +20,7 @@ struct Constants {
     }
     
     struct Path {
-        static let Documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        static let Documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         static let Tmp = NSTemporaryDirectory()
     }
     
@@ -42,16 +42,16 @@ struct Constants {
         struct User {
             static let Login = Constants.API.Base + "users/login.json?test=\(test)"
             static let Register = Constants.API.Base + "users/add.json?test=\(test)"
-            static func Save(id : String!) -> String{
+            static func Save(_ id : String!) -> String{
                 return Base + "users/edit/\(id).json?test=\(test)"
             }
         }
         
         struct Draw {
-            static func Share(id : String!) -> String{
+            static func Share(_ id : String!) -> String{
                 return Constants.API.Base + "draws/view/\(id)?test=\(test)"
             }
-            static func View(id : String!) -> String{
+            static func View(_ id : String!) -> String{
                 return Constants.API.Base + "draws/\(id).json?test=\(test)"
             }
             static let Index = Constants.API.Base + "queues.json?test=\(test)"
@@ -61,7 +61,7 @@ struct Constants {
         }
         
         struct Recipe {
-            static func Index(country : String!) -> String{
+            static func Index(_ country : String!) -> String{
                 return Constants.API.Base + "draws/index.json?test=\(test)"
             }
             

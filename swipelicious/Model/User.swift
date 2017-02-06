@@ -30,7 +30,7 @@ import Foundation
         favoriteIds = data["favorite_ids"] as? [String]
         
         let draws = data["favorites"] as? NSArray
-        print(draws);
+        print("\(draws)");
         
         favorites = [Draw]()
         favoriteIds = [String]()
@@ -69,8 +69,8 @@ import Foundation
         self.FBToken = FBToken
     }
     
-    func toParams() -> [String : AnyObject] {
-        var profileParams : [String : AnyObject] = [String : AnyObject]()
+    func toParams() -> [String : Any] {
+        var profileParams : [String : Any] = [String : Any]()
             //"email": self.profile?.email as! AnyObject,
             //"first_name": self.profile?.first_name as! AnyObject,
             //"last_name": self.profile?.last_name as! AnyObject]
@@ -99,17 +99,17 @@ import Foundation
             profileParams["birthday"] = i
         }
         
-        var params = [String: AnyObject]()
+        var params = [String: Any]()
         
         params["profile"] = profileParams
         
         if let i = self.id{
             params["id"] = i
         }else{
-            if let e = self.email as? AnyObject{
+            if let e = self.email{
                 params["email"] = e
             }
-            if let e = self.password as? AnyObject{
+            if let e = self.password{
                 params["password"] = e
             }
         }
@@ -117,41 +117,44 @@ import Foundation
         return params
     }
     
-    func isFavorite(draw : Draw) -> Bool {
-        print(self.favoriteIds)
+    func isFavorite(_ draw : Draw) -> Bool {
+        print("\(self.favoriteIds)")
         if let fids = self.favoriteIds{
             return (fids.contains(draw.id))
         }
         return false
     }
     
-    func addToFavorites(draw : Draw, like : Bool) {
-        //if self.favoriteIds == nil{ return }
+    func addToFavorites(_ draw : Draw, like : Bool) {
+        
+        guard let _ = self.favoriteIds, let _ = self.favorites else{
+            return
+        }
         
         let url = Constants.API.Draw.AddFavorite
-        let request = AppSession.sharedInstance.requestForURL(.POST, url: url, parameters:["like" : like, "draw_id" : draw.id])
+        let request = AppSession.sharedInstance.requestForURL(.post, url: url, parameters:["like" : like, "draw_id" : draw.id])
         
         request.responseJSON {
             response in
-            if let error = response.result.error {
+            if let error = response.result.error, let errorString = String(data: response.data!, encoding: .utf8) {
                 print(error.localizedDescription)
-                print(NSString.init(data: response.data!, encoding: NSUTF8StringEncoding))
+                print("\(errorString)")
             }else{
                 if like && !self.isFavorite(draw){
-                    if self.favorites?.count > 0{
+                    if self.favorites!.count > 0{
                         if let pos = self.favorites?.first?.pos{
                             draw.pos = String(Int(pos)! - 1)
                         }
                     }
                     
-                    self.favoriteIds?.insert(draw.id, atIndex: 0)
-                    self.favorites?.insert(draw, atIndex: 0)
+                    self.favoriteIds?.insert(draw.id, at: 0)
+                    self.favorites?.insert(draw, at: 0)
                     
                 }
                 if (!like && self.isFavorite(draw)){
-                    self.favoriteIds?.removeAtIndex((self.favoriteIds?.indexOf(draw.id))!)
+                    self.favoriteIds?.remove(at: (self.favoriteIds?.index(of: draw.id))!)
                     if (self.favorites!.contains(draw)){
-                        self.favorites?.removeAtIndex((self.favorites?.indexOf(draw))!)
+                        self.favorites?.remove(at: (self.favorites?.index(of: draw))!)
                     }
                     
                 }

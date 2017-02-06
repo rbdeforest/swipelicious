@@ -39,7 +39,7 @@ import Foundation
         self.last_name = lastName
     }
     
-    func setConfigOption(option: String, value: String){
+    func setConfigOption(_ option: String, value: String){
         AppSession.sharedInstance.saveUser()
     }
     

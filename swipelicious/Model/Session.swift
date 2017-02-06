@@ -19,13 +19,13 @@ import Alamofire
         
     }
     
-    func login(user:User, completion:(_ : User?, _: NSError?) -> ()) -> (){
+    func login(_ user:User, completion:@escaping (_ : User?, _: Error?) -> ()) -> (){
         
         let url : String = Constants.API.User.Login
         
         self.user = user
         
-        let request = self.requestForURL(.POST, url: url)
+        let request = self.requestForURL(.post, url: url)
         
         print(request)
         
@@ -33,8 +33,9 @@ import Alamofire
             response in
             
             if let error = response.result.error {
-                let errorString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)
-                print(errorString)
+                let errorString = String(data: response.data!, encoding: .utf8)
+
+                print(errorString ?? "nil error")
                 self.user = nil
                 completion(nil, error)
             }else{
@@ -48,7 +49,7 @@ import Alamofire
                         
                         self.saveToPreferences(user)
                         
-                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidLogin, object: user)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.Notifications.UserDidLogin), object: user)
                         
                         self.user = user
                         
@@ -63,7 +64,7 @@ import Alamofire
         }
     }
     
-    func loginCurrentUser(completion:(_: User?, _: NSError?) ->()) -> (){
+    func loginCurrentUser(_ completion:@escaping (_: User?, _: Error?) ->()) -> (){
         if user?.FBToken != nil
         {
             AppSession.sharedInstance.login(user!) { (user, error) -> () in
@@ -71,9 +72,9 @@ import Alamofire
                 
             }
         }else{
-            let defaults = NSUserDefaults.standardUserDefaults()
-            if  let email = defaults.objectForKey(Constants.Preferences.User.Email) as? String,
-                let password = defaults.objectForKey(Constants.Preferences.User.Password) as? String
+            let defaults = UserDefaults.standard
+            if  let email = defaults.object(forKey: Constants.Preferences.User.Email) as? String,
+                let password = defaults.object(forKey: Constants.Preferences.User.Password) as? String
             {
                 let user = User.init(email: email, password: password)
                 
@@ -86,18 +87,18 @@ import Alamofire
         }
     }
     
-    func saveToPreferences(user: User){
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(user.email, forKey: Constants.Preferences.User.Email)
-        defaults.setObject(user.password, forKey: Constants.Preferences.User.Password)
-        defaults.setObject(user.fbid, forKey: Constants.Preferences.User.FBId)
+    func saveToPreferences(_ user: User){
+        let defaults = UserDefaults.standard
+        defaults.set(user.email, forKey: Constants.Preferences.User.Email)
+        defaults.set(user.password, forKey: Constants.Preferences.User.Password)
+        defaults.set(user.fbid, forKey: Constants.Preferences.User.FBId)
         defaults.synchronize()
     }
     
     func removeUserFromPreferences(){
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.removeObjectForKey(Constants.Preferences.User.Password)
-        defaults.removeObjectForKey(Constants.Preferences.User.FBId)
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: Constants.Preferences.User.Password)
+        defaults.removeObject(forKey: Constants.Preferences.User.FBId)
         defaults.synchronize()
     }
     
@@ -106,7 +107,7 @@ import Alamofire
         {
             self.removeUserFromPreferences()
             self.user = nil
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.UserDidLogout, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Constants.Notifications.UserDidLogout), object: nil)
         }
     }
     
@@ -114,17 +115,18 @@ import Alamofire
         return self.user == nil
     }
     
-    func register(user:User, completion:(_ :User?, _: NSError?) -> ()) -> (){
+    func register(_ user:User, completion:@escaping (_ :User?, _: Error?) -> ()) -> (){
         
         let url : String = Constants.API.User.Register
         
-        let request = Alamofire.request(.POST, url, parameters: user.toParams())
+        let request = Alamofire.request(url, method: .post, parameters: user.toParams())
         
         request.responseJSON {
             response in
             
-            let errorString = String(data: response.data!, encoding: NSUTF8StringEncoding)
-            print(errorString)
+            if let errorString = String(data: response.data!, encoding: .utf8){
+                print(errorString)
+            }
             
             if let error = response.result.error {
                 completion(nil, error)
@@ -146,15 +148,15 @@ import Alamofire
         }
     }
     
-    func requestForURL(method: Alamofire.Method, url: String, parameters: [String: AnyObject]? = nil) -> Request{
+    func requestForURL(_ method: HTTPMethod, url: String, parameters: [String: Any]? = nil) -> DataRequest{
         
         var url = url
         if self.user != nil, let token = self.user?.FBToken{
-            let separator : String = url.containsString("?") ? "&" : "?"
-            url.appendContentsOf("\(separator)fbtoken=\(token)")
+            let separator : String = url.contains("?") ? "&" : "?"
+            url.append("\(separator)fbtoken=\(token)")
         }
         
-        let request = Alamofire.request(method, url, parameters: parameters)
+        let request = Alamofire.request(url, method: method, parameters: parameters)
         
         if self.user != nil, let email = self.user?.email, let password = self.user?.password{
             request.authenticate(user: email, password: password)
@@ -167,13 +169,13 @@ import Alamofire
     func saveUser() {
         
         let url : String = Constants.API.User.Save(self.user!.id)
-        let request = AppSession.sharedInstance.requestForURL(.POST, url: url, parameters:self.user!.toParams())
+        let request = AppSession.sharedInstance.requestForURL(.post, url: url, parameters:self.user!.toParams())
         
         request.responseJSON {
             response in
             if let error = response.result.error {
                 print(error.localizedDescription)
-                print(NSString.init(data: response.data!, encoding: NSUTF8StringEncoding))
+                print(String(data: response.data!, encoding: .utf8) ?? "nil")
             }else{
                 if let JSON = response.result.value {
                     print(JSON)
